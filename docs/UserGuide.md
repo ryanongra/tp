@@ -75,17 +75,15 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a member to the Interest Group.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [t/TAG]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Only member's name must be entered to add the member. All other details are optional.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
+* `add n/John Doe`
 
 ### Listing all persons : `list`
 
