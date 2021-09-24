@@ -138,6 +138,32 @@ Examples:
 * `list` followed by `delete 3` deletes the 3rd person in the displayed person list.
 * `find Jason` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### View a person's details : `details`
+
+Shows the details of a particular member in the IG.
+
+Format: `details NAME`
+
+* The NAME entered must match the member’s name exactly (case-sensitive).
+
+Examples:
+* `details Xiao Ming` will output:
+  ```
+  Name: Xiao Ming
+  Phone: 61234567
+  Tele: @xiao_ming
+  Email: xiaoming@gmail.com
+  ```
+
+* `details John Doe` will output:
+  ```
+  Name: John Doe
+  Phone: NIL
+  Tele: NIL
+  Email: NIL
+  ```
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
