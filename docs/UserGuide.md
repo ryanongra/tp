@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ForYourInterest is a **desktop app for managing members in university clubs/societies, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ForYourInterest can get your member management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `foryourinterest.jar` from [here](https://github.com/AY2122S1-CS2103-T16-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ForYourInterest.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -66,7 +66,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -110,23 +110,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding a member: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds the members whose details contain any of the given keywords and shows the filtered list of members in the IG. These include their name, mobile number, telegram handle and email.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. E.g `xiaomings` will match `Xiaomings`
+* The order of the keywords does not matter. e.g. `Xuan Ming` will match `Ming Xuan`
+* The name, mobile number, telegram handle and email will be searched for the keyword.
+* Only full words will be matched e.g. `Han` will not match `Hanna`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hanna Bo` will return `Hanna Bana`, `Ling Bo`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find xuan` returns `Xuan Ming` and `Xuan Xuan`
+* `find xiaowen@gmail.com` returns `Xiao Wen`
 
 ### Deleting a person : `delete`
 
