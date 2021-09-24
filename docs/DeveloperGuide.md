@@ -257,13 +257,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of members for his CCA or interest group
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage members faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -271,44 +271,135 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------            |
+| `* * *`  | user                                       | add new members with details   | track my members                                                                  |
+| `* * *`  | user                                       | delete a member                | remove members who are not active anymore                                         |
+| `* * *`  | user                                       | view a member's detail         |                                                                                   |
+| `* * `   | first time user                             | easily find the details of available commands | learn new commands                                                  |
+| `* * `   | first time user                             | easily populate the application with dummy data | try out features and see how the application is used             |
+| `* * `   | first time user                             | easily clear all data          | remove unneeded data and start the application afresh                             |
+| `* * `   | new user                                   | see new tip on features and commands | get to know the application better                                          |
+| `* * `   | new user                                   | undo my commands               | easily undo mistakes                                                              |
+| `* * `   | interest group leader                      | search and filter member        | find selected members easily                                                       |
+| `*  `    | expert user                                | type commands in one line      | execute commands quickly                                                          |
+| `*  `    | expert user                                | chain commands together and write macros | increase my productivity                                                |
+| `*  `    | user                                       | tag an event or training session to a person | keep track of their attendance and contact them easily if they have not arrived |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ForYourInterest` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new member into the system**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User wants to add a new member.
+2. User enters the details of the new member, which are name, phone number, telegram handle and email.
+3. Systems confirms that the member is added. 
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. System detects that the name is not entered.
+  * 2a1. System requests for the name to be entered.
+  * 2a2. User enters the name of the new member.
+  * Step 2a1-2a2 are repeated until the name is entered.
+  
+* 2b. System detects that the phone number is not entered.
+  * 2b1. System accepts that the phone number is not entered as it is optional.
+  * Use case resumes at 2c.
+* 2c. System detects that the telegram handle is not entered.
+  * 2c1. System accepts that the telegram handle is not entered as it is optional.
+  * Use case resumes at 2d.
+* 2d. System detects that the email is not entered.
+  * 2d1. System accepts that the email is not entered as it is optional.
+  * Use case resumes at 3.
 
+**Use case: Delete a member from the system**
+
+**MSS**
+
+1. User searches for a member using <ins>Find a member<ins/>.
+2. User types in command to delete the member.
+3. System confirms that the member is deleted. 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User attempts to delete a member that is not in the list.
+  * 2a1. System notifies the user that the member is not in the list.
+    
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: View all members managed by the system**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to view all members managed by the system by using the command `list`.
+2. System shows a list of all members managed by the system.
 
-*{More to be added}*
+   Use case ends.
+
+**Use case: Find a member**
+
+**MSS**
+
+1. User requests to find members with a given keyword.
+2. Members with details matching the given keywords are shown in the same format as <ins>View all members managed by the system<ins/>.
+
+   Use case ends.
+
+**Extensions**
+* 1a. User enters empty keyword
+  * 1a1. System informs user that keyword cannot be empty
+  
+    Use case ends.
+
+**Use case: View the details of members**
+
+**Guarantees: All details previously entered are displayed**
+
+**MSS**
+1. User requests to see the details of a certain member.
+2. All details regarding the specified member are shown.
+   Use case ends.
+
+**Extensions**
+* 1a. User enters the name of a member who does not exist in the current list of members
+  * 1a1. Application is unable to find the user specified.
+  * 1a2. Application displays message to inform user than member specified does not exist.
+   
+  Use case ends.
+
+**Use case: Clear past data**
+
+**Guarantees: All member data are cleared**
+
+**MSS**
+
+1. User requests to delete member data.
+2. All member data is deleted.
+3. System confirms that past data has been deleted.
+
+    Use case ends.
+
+**Extensions**
+* 2a. System is unable to delete data.
+  * 2a1. System notifies the user of the reason why it is not able to delete the data.
+
+**Use case: Exit the application**
+
+**MSS**
+
+1. User is done using the app and requests to exit the app.
+2. Application exits.
+
+   Use case ends.
+
+
+
 
 ### Non-Functional Requirements
 
@@ -316,13 +407,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Interest Group**: A student run organisation which focuses on a common interest (such as sports, games, etc). Similar to co-curricular activities (CCAs) in Secondary School or Junior College.
+* **IG**: Interest Group
+* **RC**: Residential College
+* **Halls**: Halls of Residence
+* **CCA**: Co-Curricular Activity
+* **Telegram handle**: Telegram username
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
