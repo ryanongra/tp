@@ -289,13 +289,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ForYourInterest` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a new member into the system**
+**Use case: UC01 - Add a new member into the system**
 
 **MSS**
 
 1. User wants to add a new member.
 2. User enters the details of the new member, which are name, phone number, telegram handle and email.
-3. Systems confirms that the member is added. 
+3. System confirms that the member is added. 
 
     Use case ends.
 
@@ -316,11 +316,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2d1. System accepts that the email is not entered as it is optional.
   * Use case resumes at 3.
 
-**Use case: Delete a member from the system**
+**Use case: UC02 - Delete a member from the system**
 
 **MSS**
 
-1. User searches for a member using <ins>Find a member<ins/>.
+1. User searches for a member using <ins>UC04 - Find a member<ins/>.
 2. User types in command to delete the member.
 3. System confirms that the member is deleted. 
 
@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
   Use case ends.
 
-**Use case: View all members managed by the system**
+**Use case: UC03 - View all members managed by the system**
 
 **MSS**
 
@@ -342,12 +342,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: Find a member**
+**Use case: UC04 - Find a member**
 
 **MSS**
 
 1. User requests to find members with a given keyword.
-2. Members with details matching the given keywords are shown in the same format as <ins>View all members managed by the system<ins/>.
+2. Members with details matching the given keywords are shown in the same format as <ins>UC03 - View all members managed by the system<ins/>.
 
    Use case ends.
 
@@ -357,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: View the details of members**
+**Use case: UC05 - View the details of members**
 
 **Guarantees: All details previously entered are displayed**
 
@@ -373,7 +373,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
   Use case ends.
 
-**Use case: Clear past data**
+**Use case: UC06 - Clear past data**
 
 **Guarantees: All member data are cleared**
 
@@ -389,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. System is unable to delete data.
   * 2a1. System notifies the user of the reason why it is not able to delete the data.
 
-**Use case: Exit the application**
+**Use case: UC07 - Exit the application**
 
 **MSS**
 
