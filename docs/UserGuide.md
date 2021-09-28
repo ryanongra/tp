@@ -30,7 +30,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`**`ALL ENTRIES` : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -71,7 +71,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -163,12 +162,17 @@ Examples:
   Email: NIL
   ```
 
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear ALL ENTRIES`
+
+Examples:
+* `clear ALL ENTRIES` will output:
+  ```
+  All entries in the address book are deleted.
+  ```
 
 ### Exiting the program : `exit`
 
@@ -206,7 +210,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear** | `clear ALL ENTRIES`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
