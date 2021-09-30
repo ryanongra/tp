@@ -24,7 +24,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : View all members.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -84,11 +84,17 @@ Examples:
 * `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
 * `add n/John Doe`
 
-### Listing all persons : `list`
+### Listing all persons : `view`
 
-Shows a list of all persons in the address book.
+Shows the list of all persons in the IG.
 
 Format: `list`
+
+* The list will display the names of all the members in the IG
+* The IG leader can click/use the details command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+
+Examples:
+* `list` in an IG of 5 members will display all the member’s names.
 
 ### Editing a person : `edit`
 
