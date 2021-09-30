@@ -17,15 +17,15 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Deliverables and deadlines
 
-### Jane Doe
+### Nguyen Quang Vinh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/icewizard4902.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/IceWizard4902)]
+[[portfolio](team/nguyenquangvinh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing
 
 ### Ng Zi Xuan
 
