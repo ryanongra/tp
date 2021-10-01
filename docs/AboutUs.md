@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/yongxiangng)]
 [[portfolio](team/yongxiangng.md)]
 
-* Role: Developer
-* Responsibilities: Deliverables and deadlines
+- Role: Developer
+- Responsibilities: Deliverables and deadlines
 
 ### Jane Doe
 
@@ -26,17 +26,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
 ### Ng Zi Xuan
 
-<img src="images/ngzixuan.png" width="200px">
+<img src="images/nzixuan.png" width="200px">
 
-[[github](http://github.com/nzixuan)] [[portfolio](team/ngzixuan.md)]
+[[github](http://github.com/nzixuan)] [[portfolio](team/nzixuan.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Ryan Ong
 
@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/ryanongra)]
 [[portfolio](team/ryanongra.md)]
 
-* Role: Developer
-* Responsibilities: Code Quality
+- Role: Developer
+- Responsibilities: Code Quality
 
 ### James Doe
 
@@ -55,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
