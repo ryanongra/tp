@@ -14,8 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/yongxiangng)]
 [[portfolio](team/yongxiangng.md)]
 
-* Role: Developer
-* Responsibilities: Deliverables and deadlines
+- Role: Developer
+- Responsibilities: Deliverables and deadlines
 
 ### Nguyen Quang Vinh
 
@@ -24,17 +24,17 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/IceWizard4902)]
 [[portfolio](team/nguyenquangvinh.md)]
 
-* Role: Developer
-* Responsibilities: Testing
+- Role: Developer
+- Responsibilities: Testing
 
 ### Ng Zi Xuan
 
-<img src="images/ngzixuan.png" width="200px">
+<img src="images/nzixuan.png" width="200px">
 
-[[github](http://github.com/nzixuan)] [[portfolio](team/ngzixuan.md)]
+[[github](http://github.com/nzixuan)] [[portfolio](team/nzixuan.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Ryan Ong
 
@@ -43,8 +43,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/ryanongra)]
 [[portfolio](team/ryanongra.md)]
 
-* Role: Developer
-* Responsibilities: Code Quality
+- Role: Developer
+- Responsibilities: Code Quality
 
 ### Tay Jun Yang
 
@@ -53,5 +53,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/dannytayjy)]
 [[portfolio](team/dannytayjy.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
