@@ -24,13 +24,13 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : View all members.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`**`ALL ENTRIES` : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -72,26 +72,29 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a member to the Interest Group.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [t/TAG]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Only member's name must be entered to add the member. All other details are optional.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
+* `add n/John Doe`
 
-### Listing all persons : `list`
+### Listing all persons : `view`
 
-Shows a list of all persons in the address book.
+Shows the list of all persons in the IG.
 
 Format: `list`
+
+* The list will display the names of all the members in the IG
+* The IG leader can click/use the details command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+
+Examples:
+* `list` in an IG of 5 members will display all the member’s names.
 
 ### Editing a person : `edit`
 
@@ -140,11 +143,42 @@ Examples:
 * `list` followed by `delete 3` deletes the 3rd person in the displayed person list.
 * `find Jason` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### View a person's details : `details`
+
+Shows the details of a particular member in the IG.
+
+Format: `details NAME`
+
+* The NAME entered must match the member’s name exactly (case-sensitive).
+
+Examples:
+* `details Xiao Ming` will output:
+  ```
+  Name: Xiao Ming
+  Phone: 61234567
+  Tele: @xiao_ming
+  Email: xiaoming@gmail.com
+  ```
+
+* `details John Doe` will output:
+  ```
+  Name: John Doe
+  Phone: NIL
+  Tele: NIL
+  Email: NIL
+  ```
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear ALL ENTRIES`
+
+Examples:
+* `clear ALL ENTRIES` will output:
+  ```
+  All entries in the address book are deleted.
+  ```
 
 ### Exiting the program : `exit`
 
@@ -182,7 +216,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear** | `clear ALL ENTRIES`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
