@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and displays the details of person whose name matches the keyword exactly.
@@ -19,25 +22,30 @@ public class DetailsCommand extends Command {
             + "Parameters: NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " Xiao Ming";
 
-    private final String keyword;
+    private final Name name;
 
-    public DetailsCommand(String keyword) {
-        this.keyword = keyword;
+    public DetailsCommand(Name name) {
+        this.name = name;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        // TODO: update the logic here
+    public CommandResult execute(Model model) {
         requireNonNull(model);
-        System.out.println(keyword);
+        List<Person> persons = model.getAddressBook().getPersonList();
+        for (Person person : persons) {
+            if (person.getName().equals(name)) {
+                return new CommandResult(
+                        String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, name));
+            }
+        }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, keyword));
+                String.format(Messages.MESSAGE_PERSON_DETAILS_NOT_FOUND, name));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DetailsCommand // instanceof handles nulls
-                && keyword.equals(((DetailsCommand) other).keyword)); // state check
+                && name.equals(((DetailsCommand) other).name)); // state check
     }
 }

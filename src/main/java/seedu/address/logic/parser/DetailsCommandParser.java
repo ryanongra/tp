@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.DetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new DetailsCommand object
@@ -16,12 +17,13 @@ public class DetailsCommandParser implements Parser<DetailsCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DetailsCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        try {
+            Name name = ParserUtil.parseName(args);
+            return new DetailsCommand(name);
+        } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailsCommand.MESSAGE_USAGE));
         }
-        return new DetailsCommand(trimmedArgs);
     }
 
 }
