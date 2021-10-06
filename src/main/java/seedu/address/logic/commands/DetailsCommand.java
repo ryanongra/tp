@@ -14,8 +14,9 @@ public class DetailsCommand extends Command {
 
     public static final String COMMAND_WORD = "details";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the details of a member.\n"
-            + "Parameters: NAME (Case Sensitive)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the details of a member from the "
+            + "specified keywords (case-sensitive and exact match).\n"
+            + "Parameters: NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " Xiao Ming";
 
     private final String keyword;
