@@ -29,6 +29,7 @@ public class DetailsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        assert model.getFilteredPersonList().size() < 2;
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSON_DETAILS_NOT_FOUND, predicate),
