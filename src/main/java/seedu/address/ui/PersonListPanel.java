@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private boolean showDetails = false;
 
     @FXML
     private ListView<Person> personListView;
@@ -30,6 +31,15 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Sets the details field to parameter passed.
+     *
+     * @param showDetails boolean value to show details.
+     */
+    public void setShowDetails(boolean showDetails) {
+        this.showDetails = showDetails;
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -40,6 +50,8 @@ public class PersonListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
+            } else if (showDetails) {
+                setGraphic(new PersonDetailsCard(person).getRoot());
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
