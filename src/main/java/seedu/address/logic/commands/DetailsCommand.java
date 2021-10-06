@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.NameEqualKeywordPredicate;
 
 /**
@@ -20,22 +19,24 @@ public class DetailsCommand extends Command {
             + "Parameters: NAME (case-sensitive)\n"
             + "Example: " + COMMAND_WORD + " Xiao Ming";
 
-    private final Name name;
+    private final NameEqualKeywordPredicate predicate;
 
-    public DetailsCommand(Name name) {
-        this.name = name;
+    public DetailsCommand(NameEqualKeywordPredicate predicate) {
+        this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(new NameEqualKeywordPredicate(name));
+        model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSON_DETAILS_NOT_FOUND, name));
+                    String.format(Messages.MESSAGE_PERSON_DETAILS_NOT_FOUND, predicate),
+                    false, false, true);
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, name));
+                    String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, predicate),
+                    false, false, true);
         }
     }
 
@@ -43,6 +44,6 @@ public class DetailsCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DetailsCommand // instanceof handles nulls
-                && name.equals(((DetailsCommand) other).name)); // state check
+                && predicate.equals(((DetailsCommand) other).predicate)); // state check
     }
 }
