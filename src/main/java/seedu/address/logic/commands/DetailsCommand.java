@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and displays the details of person whose name matches the keyword exactly.
@@ -30,8 +30,6 @@ public class DetailsCommand extends Command {
         // TODO: update the logic here
         requireNonNull(model);
         System.out.println(keyword);
-//        return new CommandResult(
-//                String.format(Messages.MESSAGE_PERSON_DETAILS_NOT_FOUND, keyword));
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, keyword));
     }
