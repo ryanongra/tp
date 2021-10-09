@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_PERSON_DETAILS_FOUND = "Showing details of %1$s";
     public static final String MESSAGE_PERSON_DETAILS_NOT_FOUND = "Person with name %1$s not found!";
+    public static final String MESSAGE_EMPTY_LIST = "The list is empty!";
 
 }
