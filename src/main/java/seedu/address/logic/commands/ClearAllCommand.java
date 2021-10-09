@@ -33,11 +33,11 @@ public class ClearAllCommand extends Command {
         }
 
         model.clearAllPerson();
-        return new CommandResult(String.format(MESSAGE_CLEAR_ALL_SUCCESS));
+        return new CommandResult(MESSAGE_CLEAR_ALL_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
-        return (other == this) || (other instanceof ClearAllCommand);
+        return (other instanceof ClearAllCommand);
     }
 }
