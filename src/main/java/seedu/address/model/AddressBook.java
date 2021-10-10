@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Clears every entry from this {@code ForYourInterest}.
+     */
+    public void clearAllPerson() {
+        persons.clearAllPerson();
+    }
+
     //// util methods
 
     @Override
