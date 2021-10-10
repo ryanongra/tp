@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Clears every entry from this {@code AddressBook}.
+     * Clears every entry from this {@code ForYourInterest}.
      */
     public void clearAllPerson() {
         persons.clearAllPerson();

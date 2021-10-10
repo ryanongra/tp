@@ -58,6 +58,9 @@ public class AddressBookParser {
         case DetailsCommand.COMMAND_WORD:
             return new DetailsCommandParser().parse(arguments);
 
+        case ClearAllCommand.COMMAND_WORD:
+            return new ClearAllCommand();
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -72,9 +75,6 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case ClearAllCommand.COMMAND_WORD:
-            return new ClearAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

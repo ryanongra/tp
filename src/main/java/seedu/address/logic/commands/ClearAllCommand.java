@@ -15,20 +15,15 @@ public class ClearAllCommand extends Command {
     public static final String COMMAND_WORD = "clear ALL ENTRIES";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears all entries from the address book.\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Clears all entries from the address book.\n";
 
-    public static final String MESSAGE_CLEAR_ALL_SUCCESS = "Successfully cleared all entries from the address book";
-
-    public ClearAllCommand() {
-
-    }
+    public static final String MESSAGE_CLEAR_ALL_SUCCESS = "Successfully cleared all entries";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> currentList = model.getAddressBook().getPersonList();
 
-        if (lastShownList.size() == 0) {
+        if (currentList.size() == 0) {
             throw new CommandException(Messages.MESSAGE_EMPTY_LIST);
         }
 
