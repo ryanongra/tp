@@ -84,7 +84,7 @@ Examples:
 * `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
 * `add n/John Doe`
 
-### Listing all persons : `view`
+### Listing all persons : `list`
 
 Shows the list of all persons in the IG.
 
