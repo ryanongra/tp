@@ -30,7 +30,7 @@
 }
 
 .tab-pane {
-    -fx-padding: 0 0 0 1;
+    -fx-padding: 0 0 0 0;
 }
 
 .tab-pane .tab-header-area {
