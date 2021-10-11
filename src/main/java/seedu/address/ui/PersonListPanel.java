@@ -37,6 +37,16 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public void setShowDetails(boolean showDetails) {
         this.showDetails = showDetails;
+        refresh();
+    }
+
+    /**
+     * Refreshes the entire component.
+     */
+    public void refresh() {
+        personListView.setItems(personListView.getItems());
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.refresh();
     }
 
     /**
