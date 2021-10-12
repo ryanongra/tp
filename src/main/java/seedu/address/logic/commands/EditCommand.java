@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Telegram updatedTelegram = editPersonDescriptor.getAddress().orElse(personToEdit.getTelegram());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags);
@@ -180,7 +180,7 @@ public class EditCommand extends Command {
             this.telegram = telegram;
         }
 
-        public Optional<Telegram> getAddress() {
+        public Optional<Telegram> getTelegram() {
             return Optional.ofNullable(telegram);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getTelegram().equals(e.getTelegram())
                     && getTags().equals(e.getTags());
         }
     }

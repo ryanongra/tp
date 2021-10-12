@@ -14,23 +14,23 @@ public class TelegramTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidAddress));
+    public void constructor_invalidTelegram_throwsIllegalArgumentException() {
+        String invalidTelegram = "";
+        assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
-        assertThrows(NullPointerException.class, () -> Telegram.isValidAddress(null));
+    public void isValidTelegram() {
+        // null Telegram
+        assertThrows(NullPointerException.class, () -> Telegram.isValidTelegram(null));
 
-        // invalid addresses
-        assertFalse(Telegram.isValidAddress("")); // empty string
-        assertFalse(Telegram.isValidAddress(" ")); // spaces only
+        // invalid telegram handles
+        assertFalse(Telegram.isValidTelegram("")); // empty string
+        assertFalse(Telegram.isValidTelegram(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(Telegram.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(Telegram.isValidAddress("-")); // one character
-        assertTrue(Telegram.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid telegram handles
+        assertTrue(Telegram.isValidTelegram("Blk 456, Den Road, #01-355"));
+        assertTrue(Telegram.isValidTelegram("-")); // one character
+        assertTrue(Telegram.isValidTelegram("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long telegram handle
     }
 }
