@@ -1,16 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -41,6 +30,18 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -172,7 +173,9 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

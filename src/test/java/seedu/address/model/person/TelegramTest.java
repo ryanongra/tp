@@ -31,7 +31,7 @@ public class TelegramTest {
         // valid telegram handles
         assertTrue(Telegram.isValidTelegram("@validTelegramHandle"));
         assertTrue(Telegram.isValidTelegram("i")); // one character
-        assertTrue(Telegram.
-                isValidTelegram("@tttttttttttttttttttttttttttttttttttttttttttttttttttt")); // long telegram handle
+        assertTrue(Telegram
+                .isValidTelegram("@tttttttttttttttttttttttttttttttttttttttttttttttttttt")); // long telegram handle
     }
 }
