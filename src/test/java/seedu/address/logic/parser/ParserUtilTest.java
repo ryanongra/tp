@@ -104,25 +104,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegram(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Telegram expectedTelegram = new Telegram(VALID_ADDRESS);
-        assertEquals(expectedTelegram, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Telegram expectedTelegram = new Telegram(VALID_ADDRESS);
-        assertEquals(expectedTelegram, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(addressWithWhitespace));
     }
 
     @Test

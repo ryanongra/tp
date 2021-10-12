@@ -71,7 +71,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Telegram parseAddress(String telegram) throws ParseException {
+    public static Telegram parseTelegram(String telegram) throws ParseException {
         requireNonNull(telegram);
         String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {

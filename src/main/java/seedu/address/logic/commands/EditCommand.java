@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.telegram);
+            setTelegram(toCopy.telegram);
             setTags(toCopy.tags);
         }
 
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Telegram telegram) {
+        public void setTelegram(Telegram telegram) {
             this.telegram = telegram;
         }
 
