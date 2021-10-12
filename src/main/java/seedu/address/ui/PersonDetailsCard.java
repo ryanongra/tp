@@ -33,7 +33,7 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label telegram;
     @FXML
     private Label email;
     @FXML
@@ -47,7 +47,7 @@ public class PersonDetailsCard extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
+        telegram.setText(person.getTelegram().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
