@@ -29,8 +29,9 @@ public class TelegramTest {
         assertFalse(Telegram.isValidTelegram(" ")); // spaces only
 
         // valid telegram handles
-        assertTrue(Telegram.isValidTelegram("Blk 456, Den Road, #01-355"));
-        assertTrue(Telegram.isValidTelegram("-")); // one character
-        assertTrue(Telegram.isValidTelegram("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long telegram handle
+        assertTrue(Telegram.isValidTelegram("@validTelegramHandle"));
+        assertTrue(Telegram.isValidTelegram("i")); // one character
+        assertTrue(Telegram.
+                isValidTelegram("@tttttttttttttttttttttttttttttttttttttttttttttttttttt")); // long telegram handle
     }
 }
