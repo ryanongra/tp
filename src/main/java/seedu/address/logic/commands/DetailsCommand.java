@@ -2,9 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameEqualKeywordPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and displays the details of person whose name matches the keyword exactly.
@@ -15,18 +20,41 @@ public class DetailsCommand extends Command {
     public static final String COMMAND_WORD = "details";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the details of a member from the "
-            + "specified keywords (case-sensitive and exact match).\n"
-            + "Parameters: NAME (case-sensitive)\n"
+            + "specified keywords (case-sensitive and exact match of name) or index (must be a positive integer).\n"
+            + "Parameters: NAME (case-sensitive) or INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Xiao Ming";
 
-    private final NameEqualKeywordPredicate predicate;
+    private NameEqualKeywordPredicate predicate;
+    private Index targetIndex;
 
     public DetailsCommand(NameEqualKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
+    public DetailsCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
+    }
+
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        convertIndexToPredicate(model);
+        return executePredicate(model);
+    }
+
+    private void convertIndexToPredicate(Model model) throws CommandException {
+        requireNonNull(model);
+        if (targetIndex != null) {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            Person personToDisplay = lastShownList.get(targetIndex.getZeroBased());
+            predicate = new NameEqualKeywordPredicate(personToDisplay.getName());
+        }
+    }
+
+    private CommandResult executePredicate(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         assert model.getFilteredPersonList().size() < 2;
@@ -43,8 +71,19 @@ public class DetailsCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DetailsCommand // instanceof handles nulls
-                && predicate.equals(((DetailsCommand) other).predicate)); // state check
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof DetailsCommand)) {
+            return false;
+        }
+        DetailsCommand o = (DetailsCommand) other;
+        if (predicate == null) {
+            return o.predicate == null && targetIndex.equals(o.targetIndex);
+        }
+        if (targetIndex == null) {
+            return o.targetIndex == null && predicate.equals(o.predicate);
+        }
+        return targetIndex.equals(o.targetIndex) && predicate.equals(o.predicate);
     }
 }
