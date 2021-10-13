@@ -159,18 +159,18 @@ Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
 * `details Xiao Ming` will output:
   ```
-  Name: Xiao Ming
-  Phone: 61234567
-  Tele: @xiao_ming
-  Email: xiaoming@gmail.com
+  Xiao Ming details
+  61234567
+  @xiao_ming
+  xiaoming@gmail.com
   ```
 
 * `details John Doe` will output:
   ```
-  Name: John Doe
-  Phone: NIL
-  Tele: NIL
-  Email: NIL
+  John Doe details
+  NIL
+  NIL
+  NIL
   ```
 
 ### Clearing all entries : `clear`
