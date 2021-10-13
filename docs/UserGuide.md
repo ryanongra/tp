@@ -186,6 +186,19 @@ Exits the program.
 
 Format: `exit`
 
+### Chaining commands : '&&'
+
+Chains multiple commands together.
+
+Format: `COMMAND && COMMAND`
+
+Examples:
+* `find Jon && delete 1` will:
+
+Execute `find Jon` and then execute `delete 1`
+
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
