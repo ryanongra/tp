@@ -149,7 +149,7 @@ Shows the details of a particular member in the IG.
 
 Format: `details NAME` or `details INDEX`
 
-* The argument interprets as an `INDEX` if it is a number, `NAME` otherwise.
+* The argument interprets as an `INDEX` if it is a positive integer, `NAME` otherwise.
 * Displays the details of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
