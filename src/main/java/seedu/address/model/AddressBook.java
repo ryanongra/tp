@@ -45,6 +45,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
@@ -58,6 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
+        setEvents(newData.getEventList());
         setPersons(newData.getPersonList());
     }
 
