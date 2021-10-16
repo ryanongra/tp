@@ -26,7 +26,7 @@ public class Event {
 
     public EventName getEventName() {
         requireAllNonNull(eventName);
-        return eventName;
+        return eventName.copy();
     }
 
     /**
