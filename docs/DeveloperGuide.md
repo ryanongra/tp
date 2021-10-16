@@ -84,6 +84,20 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+#### MemberUI
+
+<img src="images/MemberUiClassDiagram.png" width="300" />
+
+* Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
+* The `PersonCard` and `PersonDetailsCard` depends on `Model`.
+
+#### EventUI
+
+<img src="images/EventUiClassDiagram.png" width="300" />
+
+* Within the `EventListPanel`, `EventCard` is displayed.
+* The `EventCard` depends on `Model`.
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -121,8 +135,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Event` objects (which are contained in a `UniqueEventList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,6 +168,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Event feature
+
+#### Implementation Details
+
+The event feature is implemented in `AddressBook` by having AddressBook maintain a `UniqueEventList`. The implementation is similar to how Person is implemented in AddressBook. The relevant UI components then displays the events in an `EventCard` within the `EventListPanel`.
+
+As a result, `AddressBook` now has the following additional methods.
+* `setEvents(List<Events>)`
+* `hasEvent(Event)`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `removeEvent(Event)`
+* `clearAllEvents()`
+* `getEventList()`
+
+The `Model` interface now has the following additional methods.
+* `hasEvent(Event)`
+* `deleteEvent(Event)`
+* `clearAllEvent()`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `getFilteredList()`
+* `updateFilteredLisst(Predicate<Event>)`
+
+#### Design considerations
+Aspect: Whether to generify `UniqueEventList`:
+* **Alternative 1 (current choice)**: Create a `UniqueEventList` class similar to `UniquePersonList`.
+  * Pros: Easy to implement since there is already a reference. Can get code out fast.
+  * Cons: Lots of boilerplate code
+
+* **Alternative 2**: Generify `UniqueEventList` and `UniquePersonList`.
+  * Pros: Much more elegant, extensible.
+  * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
+
+We have decided to go ahead with **Alternative 1** as it is easier to implement due to time constraints. Alternative 1 is likely to be more reliable as we do not risk running into regressions as much. While **Alternative 1** is less extensible, since we are only creating 1 more class of this type, the pros seems to outweigh the cons.
 
 ### \[Proposed\] Undo/redo feature
 
