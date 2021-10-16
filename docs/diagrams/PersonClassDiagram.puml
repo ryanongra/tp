@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Event <<Rectangle>>{
+class Person
+class Name
+class Phone
+class Email
+class Address
+class Tag
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Person
+
+Person *--> "1" Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> "*" Tag
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+@enduml

@@ -147,6 +147,24 @@ The `Model` component,
 
 </div>
 
+#### Person
+
+<img src="images/PersonClassDiagram.png" width="300" />
+
+The `Person` class contains:
+* `Name`
+* `Phone`
+* `Address`
+* `Email`
+* `Tag`
+
+#### Event
+
+<img src="images/EventClassDiagram.png" width="300" />
+
+The `Event` class contains:
+* `EventName`
+
 
 ### Storage component
 
@@ -193,6 +211,8 @@ The `Model` interface now has the following additional methods.
 * `getFilteredList()`
 * `updateFilteredLisst(Predicate<Event>)`
 
+The way `Event` behaves is very similar to `Person` and thus will be omitted to reduce repeated details.
+
 #### Design considerations
 Aspect: Whether to generify `UniqueEventList`:
 * **Alternative 1 (current choice)**: Create a `UniqueEventList` class similar to `UniquePersonList`.
@@ -204,6 +224,19 @@ Aspect: Whether to generify `UniqueEventList`:
   * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
 
 We have decided to go ahead with **Alternative 1** as it is easier to implement due to time constraints. Alternative 1 is likely to be more reliable as we do not risk running into regressions as much. While **Alternative 1** is less extensible, since we are only creating 1 more class of this type, the pros seems to outweigh the cons.
+
+Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
+* **Alternative 1 (current choice)**: Create `EventName` class similar to `Name`.
+  * Pros: Easy to implement, since we already have similar code. Less likely to introduce regressions.
+  * Cons: More boilerplate code.
+
+* **Alternative 2**: Reuse `Name` class.
+  * Pros: Nothing to implement, lesser things to test.
+  * Cons: Unable to have different type of valid name checking.
+  
+* **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
+  * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
+  * Cons: Hard to implement. Over engineering.
 
 ### \[Proposed\] Undo/redo feature
 

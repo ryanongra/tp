@@ -17,14 +17,8 @@ Class ReadOnlyUserPrefs
 
 Class UniqueEventList
 Class UniquePersonList
-Class Event
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-Class EventName
+package Event {}
+package Person {}
 }
 
 Class HiddenOutside #FFFFFF
@@ -43,16 +37,6 @@ AddressBook *--> "1" UniqueEventList
 AddressBook *--> "1" UniquePersonList
 UniqueEventList --> "~* all" Event
 UniquePersonList --> "~* all" Person
-Event *--> "1" EventName
-Person *--> "1" Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Event
 ModelManager -->"~* filtered" Person
