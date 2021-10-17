@@ -29,8 +29,8 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern ADVANCED_COMMAND_FORMAT = Pattern.compile("(?<leftCommandString>.*)" +
-            "&&(?<rightCommandString>.*)");
+    private static final Pattern ADVANCED_COMMAND_FORMAT = Pattern.compile("(?<leftCommandString>.*)"
+            + "&&(?<rightCommandString>.*)");
     /**
      * Parses user input into command for execution.
      *
@@ -42,7 +42,7 @@ public class AddressBookParser {
         final Matcher basicMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         final Matcher advancedMatcher = ADVANCED_COMMAND_FORMAT.matcher(userInput.trim());
 
-        if(advancedMatcher.matches()) {
+        if (advancedMatcher.matches()) {
             final String leftCommandString = advancedMatcher.group("leftCommandString");
             final String rightCommandString = advancedMatcher.group("rightCommandString");
             Command leftCommand = this.parseCommand(leftCommandString);
