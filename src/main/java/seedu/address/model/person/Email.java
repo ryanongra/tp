@@ -31,6 +31,8 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+    public static final String UNSPECIFIED_INPUT = "NIL: No email address specified";
+
     public final String value;
 
     /**
@@ -40,8 +42,12 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        if (email.equals(UNSPECIFIED_INPUT)) {
+            value = UNSPECIFIED_INPUT;
+        } else {
+            checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+            value = email;
+        }
     }
 
     /**

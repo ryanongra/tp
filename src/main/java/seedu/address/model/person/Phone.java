@@ -13,6 +13,9 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+
+    public static final String UNSPECIFIED_INPUT = "NIL: No phone number specified";
+
     public final String value;
 
     /**
@@ -22,8 +25,12 @@ public class Phone {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        if (phone.equals(UNSPECIFIED_INPUT)) {
+            value = UNSPECIFIED_INPUT;
+        } else {
+            checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+            value = phone;
+        }
     }
 
     /**
