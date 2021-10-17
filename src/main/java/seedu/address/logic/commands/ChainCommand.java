@@ -29,7 +29,7 @@ public class ChainCommand extends Command {
                 + rightCommandResult.getFeedbackToUser(),
                 leftCommandResult.isShowHelp() || rightCommandResult.isShowHelp(),
                 leftCommandResult.isExit() || rightCommandResult.isExit(),
-                leftCommandResult.isShowDetails() || rightCommandResult.isShowDetails());
+                rightCommandResult.isShowDetails());
     }
 
     @Override
