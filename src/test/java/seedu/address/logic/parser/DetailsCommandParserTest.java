@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DetailsCommand;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameEqualKeywordPredicate;
@@ -22,19 +23,25 @@ class DetailsCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDetailsCommand() {
-        DetailsCommand expectedFindCommand =
+        DetailsCommand firstExpectedDetailsCommand =
                 new DetailsCommand(new NameEqualKeywordPredicate(new Name("Alice Bob")));
+        DetailsCommand secondExpectedDetailsCommand =
+                new DetailsCommand(Index.fromOneBased(3));
 
         // No trailing and leading whitespace
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "Alice Bob", firstExpectedDetailsCommand);
+        assertParseSuccess(parser, "3", secondExpectedDetailsCommand);
 
         // Leading whitespace
-        assertParseSuccess(parser, "      Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "      Alice Bob", firstExpectedDetailsCommand);
+        assertParseSuccess(parser, "     3", secondExpectedDetailsCommand);
 
         // Trailing whitespace
-        assertParseSuccess(parser, "Alice Bob    ", expectedFindCommand);
+        assertParseSuccess(parser, "Alice Bob    ", firstExpectedDetailsCommand);
+        assertParseSuccess(parser, "3     ", secondExpectedDetailsCommand);
 
         // Leading and trailing whitespace
-        assertParseSuccess(parser, "     Alice Bob    ", expectedFindCommand);
+        assertParseSuccess(parser, "     Alice Bob    ", firstExpectedDetailsCommand);
+        assertParseSuccess(parser, "     3     ", secondExpectedDetailsCommand);
     }
 }

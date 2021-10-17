@@ -147,25 +147,30 @@ Examples:
 
 Shows the details of a particular member in the IG.
 
-Format: `details NAME`
+Format: `details NAME` or `details INDEX`
 
+* The argument interprets as an `INDEX` if it is a positive integer, `NAME` otherwise.
+* Displays the details of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * The NAME entered must match the member’s name exactly (case-sensitive).
 
 Examples:
+* `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
 * `details Xiao Ming` will output:
   ```
-  Name: Xiao Ming
-  Phone: 61234567
-  Tele: @xiao_ming
-  Email: xiaoming@gmail.com
+  Xiao Ming details
+  61234567
+  @xiao_ming
+  xiaoming@gmail.com
   ```
 
 * `details John Doe` will output:
   ```
-  Name: John Doe
-  Phone: NIL
-  Tele: NIL
-  Email: NIL
+  John Doe details
+  NIL
+  NIL
+  NIL
   ```
 
 ### Clearing all entries : `clear`
@@ -185,6 +190,17 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Chaining commands : '&&'
+
+Chains multiple commands together.
+
+Format: `COMMAND && COMMAND`
+
+Examples:
+* `find Jon && delete 1` will:
+
+Execute `find Jon` and then execute `delete 1`
 
 ### Saving the data
 

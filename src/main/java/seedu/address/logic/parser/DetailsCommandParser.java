@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -19,11 +20,16 @@ public class DetailsCommandParser implements Parser<DetailsCommand> {
      */
     public DetailsCommand parse(String args) throws ParseException {
         try {
-            Name name = ParserUtil.parseName(args);
-            return new DetailsCommand(new NameEqualKeywordPredicate(name));
+            Index index = ParserUtil.parseIndex(args);
+            return new DetailsCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailsCommand.MESSAGE_USAGE));
+            try {
+                Name name = ParserUtil.parseName(args);
+                return new DetailsCommand(new NameEqualKeywordPredicate(name));
+            } catch (ParseException e) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailsCommand.MESSAGE_USAGE));
+            }
         }
     }
 
