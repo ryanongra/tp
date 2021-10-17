@@ -66,7 +66,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. This also resets the state of the program to when it is started to help the user in case they messed up the state. That is to say, the views will list all the members and events as well.
 
 ![help message](images/helpMessage.png)
 
