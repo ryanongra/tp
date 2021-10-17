@@ -79,10 +79,11 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
+    // No longer valid as add allows for no phone number specified.
+    //    @Test
+    //    public void parsePhone_null_throwsNullPointerException() {
+    //        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    //    }
 
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
@@ -102,10 +103,11 @@ public class ParserUtilTest {
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
-    }
+    // No longer valid as add allows for no telegram handle specified. TODO: refactor address to telegram handle
+    //    @Test
+    //    public void parseAddress_null_throwsNullPointerException() {
+    //        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram((String) null));
+    //    }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
@@ -125,10 +127,11 @@ public class ParserUtilTest {
         assertEquals(expectedTelegram, ParserUtil.parseTelegram(addressWithWhitespace));
     }
 
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
-    }
+    // No longer valid as add allows for no email address specified.
+    //    @Test
+    //    public void parseEmail_null_throwsNullPointerException() {
+    //        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    //    }
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {

@@ -54,6 +54,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(person);
     }
 
+    /**
+     * Extracts the value of the given Prefix from a given ArgumentMultiMap.
+     * Returns null if prefix does not exist.
+     * @param map ArgumentMultiMap to be searched.
+     * @param prefix Prefix to search for.
+     * @return Return value if found, otherwise null.
+     */
     private String extractValue(ArgumentMultimap map, Prefix prefix) {
         if (!arePrefixesPresent(map, prefix)
                 || !map.getPreamble().isEmpty()) {
