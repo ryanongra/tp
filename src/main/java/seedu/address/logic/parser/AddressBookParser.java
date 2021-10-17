@@ -48,7 +48,9 @@ public class AddressBookParser {
             Command leftCommand = this.parseCommand(leftCommandString);
             Command rightCommand = this.parseCommand(rightCommandString);
             return new ChainCommand(leftCommand, rightCommand);
-        } else if (!basicMatcher.matches()) {
+        }
+
+        if (!basicMatcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
