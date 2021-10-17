@@ -6,11 +6,16 @@ import seedu.address.model.Model;
 /**
  * Chains two commands together.
  */
-public class ChainCommand extends Command{
+public class ChainCommand extends Command {
 
     private final Command leftCommand;
     private final Command rightCommand;
 
+    /**
+     * Constructor for Chain Command.
+     * @param leftCommand Command on the left to be executed first
+     * @param rightCommand Command on the right to be executed second
+     */
     public ChainCommand(Command leftCommand, Command rightCommand) {
         this.leftCommand = leftCommand;
         this.rightCommand = rightCommand;
@@ -23,8 +28,8 @@ public class ChainCommand extends Command{
         return new CommandResult(leftCommandResult.getFeedbackToUser() + "\n"
                 + rightCommandResult.getFeedbackToUser(),
                 leftCommandResult.isShowHelp() || rightCommandResult.isShowHelp(),
-                leftCommandResult.isExit()|| rightCommandResult.isExit(),
-                leftCommandResult.isShowDetails()|| rightCommandResult.isShowDetails());
+                leftCommandResult.isExit() || rightCommandResult.isExit(),
+                leftCommandResult.isShowDetails() || rightCommandResult.isShowDetails());
     }
 
     @Override
