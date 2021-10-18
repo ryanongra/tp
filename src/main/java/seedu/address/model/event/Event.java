@@ -30,6 +30,19 @@ public class Event {
     }
 
     /**
+     * Returns true if both events have the same event name.
+     * This defines a weaker notion of equality between two events.
+     */
+    public boolean isSameEvent(Event otherEvent) {
+        if (otherEvent == this) {
+            return true;
+        }
+
+        return otherEvent != null
+                && otherEvent.getEventName().equals(getEventName());
+    }
+
+    /**
      * Returns true if both events have the same identity and data fields.
      */
     @Override

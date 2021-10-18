@@ -20,11 +20,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DetailsCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.MatchesKeywordsPredicate;
 import seedu.address.model.person.NameEqualKeywordPredicate;
 import seedu.address.model.person.Person;
@@ -41,6 +43,13 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_event() throws Exception {
+        String eventName = "Cool event name";
+        EventCommand command = (EventCommand) parser.parseCommand(EventCommand.COMMAND_WORD + " " + eventName);
+        assertEquals(new EventCommand(new Event(ParserUtil.parseEventName(eventName))), command);
     }
 
     @Test

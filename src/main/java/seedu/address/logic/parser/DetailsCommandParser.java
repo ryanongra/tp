@@ -19,17 +19,17 @@ public class DetailsCommandParser implements Parser<DetailsCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DetailsCommand parse(String args) throws ParseException {
+        if (args.trim().equals("")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailsCommand.MESSAGE_USAGE));
+        }
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DetailsCommand(index);
         } catch (ParseException pe) {
-            try {
-                Name name = ParserUtil.parseName(args);
-                return new DetailsCommand(new NameEqualKeywordPredicate(name));
-            } catch (ParseException e) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailsCommand.MESSAGE_USAGE));
-            }
+            Name name = ParserUtil.parseName(args);
+            return new DetailsCommand(new NameEqualKeywordPredicate(name));
         }
     }
 
