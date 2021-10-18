@@ -145,7 +145,7 @@ Examples:
 
 ### View a person's details : `details`
 
-Shows the detailed view of a particular member in the IG. Typing any command subsequently will cause the view to show the summarized view of the same person.
+Shows the detailed view of a particular member in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
 
 Format: `details NAME` or `details INDEX`
 
