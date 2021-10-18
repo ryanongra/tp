@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Event <<Rectangle>>{
+Package Person <<Rectangle>>{
 class Person
 class Name
 class Phone
