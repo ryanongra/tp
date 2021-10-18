@@ -15,6 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AliasCommandParser implements Parser<AliasCommand> {
 
+    public static final String MESSAGE_ALIAS_CONSTRAINTS = "Alias cannot be empty or contain whitespace!";
+    public static final String MESSAGE_COMMAND_CONSTRAINTS = "Command cannot be empty!";
     /**
      * Parses the given {@code String} of arguments in the context of the AliasCommand
      * and returns an AliasCommand object for execution.
@@ -37,14 +39,11 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         alias = alias.trim();
         command = command.trim();
 
-        if (alias.isEmpty()) {
-            throw new ParseException("Alias cannot be empty!");
-        }
-        if (alias.contains(" ")) {
-            throw new ParseException("Alias cannot contain whitespace!");
+        if (alias.isEmpty() || alias.contains(" ")) {
+            throw new ParseException(MESSAGE_ALIAS_CONSTRAINTS);
         }
         if (command.isEmpty()) {
-            throw new ParseException("Command cannot be empty!");
+            throw new ParseException(MESSAGE_COMMAND_CONSTRAINTS);
         }
         return new AliasCommand(alias, command);
     }

@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -39,6 +41,10 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "@heresbobby";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ALIAS_L = "l";
+    public static final String VALID_ALIAS_D1 = "d1";
+    public static final String VALID_COMMAND_L = "list";
+    public static final String VALID_COMMAND_D1 = "details 1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -50,12 +56,19 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String ALIAS_DESC_L = " " + PREFIX_ALIAS + VALID_ALIAS_L;
+    public static final String ALIAS_DESC_D1 = " " + PREFIX_ALIAS + VALID_ALIAS_D1;
+    public static final String COMMAND_DESC_L = " " + PREFIX_COMMAND + VALID_COMMAND_L;
+    public static final String COMMAND_DESC_D1 = " " + PREFIX_COMMAND + VALID_COMMAND_D1;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_TELEGRAM; // empty string not allowed for telegram
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ALIAS_DESC = " " + PREFIX_ALIAS + "l s"; // whitespaces not allowed in alias
+    public static final String INVALID_EMPTY_ALIAS_DESC = " " + PREFIX_ALIAS; // empty string not allowed for alias
+    public static final String INVALID_COMMAND_DESC = " " + PREFIX_COMMAND; // empty string not allowed for command
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

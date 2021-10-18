@@ -15,13 +15,11 @@ import seedu.address.model.Model;
 public class AliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
-
-    public static final String MESSAGE_SUCCESS = "Alias %1$s:%2$s has been added!";
-
+    public static final String MESSAGE_SUCCESS = "Alias \"%1$s\" = \"%2$s\" has been added!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an alias to the system.\n"
             + "Parameters: "
-            + PREFIX_ALIAS + "ALIAS"
+            + PREFIX_ALIAS + "ALIAS "
             + PREFIX_COMMAND + "COMMAND "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ALIAS + "l "
@@ -31,6 +29,9 @@ public class AliasCommand extends Command {
     private final String command;
     private HashMap<String, String> aliasMap;
 
+    /**
+     * Creates an AliasCommand to add the specified alias, command pair to the alias map.
+     */
     public AliasCommand(String alias, String command) {
         this.alias = alias;
         this.command = command;
@@ -40,7 +41,7 @@ public class AliasCommand extends Command {
      * Set the Alias Map of the command.
      *
      * @param aliasMap Hashmap of alias in the parser
-     * @return Current Command
+     * @return AliasCommand with aliasMap set
      */
     public Command setMap(HashMap<String, String> aliasMap) {
         this.aliasMap = aliasMap;
