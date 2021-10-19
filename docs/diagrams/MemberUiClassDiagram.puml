@@ -16,7 +16,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> PersonListPanel
 
 PersonListPanel --> "*" PersonCard :> exclusively
-PersonListPanel --> "*" PersonDetailsCard :> exclusively
+PersonListPanel --> "0..1" PersonDetailsCard :> exclusively
 
 PersonCard ..> Model
 PersonDetailsCard ..> Model
