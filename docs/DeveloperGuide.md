@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -83,6 +83,20 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+#### MemberUI
+
+<img src="images/MemberUiClassDiagram.png" width="300" />
+
+* Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
+* The `PersonCard` and `PersonDetailsCard` depends on `Model`.
+
+#### EventUI
+
+<img src="images/EventUiClassDiagram.png" width="300" />
+
+* Within the `EventListPanel`, `EventCard` is displayed.
+* The `EventCard` depends on `Model`.
 
 ### Logic component
 
@@ -121,8 +135,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Event` objects (which are contained in a `UniqueEventList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -131,6 +146,24 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+#### Person
+
+<img src="images/PersonClassDiagram.png" width="300" />
+
+The `Person` class contains:
+* `Name`
+* `Phone`
+* `Address`
+* `Email`
+* `Tag`
+
+#### Event
+
+<img src="images/EventClassDiagram.png" width="300" />
+
+The `Event` class contains:
+* `EventName`
 
 
 ### Storage component
@@ -153,6 +186,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Event feature
+
+#### Implementation Details
+
+The event feature is implemented in `AddressBook` by having AddressBook maintain a `UniqueEventList`. The implementation is similar to how Person is implemented in AddressBook. The relevant UI components then displays the events in an `EventCard` within the `EventListPanel`.
+
+As a result, `AddressBook` now has the following additional methods.
+* `setEvents(List<Events>)`
+* `hasEvent(Event)`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `removeEvent(Event)`
+* `clearAllEvents()`
+* `getEventList()`
+
+The `Model` interface now has the following additional methods.
+* `hasEvent(Event)`
+* `deleteEvent(Event)`
+* `clearAllEvent()`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `getFilteredList()`
+* `updateFilteredLisst(Predicate<Event>)`
+
+The way `Event` behaves is very similar to `Person` and thus will be omitted to reduce repeated details.
+
+#### Design considerations
+Aspect: Whether to generify `UniqueEventList`:
+* **Alternative 1 (current choice)**: Create a `UniqueEventList` class similar to `UniquePersonList`.
+  * Pros: Easy to implement since there is already a reference. Can get code out fast.
+  * Cons: Lots of boilerplate code
+
+* **Alternative 2**: Generify `UniqueEventList` and `UniquePersonList`.
+  * Pros: Much more elegant, extensible.
+  * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
+
+We have decided to go ahead with **Alternative 1** as it is easier to implement due to time constraints. Alternative 1 is likely to be more reliable as we do not risk running into regressions as much. While **Alternative 1** is less extensible, since we are only creating 1 more class of this type, the pros seems to outweigh the cons.
+
+Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
+* **Alternative 1 (current choice)**: Create `EventName` class similar to `Name`.
+  * Pros: Easy to implement, since we already have similar code. Less likely to introduce regressions.
+  * Cons: More boilerplate code.
+
+* **Alternative 2**: Reuse `Name` class.
+  * Pros: Nothing to implement, lesser things to test.
+  * Cons: Unable to have different type of valid name checking.
+  
+* **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
+  * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
+  * Cons: Hard to implement. Over engineering.
 
 ### \[Proposed\] Undo/redo feature
 

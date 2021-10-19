@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Event <<Rectangle>>{
+class Event
+class EventName
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Event
+
+Event *--> "1" EventName
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR
+skinparam classBackgroundColor UI_COLOR
+
+Package MemberUI <<Rectangle>>{
+Class PersonListPanel
+Class PersonCard
+Class PersonDetailsCard
+}
+
+Package Model {}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> PersonListPanel
+
+PersonListPanel --> "*" PersonCard :> exclusively
+PersonListPanel --> "*" PersonDetailsCard :> exclusively
+
+PersonCard ..> Model
+PersonDetailsCard ..> Model
+@enduml
