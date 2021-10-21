@@ -53,9 +53,17 @@ public class Event {
     }
 
     /**
+     * Returns true if event contains and equivalent person as the given argument.
+     */
+    public boolean hasPerson(Person person) {
+        requireAllNonNull(person);
+        return attendees.contains(person);
+    }
+
+    /**
      * Adds a {@code Person} as an attendee to the event.
      */
-    public void addAttendee(Person person) {
+    public void addPerson(Person person) {
         requireAllNonNull(person);
         attendees.add(person);
     }
@@ -63,7 +71,7 @@ public class Event {
     /**
      * Removes a {@code Person} as an attendee to the event.
      */
-    public void removeAttendee(Person person) {
+    public void removePerson(Person person) {
         requireAllNonNull(person);
         attendees.remove(person);
     }

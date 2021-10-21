@@ -37,17 +37,9 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code UniquePersonList} of the {@code Event} that we are building.
-     */
-    public EventBuilder withAttendees(UniquePersonList attendees) {
-        this.attendees = attendees;
-        return this;
-    }
-
-    /**
      * Adds a {@code Person} to the {@code UniquePersonList} of the {@code Event} that we are building.
      */
-    public EventBuilder withAttendee(Person person) {
+    public EventBuilder withPerson(Person person) {
         this.attendees.add(person);
         return this;
     }

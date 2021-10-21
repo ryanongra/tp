@@ -22,7 +22,7 @@ class EventTest {
         assertFalse(PARTY_EVENT.isSameEvent(null));
 
         // same name, all other attributes different -> returns true
-        Event editedEventAttendee = new EventBuilder(PARTY_EVENT).withAttendee(ALICE).build();
+        Event editedEventAttendee = new EventBuilder(PARTY_EVENT).withPerson(ALICE).build();
         assertTrue(PARTY_EVENT.isSameEvent(editedEventAttendee));
 
         // different name, all other attributes same -> returns false
@@ -63,15 +63,15 @@ class EventTest {
         assertFalse(PARTY_EVENT.equals(editedPartyEvent));
 
         // event with attendee
-        Event firstAttendeeEvent = new EventBuilder(PARTY_EVENT).withAttendee(ALICE).build();
+        Event firstAttendeeEvent = new EventBuilder(PARTY_EVENT).withPerson(ALICE).build();
         assertFalse(PARTY_EVENT.equals(firstAttendeeEvent));
 
         // event with same attendee
-        Event firstAttendeeEventCopy = new EventBuilder(PARTY_EVENT).withAttendee(ALICE).build();
+        Event firstAttendeeEventCopy = new EventBuilder(PARTY_EVENT).withPerson(ALICE).build();
         assertTrue(firstAttendeeEvent.equals(firstAttendeeEventCopy));
 
         // event with different attendee
-        Event secondAttendeeEvent = new EventBuilder(PARTY_EVENT).withAttendee(BOB).build();
+        Event secondAttendeeEvent = new EventBuilder(PARTY_EVENT).withPerson(BOB).build();
         assertFalse(firstAttendeeEvent.equals(secondAttendeeEvent));
     }
 }
