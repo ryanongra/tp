@@ -145,7 +145,7 @@ Examples:
 
 ### View a person's details : `details`
 
-Shows the details of a particular member in the IG.
+Shows the detailed view of a particular member in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
 
 Format: `details NAME` or `details INDEX`
 
@@ -190,6 +190,17 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Chaining commands : '&&'
+
+Chains multiple commands together.
+
+Format: `COMMAND && COMMAND`
+
+Examples:
+* `find Jon && delete 1` will:
+
+Execute `find Jon` and then execute `delete 1`
 
 ### Saving the data
 
