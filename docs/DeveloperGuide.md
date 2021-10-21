@@ -86,14 +86,14 @@ The `UI` component,
 
 #### MemberUI
 
-<img src="images/MemberUiClassDiagram.png" width="300" />
+<img src="images/MemberUiClassDiagram.png" width="220" />
 
 * Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
 * The `PersonCard` and `PersonDetailsCard` depends on `Model`.
 
 #### EventUI
 
-<img src="images/EventUiClassDiagram.png" width="300" />
+<img src="images/EventUiClassDiagram.png" width="200" />
 
 * Within the `EventListPanel`, `EventCard` is displayed.
 * The `EventCard` depends on `Model`.
@@ -161,7 +161,7 @@ The `Model` component,
 * The `UniquePersonList` contains a unique list of `Person` objects.
 
 #### Event
-<img src="images/EventClassDiagram.png" width="300" />
+<img src="images/EventClassDiagram.png" width="200" />
 
 * The `Event` package contains classes related to the `Event` class.
 * The `Event` class contains:
@@ -241,6 +241,8 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
 * **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
   * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
   * Cons: Hard to implement. Over engineering.
+
+We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. It is also less complex.
 
 ### \[Proposed\] Undo/redo feature
 
