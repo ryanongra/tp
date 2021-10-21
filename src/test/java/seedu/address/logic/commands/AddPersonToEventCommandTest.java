@@ -64,7 +64,8 @@ class AddPersonToEventCommandTest {
 
         CommandResult commandResult = command.execute(model);
 
-        assertEquals(String.format(AddPersonToEventCommand.MESSAGE_SUCCESS, validPerson),
+        assertEquals(String.format(AddPersonToEventCommand.MESSAGE_SUCCESS,
+                validPerson.getName(), validEvent.getEventName()),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), validEvent.personsAdded);
     }
