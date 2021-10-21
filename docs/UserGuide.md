@@ -191,7 +191,7 @@ Exits the program.
 
 Format: `exit`
 
-### Chaining commands : '&&'
+### Chaining commands : `&&`
 
 Chains multiple commands together.
 
@@ -201,6 +201,21 @@ Examples:
 * `find Jon && delete 1` will:
 
 Execute `find Jon` and then execute `delete 1`
+
+### Setting alias : `alias`
+
+Temporarily sets a command to a specified alias as a shortcut
+
+Format: `alias a/ALIAS c/COMMAND`
+
+* Alias will be set until the program is restarted.
+* Setting an alias to an existing command word will not override existing commands.
+* Chaining multiple commands using `&&` is not supported by alias.
+
+Examples:
+ `alias a/d1 c/details 1` will set `d1` to `details 1`
+
+Executing `d1` will be equivalent to executing `details 1`.
 
 ### Saving the data
 
@@ -232,6 +247,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
 **Clear** | `clear ALL ENTRIES`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
