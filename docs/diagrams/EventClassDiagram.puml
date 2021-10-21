@@ -5,12 +5,17 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Event <<Rectangle>>{
+class UniqueEventList
 class Event
 class EventName
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Event
+package Person <<Rectangle>>{
 
+}
+
+
+UniqueEventList --> "*" Event
 Event *--> "1" EventName
+Event --> "*" Person :> attendees
 @enduml

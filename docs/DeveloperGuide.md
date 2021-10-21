@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object and `Event` object residing in the `Model`.
 
 #### MemberUI
 
@@ -97,6 +97,7 @@ The `UI` component,
 
 * Within the `EventListPanel`, `EventCard` is displayed.
 * The `EventCard` depends on `Model`.
+* The `EventCard` also reuses `PersonListPanel` from the UI components related to the member tab, hence the association.
 
 ### Logic component
 
@@ -148,22 +149,25 @@ The `Model` component,
 </div>
 
 #### Person
-
 <img src="images/PersonClassDiagram.png" width="300" />
 
-The `Person` class contains:
-* `Name`
-* `Phone`
-* `Address`
-* `Email`
-* `Tag`
+* The `Person` package contains classes related to the `Person` class.
+* The `Person` class contains:
+  * `Name`
+  * `Phone`
+  * `Address`
+  * `Email`
+  * `Tag`
+* The `UniquePersonList` contains a unique list of `Person` objects.
 
 #### Event
-
 <img src="images/EventClassDiagram.png" width="300" />
 
-The `Event` class contains:
-* `EventName`
+* The `Event` package contains classes related to the `Event` class.
+* The `Event` class contains:
+  * `EventName`
+  * `UniquePersonList` as the list of attendees
+* The `UniqueEventList` contains a unique list of `Event` objects.
 
 
 ### Storage component
