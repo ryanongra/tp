@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -40,6 +41,11 @@ public class Event {
     public EventName getEventName() {
         requireAllNonNull(eventName);
         return eventName.copy();
+    }
+
+    public ObservableList<Person> getAttendeesAsUnmodifiableObservableList() {
+        requireAllNonNull(attendees);
+        return attendees.asUnmodifiableObservableList();
     }
 
     /**
