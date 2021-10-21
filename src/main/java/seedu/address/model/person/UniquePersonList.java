@@ -111,6 +111,10 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+    public boolean isEmpty() {
+        return internalUnmodifiableList.size() == 0;
+    }
+
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();
