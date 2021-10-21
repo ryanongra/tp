@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -83,6 +84,11 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns a list of persons matching the person predicate passed.
+     */
+    List<Person> getPersons(Predicate<Person> personPredicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -120,6 +126,11 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Returns a list of events matching the event predicate passed.
+     */
+    List<Event> getEvents(Predicate<Event> eventPredicate);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
