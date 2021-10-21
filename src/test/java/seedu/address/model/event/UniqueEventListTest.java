@@ -163,4 +163,14 @@ class UniqueEventListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueEventList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void getEvents() {
+        uniqueEventList.add(PARTY_EVENT);
+        assertEquals(uniqueEventList.getEvents(new EventNameEqualKeywordPredicate(PARTY_EVENT.getEventName())),
+                Collections.singletonList(PARTY_EVENT));
+
+        assertEquals(uniqueEventList.getEvents(new EventNameEqualKeywordPredicate(DINNER_EVENT.getEventName())),
+                Collections.EMPTY_LIST);
+    }
 }

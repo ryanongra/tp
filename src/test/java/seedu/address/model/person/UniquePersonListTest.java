@@ -169,6 +169,16 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void getPersons() {
+        uniquePersonList.add(ALICE);
+        assertEquals(uniquePersonList.getPersons(new NameEqualKeywordPredicate(ALICE.getName())),
+                Collections.singletonList(ALICE));
+
+        assertEquals(uniquePersonList.getPersons(new NameEqualKeywordPredicate(BOB.getName())),
+                Collections.EMPTY_LIST);
+    }
+
+    @Test
     public void isEmpty() {
         // empty list
         assertTrue(uniquePersonList.isEmpty());
