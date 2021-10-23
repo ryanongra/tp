@@ -14,7 +14,6 @@ package Person <<Rectangle>>{
 
 }
 
-
 UniqueEventList --> "*" Event
 Event *--> "1" EventName
 Event --> "*" Person :> attendees
