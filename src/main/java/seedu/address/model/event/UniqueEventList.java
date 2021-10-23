@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -109,6 +110,10 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public List<Event> getEvents(Predicate<Event> eventPredicate) {
+        return internalUnmodifiableList.filtered(eventPredicate);
     }
 
     @Override

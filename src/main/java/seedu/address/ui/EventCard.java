@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.event.Event;
 
 /**
@@ -22,6 +23,8 @@ public class EventCard extends UiPart<Region> {
      */
 
     public final Event event;
+    // Independent Ui parts residing in this Ui container
+    private PersonListPanel personListPanel;
 
     @FXML
     private HBox cardPane;
@@ -29,6 +32,8 @@ public class EventCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label eventName;
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -38,6 +43,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventName.setText(event.getEventName().eventName);
+
+        personListPanel = new PersonListPanel(event.getAttendeesAsUnmodifiableObservableList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     @Override

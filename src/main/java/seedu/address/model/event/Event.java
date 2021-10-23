@@ -4,6 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+
 /**
  * Represents an Event in ForYourInterest.
  * Guarantees: event name is not null.
@@ -14,7 +18,7 @@ public class Event {
     private final EventName eventName;
 
     // Data fields
-    // TODO: Add a list of Person involved in event
+    private final UniquePersonList attendees;
 
     /**
      * Event name must not be null.
@@ -22,11 +26,60 @@ public class Event {
     public Event(EventName eventName) {
         requireAllNonNull(eventName);
         this.eventName = eventName;
+        this.attendees = new UniquePersonList();
+    }
+
+    /**
+     * Event name and attendees must not be null.
+     */
+    public Event(EventName eventName, UniquePersonList attendees) {
+        requireAllNonNull(eventName, attendees);
+        this.eventName = eventName;
+        this.attendees = attendees;
     }
 
     public EventName getEventName() {
         requireAllNonNull(eventName);
         return eventName.copy();
+    }
+
+    public ObservableList<Person> getAttendeesAsUnmodifiableObservableList() {
+        requireAllNonNull(attendees);
+        return attendees.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a copy of attendee list.
+     */
+    public UniquePersonList getAttendees() {
+        requireAllNonNull(attendees);
+        UniquePersonList newList = new UniquePersonList();
+        newList.setPersons(attendees);
+        return newList;
+    }
+
+    /**
+     * Returns true if event contains and equivalent person as the given argument.
+     */
+    public boolean hasPerson(Person person) {
+        requireAllNonNull(person);
+        return attendees.contains(person);
+    }
+
+    /**
+     * Adds a {@code Person} as an attendee to the event.
+     */
+    public void addPerson(Person person) {
+        requireAllNonNull(person);
+        attendees.add(person);
+    }
+
+    /**
+     * Removes a {@code Person} as an attendee to the event.
+     */
+    public void removePerson(Person person) {
+        requireAllNonNull(person);
+        attendees.remove(person);
     }
 
     /**
@@ -56,18 +109,23 @@ public class Event {
         }
 
         Event otherEvent = (Event) other;
-        return otherEvent.getEventName().equals(getEventName());
+        return otherEvent.getEventName().equals(getEventName())
+                && otherEvent.getAttendees().equals(getAttendees());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventName);
+        return Objects.hash(eventName, attendees);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEventName());
+        if (!attendees.isEmpty()) {
+            builder.append("; Attendees: ");
+            attendees.forEach(builder::append);
+        }
         return builder.toString();
     }
 }
