@@ -27,11 +27,19 @@ public class DetailsCommand extends Command {
     private NameEqualKeywordPredicate predicate;
     private Index targetIndex;
 
+    /**
+     * Creates a DetailsCommand to display details.
+     */
     public DetailsCommand(NameEqualKeywordPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
+    /**
+     * Creates a DetailsCommand to display details.
+     */
     public DetailsCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

@@ -44,6 +44,7 @@ public class PersonListPanel extends UiPart<Region> {
      * Refreshes the entire component.
      */
     public void refresh() {
+        logger.info("Refreshing person list panel");
         personListView.setItems(personListView.getItems());
         personListView.setCellFactory(listView -> new PersonListViewCell());
         personListView.refresh();
