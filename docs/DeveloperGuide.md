@@ -153,11 +153,11 @@ The `Model` component,
 
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
-  * `Name`
-  * `Phone`
-  * `Address`
-  * `Email`
-  * `Tag`
+    * `Name`
+    * `Phone`
+    * `Telegram`
+    * `Email`
+    * `Tag`
 * The `UniquePersonList` contains a unique list of `Person` objects.
 
 #### Event

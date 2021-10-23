@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ChainCommand;
 import seedu.address.logic.commands.ClearAllCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -32,6 +34,7 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern ADVANCED_COMMAND_FORMAT = Pattern.compile("(?<leftCommandString>.*)"
             + "&&(?<rightCommandString>.*)");
+    private final HashMap<String, String> aliasMap = new HashMap<>();
     /**
      * Parses user input into command for execution.
      *
@@ -92,7 +95,13 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments).setMap(aliasMap);
+
         default:
+            if (aliasMap.containsKey(commandWord)) {
+                return parseCommand(aliasMap.get(commandWord) + " " + arguments);
+            }
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
