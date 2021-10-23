@@ -26,7 +26,7 @@ public class AddPersonToEventCommand extends Command {
     public static final String COMMAND_WORD = "addPersonToEvent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a existing person in the address book "
-            + "to the Event specified. "
+            + "to the Event specified.\n"
             + "Parameters: "
             + PREFIX_NAME + "PERSON_NAME "
             + PREFIX_EVENT_NAME + "EVENT_NAME \n"

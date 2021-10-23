@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -25,7 +27,8 @@ class AddPersonToEventCommandParserTest {
         AddPersonToEventCommand expectedCommand = new AddPersonToEventCommand(
                 new NameEqualKeywordPredicate(person.getName()),
                 new EventNameEqualKeywordPredicate(event.getEventName()));
-        assertParseSuccess(parser, " n/" + person.getName() + " e/" + event.getEventName(), expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_NAME + person.getName()
+                + " " + PREFIX_EVENT_NAME + event.getEventName(), expectedCommand);
     }
 
     @Test
@@ -35,7 +38,7 @@ class AddPersonToEventCommandParserTest {
         Person person = new PersonBuilder().build();
         Event event = new EventBuilder().build();
 
-        assertParseFailure(parser, " n/" + person.getName(), expectedMessage);
-        assertParseFailure(parser, " e/" + event.getEventName(), expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_NAME + person.getName(), expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_EVENT_NAME + event.getEventName(), expectedMessage);
     }
 }
