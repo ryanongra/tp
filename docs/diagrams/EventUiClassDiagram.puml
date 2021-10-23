@@ -9,6 +9,7 @@ Class EventListPanel
 Class EventCard
 }
 
+Package MemberUI {}
 Package Model {}
 
 Class HiddenOutside #FFFFFF
@@ -17,4 +18,5 @@ HiddenOutside ..> EventListPanel
 EventListPanel --> "*" EventCard
 
 EventCard ..> Model
+EventCard --> MemberUI
 @enduml
