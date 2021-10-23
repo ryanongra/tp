@@ -154,7 +154,7 @@ The `Model` component,
 The `Person` class contains:
 * `Name`
 * `Phone`
-* `Address`
+* `Telegram`
 * `Email`
 * `Tag`
 
