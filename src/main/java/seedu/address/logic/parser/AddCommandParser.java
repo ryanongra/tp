@@ -33,20 +33,41 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        String newName = extractValue(argMultimap, PREFIX_NAME);
+        String newPhone = extractValue(argMultimap, PREFIX_PHONE);
+        String newEmail = extractValue(argMultimap, PREFIX_EMAIL);
+        String newTelegram = extractValue(argMultimap, PREFIX_TELEGRAM);
+
+        Name name = ParserUtil.parseName(newName);
+        Phone phone = ParserUtil.parsePhone(newPhone);
+        Email email = ParserUtil.parseEmail(newEmail);
+        Telegram telegram = ParserUtil.parseTelegram(newTelegram);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, telegram, tagList);
 
         return new AddCommand(person);
+    }
+
+    /**
+     * Extracts the value of the given Prefix from a given ArgumentMultiMap.
+     * Returns null if prefix does not exist.
+     * @param map ArgumentMultiMap to be searched.
+     * @param prefix Prefix to search for.
+     * @return Return value if found, otherwise null.
+     */
+    private String extractValue(ArgumentMultimap map, Prefix prefix) {
+        if (!arePrefixesPresent(map, prefix)
+                || !map.getPreamble().isEmpty()) {
+            return null;
+        } else {
+            return map.getValue(prefix).get();
+        }
     }
 
     /**

@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.NO_EMAIL_BENSON;
+import static seedu.address.testutil.TypicalPersons.NO_PHONE_BENSON;
+import static seedu.address.testutil.TypicalPersons.NO_TELE_BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +72,13 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_unspecifiedPhone_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, Phone.UNSPECIFIED_INPUT, VALID_EMAIL,
+                VALID_TELEGRAM, VALID_TAGS);
+        assertEquals(NO_PHONE_BENSON, person.toModelType());
+    }
+
+    @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_TELEGRAM, VALID_TAGS);
@@ -84,7 +94,14 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_unspecifiedEmail_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, Email.UNSPECIFIED_INPUT,
+                VALID_TELEGRAM, VALID_TAGS);
+        assertEquals(NO_EMAIL_BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TELEGRAM, VALID_TAGS);
         String expectedMessage = Telegram.MESSAGE_CONSTRAINTS;
@@ -92,10 +109,17 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
+    public void toModelType_nullTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_unspecifiedTelegram_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                Telegram.UNSPECIFIED_INPUT, VALID_TAGS);
+        assertEquals(NO_TELE_BENSON, person.toModelType());
     }
 
     @Test

@@ -16,7 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -54,6 +57,21 @@ public class TypicalPersons {
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+
+    // Persons with unspecified details
+    public static final Person NO_PHONE_BENSON = new PersonBuilder().withName("Benson Meier")
+            .withTelegram("sonben")
+            .withEmail("johnd@example.com").withPhone(Phone.UNSPECIFIED_INPUT)
+            .withTags("owesMoney", "friends").build();
+    public static final Person NO_EMAIL_BENSON = new PersonBuilder().withName("Benson Meier")
+            .withTelegram("sonben")
+            .withEmail(Email.UNSPECIFIED_INPUT).withPhone("98765432")
+            .withTags("owesMoney", "friends").build();
+    public static final Person NO_TELE_BENSON = new PersonBuilder().withName("Benson Meier")
+            .withTelegram(Telegram.UNSPECIFIED_INPUT)
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

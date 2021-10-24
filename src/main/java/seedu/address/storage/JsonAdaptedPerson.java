@@ -82,7 +82,7 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!Phone.isValidPhone(phone) && !phone.equals(Phone.UNSPECIFIED_INPUT)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
@@ -90,7 +90,7 @@ class JsonAdaptedPerson {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
+        if (!Email.isValidEmail(email) && !email.equals(Email.UNSPECIFIED_INPUT)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
@@ -99,7 +99,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
-        if (!Telegram.isValidTelegram(telegram)) {
+        if (!Telegram.isValidTelegram(telegram) && !telegram.equals(Telegram.UNSPECIFIED_INPUT)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
         final Telegram modelTelegram = new Telegram(telegram);

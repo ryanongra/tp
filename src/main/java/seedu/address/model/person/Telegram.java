@@ -17,6 +17,8 @@ public class Telegram {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    public static final String UNSPECIFIED_INPUT = "NIL: No telegram handle specified";
+
     public final String value;
 
     /**
@@ -26,8 +28,12 @@ public class Telegram {
      */
     public Telegram(String telegram) {
         requireNonNull(telegram);
-        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
-        value = telegram.charAt(0) == '@' ? telegram : "@" + telegram;
+        if (telegram.equals(UNSPECIFIED_INPUT)) {
+            value = UNSPECIFIED_INPUT;
+        } else {
+            checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+            value = telegram.charAt(0) == '@' ? telegram : "@" + telegram;
+        }
     }
 
     /**
