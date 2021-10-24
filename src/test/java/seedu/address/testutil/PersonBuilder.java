@@ -50,6 +50,20 @@ public class PersonBuilder {
     }
 
     /**
+     * Constructs a minimal person with the minimum required details
+     * (i.e. only {@code name}) when empty is true. Otherwise, constructs a full person.
+     */
+    public PersonBuilder(Person personToCopy, boolean empty) {
+        name = personToCopy.getName();
+        if (!empty) {
+            phone = personToCopy.getPhone();
+            email = personToCopy.getEmail();
+            telegram = personToCopy.getTelegram();
+            tags = new HashSet<>(personToCopy.getTags());
+        }
+    }
+
+    /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -58,7 +59,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
+        if (isNull(phone)) {
+            return new Phone(Phone.UNSPECIFIED_INPUT);
+        }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -73,7 +76,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code telegram} is invalid.
      */
     public static Telegram parseTelegram(String telegram) throws ParseException {
-        requireNonNull(telegram);
+        if (isNull(telegram)) {
+            return new Telegram(Telegram.UNSPECIFIED_INPUT);
+        }
         String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
@@ -88,7 +93,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (isNull(email)) {
+            return new Email(Email.UNSPECIFIED_INPUT);
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
