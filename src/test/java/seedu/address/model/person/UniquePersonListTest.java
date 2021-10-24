@@ -167,4 +167,34 @@ public class UniquePersonListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void getPersons() {
+        uniquePersonList.add(ALICE);
+        assertEquals(uniquePersonList.getPersons(new NameEqualKeywordPredicate(ALICE.getName())),
+                Collections.singletonList(ALICE));
+
+        assertEquals(uniquePersonList.getPersons(new NameEqualKeywordPredicate(BOB.getName())),
+                Collections.EMPTY_LIST);
+    }
+
+    @Test
+    public void isEmpty() {
+        // empty list
+        assertTrue(uniquePersonList.isEmpty());
+
+        // 1 person list
+        uniquePersonList.add(ALICE);
+        assertFalse(uniquePersonList.isEmpty());
+
+        // empty list
+        uniquePersonList.remove(ALICE);
+        assertTrue(uniquePersonList.isEmpty());
+
+        // add 2 persons and remove 1
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.remove(ALICE);
+        assertFalse(uniquePersonList.isEmpty());
+    }
 }

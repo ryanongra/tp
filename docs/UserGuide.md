@@ -91,7 +91,7 @@ Shows the list of all persons in the IG.
 Format: `list`
 
 * The list will display the names of all the members in the IG
-* The IG leader can click/use the details command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+* The IG leader can use the `details` command with the name to show further details of the member (name, phone number, Telegram handle, Email)
 
 Examples:
 * `list` in an IG of 5 members will display all the member’s names.
@@ -157,21 +157,32 @@ Format: `details NAME` or `details INDEX`
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
-* `details Xiao Ming` will output:
-  ```
-  Xiao Ming details
-  61234567
-  @xiao_ming
-  xiaoming@gmail.com
-  ```
+* `details Xiao Ming` 
+* `details John Doe`
 
-* `details John Doe` will output:
-  ```
-  John Doe details
-  NIL
-  NIL
-  NIL
-  ```
+### Creating an event : `event`
+
+Creates an event in the address book.
+
+Format: `event EVENT_NAME`
+
+* Putting any valid event name will create an event with no attendee. To add attendees, see `addPersonToEvent` command.
+
+Examples:
+* `event Dinner Event`
+* `event Skating Event`
+
+### Adding person to event: `addPersonToEvent`
+
+Adds a person in the address book to an event in the address book.
+
+Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
+
+* Both the `Person` and `Event` must exist in the address book.
+
+Examples:
+* `addPersonToEvent n/John Doe ev/Dinner Event`
+* `addPersonToEvent n/Jane Doe ev/Skating Event`
 
 ### Clearing all entries : `clear`
 

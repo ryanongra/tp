@@ -15,8 +15,6 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Class UniqueEventList
-Class UniquePersonList
 package Event {}
 package Person {}
 }
@@ -33,11 +31,10 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueEventList
-AddressBook *--> "1" UniquePersonList
-UniqueEventList --> "~* all" Event
-UniquePersonList --> "~* all" Person
+AddressBook -->"~* all" Event
+AddressBook -->"~* all" Person
 
-ModelManager -->"~* filtered" Event
+ModelManager --->"~* filtered" Event
 ModelManager -->"~* filtered" Person
+
 @enduml

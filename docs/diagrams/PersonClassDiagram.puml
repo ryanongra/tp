@@ -5,24 +5,23 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Person <<Rectangle>>{
+class UniquePersonList
 class Person
 class Name
 class Phone
 class Email
-class Address
+class Telegram
 class Tag
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Person
-
+UniquePersonList --> "*" Person
 Person *--> "1" Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "0...1" Phone
+Person *--> "0...1" Email
+Person *--> "0...1" Telegram
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Telegram
+Telegram -[hidden]right-> Email
 @enduml

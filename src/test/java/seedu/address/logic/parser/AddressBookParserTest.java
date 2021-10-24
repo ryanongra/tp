@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPersonToEventCommand;
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ChainCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -30,10 +33,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameEqualKeywordPredicate;
 import seedu.address.model.person.MatchesKeywordsPredicate;
 import seedu.address.model.person.NameEqualKeywordPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -46,6 +51,18 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addPersonToEvent() throws Exception {
+        Person person = new PersonBuilder().build();
+        Event event = new EventBuilder().build();
+        AddPersonToEventCommand command = (AddPersonToEventCommand) parser.parseCommand(
+                AddPersonToEventCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME + person.getName() + " "
+                        + PREFIX_EVENT_NAME + event.getEventName());
+        assertEquals(new AddPersonToEventCommand(new NameEqualKeywordPredicate(person.getName()),
+                new EventNameEqualKeywordPredicate(event.getEventName())), command);
     }
 
     @Test

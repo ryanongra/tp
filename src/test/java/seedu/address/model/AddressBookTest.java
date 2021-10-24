@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -145,8 +146,18 @@ public class AddressBookTest {
         }
 
         @Override
+        public List<Event> getEvents(Predicate<Event> eventPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getEventList() {
             return events;
+        }
+
+        @Override
+        public List<Person> getPersons(Predicate<Person> personPredicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

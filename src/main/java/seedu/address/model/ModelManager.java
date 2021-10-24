@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -121,6 +122,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Person> getPersons(Predicate<Person> personPredicate) {
+        return this.addressBook.getPersons(personPredicate);
+    }
+
+    @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return addressBook.hasEvent(event);
@@ -147,6 +153,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEvent);
 
         addressBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public List<Event> getEvents(Predicate<Event> eventPredicate) {
+        return this.addressBook.getEvents(eventPredicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================
