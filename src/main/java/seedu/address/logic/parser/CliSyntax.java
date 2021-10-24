@@ -12,4 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TELEGRAM = new Prefix("t/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
 
+    public static final Prefix FLAG_PERSON = new Prefix("-p");
+    public static final Prefix FLAG_EVENT = new Prefix("-e");
 }
