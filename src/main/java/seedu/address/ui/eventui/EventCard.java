@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.eventui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -6,6 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.event.Event;
+import seedu.address.ui.UiPart;
+import seedu.address.ui.memberui.PersonListPanel;
 
 /**
  * An UI component that displays information of a {@code Person}.
