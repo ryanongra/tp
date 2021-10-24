@@ -144,7 +144,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="300" />
 
 </div>
 
@@ -195,7 +195,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation Details
 
-The event feature is implemented in `AddressBook` by having AddressBook maintain a `UniqueEventList`. The implementation is similar to how Person is implemented in AddressBook. The relevant UI components then displays the events in an `EventCard` within the `EventListPanel`.
+The event feature is implemented in `AddressBook` by having `AddressBook` maintain a `UniqueEventList`. The implementation is similar to how `Person` is implemented in `AddressBook`. The relevant UI components then displays the events in an `EventCard` within the `EventListPanel`.
 
 As a result, `AddressBook` now has the following additional methods.
 * `setEvents(List<Events>)`
@@ -242,7 +242,7 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
   * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
   * Cons: Hard to implement. Over engineering.
 
-We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. It is also less complex.
+We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. Moreover, using a different class allows for type checking, which ensures we do not accidentally pass a `Name` belonging to a `Person` to a method expecting `EventName` belonging to an `Event`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -507,6 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Halls**: Halls of Residence
 * **CCA**: Co-Curricular Activity
 * **Telegram handle**: Telegram username
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
