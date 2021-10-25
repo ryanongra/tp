@@ -12,29 +12,39 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS2 = "Event book has been cleared!";
     public static final String MESSAGE_USAGE = "Clear command usage - later fill";
-    public static final int PERSON_MODE = 0;
-    public static final int EVENT_MODE = 1;
-    public int mode;
+    public static final int PERSON_FLAG = 0;
+    public static final int EVENT_FLAG = 1;
+    public static final String MODE_ALL = "all";
+
+    public int flag;
+    public String mode;
 
     //constructor
-    public ClearCommand(int mode) {
+    public ClearCommand(int flag, String mode) {
+        this.flag = flag;
         this.mode = mode;
     }
 
     public CommandResult executeInPersonMode(Model model) {
-        model.setAddressBook(new AddressBook());
+        if (mode.equals(MODE_ALL)) {
+            model.setAddressBook(new AddressBook());
+        } else {
+            // to be implemented for other features later
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     public CommandResult executeInEventMode(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS);
+        // to be implemented for other features later
+        return new CommandResult(MESSAGE_SUCCESS2);
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (mode == PERSON_MODE) {
+        if (flag == PERSON_FLAG) {
             return executeInPersonMode(model);
         } else {
             return executeInEventMode(model);
