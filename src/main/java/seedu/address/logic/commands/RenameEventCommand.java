@@ -88,7 +88,7 @@ public class RenameEventCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof RenameEventCommand)) {
             return false;
         }
 
@@ -148,7 +148,7 @@ public class RenameEventCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof RenameEventCommand.RenameEventDescriptor)) {
                 return false;
             }
 
