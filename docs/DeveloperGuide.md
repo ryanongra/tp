@@ -244,6 +244,32 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
 
 We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. Moreover, using a different class allows for type checking, which ensures we do not accidentally pass a `Name` belonging to a `Person` to a method expecting `EventName` belonging to an `Event`.
 
+### Chain commands feature
+
+#### Implementation Details
+
+The Chain Commands feature is implemented in `AddressBookParser` as a type of `Command` with similar implementations to how other commands are executed.
+
+As such a new regex expression is created in `AddressBookParser` besides looking for the current `BASIC_COMMAND_FORMAT` and will search for commands with `ADVANCED_COMMAND_FORMAT`.
+
+If a command matches the `ADVANCED_COMMAND_FORMAT` it will then parse the command into a `ChainCommand` which when executed will execute the two commands parsed into it.
+
+The following sequence diagram shows how the Chain command parsing and execution works:
+![ChainCommandSequenceDiagram](images/ChainCommandSequenceDiagram.png)
+
+
+#### Design considerations
+Aspect: How to parse inputs given to `ChainCommand`:
+* **Alternative 1 (current choice)**: Handle the parsing of the inputs within `AddressBookParser` itself.
+    * Pros: Easy to implement with no new classes created.
+    * Cons: Creates an additional condition before basic commands are parsed. Making it difficult to trace the regular functioning of basic commands.
+
+* **Alternative 2**: Use a `ChainCommandParser` and Command Words 
+    * Pros: The structure of how commands are usually executed is preserved, making code tracing easier to do.
+    * Cons: Unable to parse the inputs of the ChainCommand without passing the current `AddressBookParser` object into the parser. Which will change the inputs of the `Parser`.
+  
+We have decided to go ahead with **Alternative 1** as it preserves the current implementation of the `Parser` and avoid having to pass around `AddressBookParser` objects during run time. While the code is modified instead of extended, we  believe that the alternative will cause even more modifications in the future resulting in futher problems.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
