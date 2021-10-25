@@ -80,6 +80,39 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY,
                 new AddCommand(expectedPerson));
+
+        // Commented out tests which are no longer valid. Can be moved to parse_optionalFieldsMissing_success().
+
+        // missing phone prefix
+        expectedPerson = new PersonBuilder(BOB, true)
+                .withPhone(Phone.UNSPECIFIED_INPUT)
+                .withEmail(VALID_EMAIL_BOB)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withTags()
+                .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddCommand(expectedPerson));
+
+        // missing email prefix
+        expectedPerson = new PersonBuilder(BOB, true)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(Email.UNSPECIFIED_INPUT)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withTags()
+                .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddCommand(expectedPerson));
+
+
+        // missing telegram prefix
+        expectedPerson = new PersonBuilder(BOB, true)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withTelegram(Telegram.UNSPECIFIED_INPUT)
+                .withTags()
+                .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                new AddCommand(expectedPerson));
     }
 
     @Test
@@ -88,18 +121,6 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_TELEGRAM_BOB,
                 expectedMessage);
 
         // all prefixes missing
