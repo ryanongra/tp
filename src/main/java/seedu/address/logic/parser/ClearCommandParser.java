@@ -10,21 +10,26 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import java.util.stream.Stream;
 
 public class ClearCommandParser implements Parser<ClearCommand> {
+    public static final int PERSON_MODE = 0;
+    public static final int EVENT_MODE = 1;
+
     public ClearCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, FLAG_PERSON, FLAG_EVENT);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, FLAG_PERSON, FLAG_EVENT);
 
-            boolean isClearingPerson = arePrefixesPresent(argMultimap, FLAG_PERSON);
-            boolean isClearingEvent = arePrefixesPresent(argMultimap, FLAG_EVENT);
+        boolean isClearingPerson = arePrefixesPresent(argMultimap, FLAG_PERSON);
+        boolean isClearingEvent = arePrefixesPresent(argMultimap, FLAG_EVENT);
 
-            if (!isClearingPerson || !isClearingEvent || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
-            }
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+        }
 
-            if (isClearingEvent) {
-
-            }
+        if (isClearingPerson) {
+            return new ClearCommand(PERSON_MODE);
+        } else if (isClearingEvent) {
+            return new ClearCommand(EVENT_MODE);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
     }
 
