@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemovePersonFromEventCommand;
+import seedu.address.logic.commands.RenameEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +76,9 @@ public class AddressBookParser {
 
         case EventCommand.COMMAND_WORD:
             return new EventCommandParser().parse(arguments);
+
+        case RenameEventCommand.COMMAND_WORD:
+            return new RenameEventCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

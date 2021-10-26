@@ -112,7 +112,7 @@ public class RenameEventCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public RenameEventDescriptor(RenameEventDescriptor toCopy) {
+        public RenameEventDescriptor(RenameEventCommand.RenameEventDescriptor toCopy) {
             setEventName(toCopy.eventName);
             setAttendees(toCopy.attendees);
         }
