@@ -257,11 +257,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
-**Clear** | `clear ALL ENTRIES`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
+**Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
+**Clear** | `clear ALL ENTRIES`
+**Exit** | `exit`
+**&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
+**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
