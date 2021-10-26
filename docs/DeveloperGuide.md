@@ -149,7 +149,7 @@ The `Model` component,
 </div>
 
 #### Person
-<img src="images/PersonClassDiagram.png" width="300" />
+<img src="images/PersonClassDiagram.png" width="400" />
 
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
