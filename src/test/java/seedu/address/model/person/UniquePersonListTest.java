@@ -179,6 +179,24 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void size() {
+        // empty list
+        assertEquals(0, uniquePersonList.size());
+
+        // 1 person list
+        uniquePersonList.add(ALICE);
+        assertEquals(1, uniquePersonList.size());
+
+        // 2 persons list
+        uniquePersonList.add(BOB);
+        assertEquals(2, uniquePersonList.size());
+
+        // remove 1 person
+        uniquePersonList.remove(ALICE);
+        assertEquals(1, uniquePersonList.size());
+    }
+
+    @Test
     public void isEmpty() {
         // empty list
         assertTrue(uniquePersonList.isEmpty());

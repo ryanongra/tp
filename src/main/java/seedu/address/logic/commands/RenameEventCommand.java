@@ -77,7 +77,8 @@ public class RenameEventCommand extends Command {
 
         model.setEvent(eventToRename, renamedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        return new CommandResult(String.format(MESSAGE_RENAME_EVENT_SUCCESS, eventToRename, renamedEvent));
+        return new CommandResult(String.format(MESSAGE_RENAME_EVENT_SUCCESS, eventToRename.getEventName(),
+                renamedEvent.getEventName()));
     }
 
     @Override
