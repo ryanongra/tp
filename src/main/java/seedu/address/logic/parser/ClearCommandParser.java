@@ -22,16 +22,17 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+        } else if (isClearingPerson && isClearingEvent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+        } else if (!isClearingPerson && !isClearingEvent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
-
         if (isClearingPerson) {
             String mode = argMultimap.getValue(FLAG_PERSON).get();
             return new ClearCommand(PERSON_MODE, mode);
-        } else if (isClearingEvent) {
+        } else {
             String mode = argMultimap.getValue(FLAG_EVENT).get();
             return new ClearCommand(EVENT_MODE, mode);
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
     }
 
