@@ -159,7 +159,7 @@ Format: `details NAME` or `details INDEX`
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
-* `details Xiao Ming` 
+* `details Xiao Ming`
 * `details John Doe`
 
 ### Creating an event : `event`
