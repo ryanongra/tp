@@ -8,8 +8,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSON_DETAILS_NOT_FOU
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -94,8 +94,8 @@ class DetailsCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DetailsCommand detailsCommand = new DetailsCommand(INDEX_FIRST_PERSON);
+        Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        DetailsCommand detailsCommand = new DetailsCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, personToDisplay.getName());
 
@@ -115,10 +115,10 @@ class DetailsCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DetailsCommand detailsCommand = new DetailsCommand(INDEX_FIRST_PERSON);
+        Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        DetailsCommand detailsCommand = new DetailsCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(Messages.MESSAGE_PERSON_DETAILS_FOUND, personToDisplay.getName());
 
@@ -130,9 +130,9 @@ class DetailsCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 

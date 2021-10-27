@@ -237,7 +237,7 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
 * **Alternative 2**: Reuse `Name` class.
   * Pros: Nothing to implement, lesser things to test.
   * Cons: Unable to have different type of valid name checking.
-  
+
 * **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
   * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
   * Cons: Hard to implement. Over engineering.
@@ -438,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User searches for a member using <ins>UC04 - Find a member<ins/>.
 2. User types in command to delete the member.
-3. System confirms that the member is deleted. 
+3. System confirms that the member is deleted.
 
     Use case ends.
 
@@ -513,9 +513,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Application exits.
 
    Use case ends.
-
-
-
 
 ### Non-Functional Requirements
 

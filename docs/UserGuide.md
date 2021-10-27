@@ -133,15 +133,17 @@ Examples:
 
 Deletes the specified person from the Interest Group
 
-Format: `delete INDEX`
+Format: `delete [-e] INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the person or event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* -e specifies that the delete command targeting the event list.
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd person in the displayed person list.
 * `find Jason` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `delete -e 1` deletes the 1st event in the displayed event list.
 
 ### View a person's details : `details`
 
@@ -157,7 +159,7 @@ Format: `details NAME` or `details INDEX`
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
-* `details Xiao Ming` 
+* `details Xiao Ming`
 * `details John Doe`
 
 ### Creating an event : `event`
