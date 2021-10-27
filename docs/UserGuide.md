@@ -176,7 +176,7 @@ Examples:
 
 ### Adding person to an event: `addPersonToEvent`
 
-Adds a person in the address book to an event in the address book.
+Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
 
 Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 
