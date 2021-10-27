@@ -562,6 +562,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a new person to the address book.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: First person is added to the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add n/John Smith p/98765432 e/johnd@example.com t/@johndoedoe tag/friends tag/owesMoney`<br>
+       Expected: Second person is added to the list. Tags are displayed under the person's name. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: omit optional details (phone number, email, telegram, tags) <br>
+       Assumption: Name is provided and person is not a duplicate.
+       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified". 
+
+    1. Test case: `add n/John Smith`<br>
+       Expected: No person is added. Duplicate person error details shown in status bar.
+
+    1. Test case: `add p/98765432`<br>
+       Expected: No person is added. Invalid command format error shown in status bar.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -578,6 +600,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Renaming an event
+
+1. Rename an existing event in the address book.
+
+    1. Test case: `renameEvent 1 ev/NewName`<br>
+       Expected: Name of the first event in the event list changes to "NewName". List of attendees remains the same.
+
+    1. Test case: `renameEvent ev/NewName`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+    1. Test case: `renameEvent 1`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+### Removing a person from an event
+
+1. Removes a specified person from a specified event in the address book.
+
+    1. Prerequisites: The event "Party" exists. The "Party" contains an attendee with the name "John Doe". An event with the name "Dinner" does not exist.
+
+    1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+       Expected: John Doe is removed from the "Party" event's list. Details of the removal show in status bar.
+
+    1. Test case: `removePersonFromEvent n/John Doe`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+    1. Test case: `removePersonFromEvent ev/Party`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
+      Expected: No change. Event not found error message shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+      Note: John Doe no longer exists in this event's list due to test case ii.
+      Expected: No change. Person not found error message shown in status bar.
 
 ### Saving data
 

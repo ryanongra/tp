@@ -38,6 +38,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the number of people in the UniquePersonList.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
