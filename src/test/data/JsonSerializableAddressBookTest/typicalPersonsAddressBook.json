@@ -42,5 +42,6 @@
     "email" : "anna@example.com",
     "telegram" : "@georgebestest",
     "tagged" : [ ]
-  } ]
+  } ],
+  "events": []
 }
