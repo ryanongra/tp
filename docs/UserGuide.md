@@ -174,7 +174,7 @@ Examples:
 * `event Dinner Event`
 * `event Skating Event`
 
-### Adding person to event: `addPersonToEvent`
+### Adding person to an event: `addPersonToEvent`
 
 Adds a person in the address book to an event in the address book.
 
@@ -185,6 +185,32 @@ Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
 * `addPersonToEvent n/Jane Doe ev/Skating Event`
+
+### Removing person from an event: `removePersonFromEvent`
+
+Removes a person from an event in the address book.
+
+Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
+
+* `Event` must exist in the address book.
+* `Person` must exist in the specified event.
+
+Examples:
+* `removePersonFromEvent n/John Doe ev/Dinner Event`
+* `removePersonFromEvent n/Jane Doe ev/Skating Event`
+
+### Renaming an event: `renameEvent`
+
+Changes the name of an event in the address book.
+
+Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
+
+* `INDEX` refers to the index of the event in the events list.
+* `INDEX` must be a valid index for an existing event.
+
+Examples:
+* `renameEvent 1 ev/Dinner Event`
+* `renameEvent 2 ev/Skating Event`
 
 ### Clearing all entries : `clear`
 
@@ -259,11 +285,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
-**Clear** | `clear ALL ENTRIES`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
+**Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
+**Clear** | `clear ALL ENTRIES`
+**Exit** | `exit`
+**&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
+**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`

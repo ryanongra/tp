@@ -17,6 +17,7 @@ import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 class AddPersonToEventCommandParserTest {
+
     private AddPersonToEventCommandParser parser = new AddPersonToEventCommandParser();
 
     @Test

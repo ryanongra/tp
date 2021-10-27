@@ -149,7 +149,7 @@ The `Model` component,
 </div>
 
 #### Person
-<img src="images/PersonClassDiagram.png" width="300" />
+<img src="images/PersonClassDiagram.png" width="400" />
 
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
@@ -243,6 +243,32 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
   * Cons: Hard to implement. Over engineering.
 
 We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. Moreover, using a different class allows for type checking, which ensures we do not accidentally pass a `Name` belonging to a `Person` to a method expecting `EventName` belonging to an `Event`.
+
+### Chain commands feature
+
+#### Implementation Details
+
+The Chain Commands feature is implemented in `AddressBookParser` as a type of `Command` with similar implementations to how other commands are executed.
+
+As such a new regex expression is created in `AddressBookParser` besides looking for the current `BASIC_COMMAND_FORMAT` and will search for commands with `ADVANCED_COMMAND_FORMAT`.
+
+If a command matches the `ADVANCED_COMMAND_FORMAT` it will then parse the command into a `ChainCommand` which when executed will execute the two commands parsed into it.
+
+The following sequence diagram shows how the Chain command parsing and execution works:
+![ChainCommandSequenceDiagram](images/ChainCommandSequenceDiagram.png)
+
+
+#### Design considerations
+Aspect: How to parse inputs given to `ChainCommand`:
+* **Alternative 1 (current choice)**: Handle the parsing of the inputs within `AddressBookParser` itself.
+    * Pros: Easy to implement with no new classes created.
+    * Cons: Creates an additional condition before basic commands are parsed. Making it difficult to trace the regular functioning of basic commands.
+
+* **Alternative 2**: Use a `ChainCommandParser` and Command Words 
+    * Pros: The structure of how commands are usually executed is preserved, making code tracing easier to do.
+    * Cons: Unable to parse the inputs of the ChainCommand without passing the current `AddressBookParser` object into the parser. Which will change the inputs of the `Parser`.
+  
+We have decided to go ahead with **Alternative 1** as it preserves the current implementation of the `Parser` and avoid having to pass around `AddressBookParser` objects during run time. While the code is modified instead of extended, we  believe that the alternative will cause even more modifications in the future resulting in futher problems.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -533,6 +559,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a new person to the address book.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: First person is added to the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add n/John Smith p/98765432 e/johnd@example.com t/@johndoedoe tag/friends tag/owesMoney`<br>
+       Expected: Second person is added to the list. Tags are displayed under the person's name. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: omit optional details (phone number, email, telegram, tags) <br>
+       Assumption: Name is provided and person is not a duplicate.
+       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified". 
+
+    1. Test case: `add n/John Smith`<br>
+       Expected: No person is added. Duplicate person error details shown in status bar.
+
+    1. Test case: `add p/98765432`<br>
+       Expected: No person is added. Invalid command format error shown in status bar.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -549,6 +597,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Renaming an event
+
+1. Rename an existing event in the address book.
+
+    1. Test case: `renameEvent 1 ev/NewName`<br>
+       Expected: Name of the first event in the event list changes to "NewName". List of attendees remains the same.
+
+    1. Test case: `renameEvent ev/NewName`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+    1. Test case: `renameEvent 1`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+### Removing a person from an event
+
+1. Removes a specified person from a specified event in the address book.
+
+    1. Prerequisites: The event "Party" exists. The "Party" contains an attendee with the name "John Doe". An event with the name "Dinner" does not exist.
+
+    1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+       Expected: John Doe is removed from the "Party" event's list. Details of the removal show in status bar.
+
+    1. Test case: `removePersonFromEvent n/John Doe`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+    1. Test case: `removePersonFromEvent ev/Party`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
+      Expected: No change. Event not found error message shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+      Note: John Doe no longer exists in this event's list due to test case ii.
+      Expected: No change. Person not found error message shown in status bar.
 
 ### Saving data
 
