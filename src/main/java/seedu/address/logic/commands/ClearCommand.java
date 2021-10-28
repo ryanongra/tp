@@ -50,4 +50,9 @@ public class ClearCommand extends Command {
             return executeInEventMode(model);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other instanceof ClearCommand);
+    }
 }

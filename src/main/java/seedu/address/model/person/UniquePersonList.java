@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,13 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns the number of people in the UniquePersonList.
+     */
+    public int size() {
+        return internalList.size();
     }
 
     /**
@@ -109,6 +117,14 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public List<Person> getPersons(Predicate<Person> personPredicate) {
+        return internalUnmodifiableList.filtered(personPredicate);
+    }
+
+    public boolean isEmpty() {
+        return internalUnmodifiableList.size() == 0;
     }
 
     @Override

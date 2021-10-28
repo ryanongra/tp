@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,22 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object and `Event` object residing in the `Model`.
+
+#### MemberUI
+
+<img src="images/MemberUiClassDiagram.png" width="220" />
+
+* Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
+* The `PersonCard` and `PersonDetailsCard` depends on `Model`.
+
+#### EventUI
+
+<img src="images/EventUiClassDiagram.png" width="200" />
+
+* Within the `EventListPanel`, `EventCard` is displayed.
+* The `EventCard` depends on `Model`.
+* The `EventCard` also reuses `PersonListPanel` from the UI components related to the member tab, hence the association.
 
 ### Logic component
 
@@ -121,16 +136,38 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Event` objects (which are contained in a `UniqueEventList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="300" />
 
 </div>
+
+#### Person
+<img src="images/PersonClassDiagram.png" width="400" />
+
+* The `Person` package contains classes related to the `Person` class.
+* The `Person` class contains:
+    * `Name`
+    * `Phone`
+    * `Telegram`
+    * `Email`
+    * `Tag`
+* The `UniquePersonList` contains a unique list of `Person` objects.
+
+#### Event
+<img src="images/EventClassDiagram.png" width="200" />
+
+* The `Event` package contains classes related to the `Event` class.
+* The `Event` class contains:
+  * `EventName`
+  * `UniquePersonList` as the list of attendees
+* The `UniqueEventList` contains a unique list of `Event` objects.
 
 
 ### Storage component
@@ -153,6 +190,85 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Event feature
+
+#### Implementation Details
+
+The event feature is implemented in `AddressBook` by having `AddressBook` maintain a `UniqueEventList`. The implementation is similar to how `Person` is implemented in `AddressBook`. The relevant UI components then displays the events in an `EventCard` within the `EventListPanel`.
+
+As a result, `AddressBook` now has the following additional methods.
+* `setEvents(List<Events>)`
+* `hasEvent(Event)`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `removeEvent(Event)`
+* `clearAllEvents()`
+* `getEventList()`
+
+The `Model` interface now has the following additional methods.
+* `hasEvent(Event)`
+* `deleteEvent(Event)`
+* `clearAllEvent()`
+* `addEvent(Event)`
+* `setEvent(Event, Event)`
+* `getFilteredList()`
+* `updateFilteredLisst(Predicate<Event>)`
+
+The way `Event` behaves is very similar to `Person` and thus will be omitted to reduce repeated details.
+
+#### Design considerations
+Aspect: Whether to generify `UniqueEventList`:
+* **Alternative 1 (current choice)**: Create a `UniqueEventList` class similar to `UniquePersonList`.
+  * Pros: Easy to implement since there is already a reference. Can get code out fast.
+  * Cons: Lots of boilerplate code
+
+* **Alternative 2**: Generify `UniqueEventList` and `UniquePersonList`.
+  * Pros: Much more elegant, extensible.
+  * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
+
+We have decided to go ahead with **Alternative 1** as it is easier to implement due to time constraints. Alternative 1 is likely to be more reliable as we do not risk running into regressions as much. While **Alternative 1** is less extensible, since we are only creating 1 more class of this type, the pros seems to outweigh the cons.
+
+Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
+* **Alternative 1 (current choice)**: Create `EventName` class similar to `Name`.
+  * Pros: Easy to implement, since we already have similar code. Less likely to introduce regressions.
+  * Cons: More boilerplate code.
+
+* **Alternative 2**: Reuse `Name` class.
+  * Pros: Nothing to implement, lesser things to test.
+  * Cons: Unable to have different type of valid name checking.
+
+* **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
+  * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
+  * Cons: Hard to implement. Over engineering.
+
+We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. Moreover, using a different class allows for type checking, which ensures we do not accidentally pass a `Name` belonging to a `Person` to a method expecting `EventName` belonging to an `Event`.
+
+### Chain commands feature
+
+#### Implementation Details
+
+The Chain Commands feature is implemented in `AddressBookParser` as a type of `Command` with similar implementations to how other commands are executed.
+
+As such a new regex expression is created in `AddressBookParser` besides looking for the current `BASIC_COMMAND_FORMAT` and will search for commands with `ADVANCED_COMMAND_FORMAT`.
+
+If a command matches the `ADVANCED_COMMAND_FORMAT` it will then parse the command into a `ChainCommand` which when executed will execute the two commands parsed into it.
+
+The following sequence diagram shows how the Chain command parsing and execution works:
+![ChainCommandSequenceDiagram](images/ChainCommandSequenceDiagram.png)
+
+
+#### Design considerations
+Aspect: How to parse inputs given to `ChainCommand`:
+* **Alternative 1 (current choice)**: Handle the parsing of the inputs within `AddressBookParser` itself.
+    * Pros: Easy to implement with no new classes created.
+    * Cons: Creates an additional condition before basic commands are parsed. Making it difficult to trace the regular functioning of basic commands.
+
+* **Alternative 2**: Use a `ChainCommandParser` and Command Words 
+    * Pros: The structure of how commands are usually executed is preserved, making code tracing easier to do.
+    * Cons: Unable to parse the inputs of the ChainCommand without passing the current `AddressBookParser` object into the parser. Which will change the inputs of the `Parser`.
+  
+We have decided to go ahead with **Alternative 1** as it preserves the current implementation of the `Parser` and avoid having to pass around `AddressBookParser` objects during run time. While the code is modified instead of extended, we  believe that the alternative will cause even more modifications in the future resulting in futher problems.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -322,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User searches for a member using <ins>UC04 - Find a member<ins/>.
 2. User types in command to delete the member.
-3. System confirms that the member is deleted. 
+3. System confirms that the member is deleted.
 
     Use case ends.
 
@@ -398,9 +514,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -417,6 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Halls**: Halls of Residence
 * **CCA**: Co-Curricular Activity
 * **Telegram handle**: Telegram username
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -445,6 +559,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a new person to the address book.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: First person is added to the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add n/John Smith p/98765432 e/johnd@example.com t/@johndoedoe tag/friends tag/owesMoney`<br>
+       Expected: Second person is added to the list. Tags are displayed under the person's name. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: omit optional details (phone number, email, telegram, tags) <br>
+       Assumption: Name is provided and person is not a duplicate.
+       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified". 
+
+    1. Test case: `add n/John Smith`<br>
+       Expected: No person is added. Duplicate person error details shown in status bar.
+
+    1. Test case: `add p/98765432`<br>
+       Expected: No person is added. Invalid command format error shown in status bar.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -461,6 +597,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Renaming an event
+
+1. Rename an existing event in the address book.
+
+    1. Test case: `renameEvent 1 ev/NewName`<br>
+       Expected: Name of the first event in the event list changes to "NewName". List of attendees remains the same.
+
+    1. Test case: `renameEvent ev/NewName`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+    1. Test case: `renameEvent 1`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+### Removing a person from an event
+
+1. Removes a specified person from a specified event in the address book.
+
+    1. Prerequisites: The event "Party" exists. The "Party" contains an attendee with the name "John Doe". An event with the name "Dinner" does not exist.
+
+    1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+       Expected: John Doe is removed from the "Party" event's list. Details of the removal show in status bar.
+
+    1. Test case: `removePersonFromEvent n/John Doe`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+    1. Test case: `removePersonFromEvent ev/Party`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
+      Expected: No change. Event not found error message shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+      Note: John Doe no longer exists in this event's list due to test case ii.
+      Expected: No change. Person not found error message shown in status bar.
 
 ### Saving data
 

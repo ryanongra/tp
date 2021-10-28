@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.memberui;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of persons.
@@ -44,6 +45,7 @@ public class PersonListPanel extends UiPart<Region> {
      * Refreshes the entire component.
      */
     public void refresh() {
+        logger.info("Refreshing person list panel");
         personListView.setItems(personListView.getItems());
         personListView.setCellFactory(listView -> new PersonListViewCell());
         personListView.refresh();

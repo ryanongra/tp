@@ -91,7 +91,7 @@ Shows the list of all persons in the IG.
 Format: `list`
 
 * The list will display the names of all the members in the IG
-* The IG leader can click/use the details command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+* The IG leader can use the `details` command with the name to show further details of the member (name, phone number, Telegram handle, Email)
 
 Examples:
 * `list` in an IG of 5 members will display all the member’s names.
@@ -133,19 +133,21 @@ Examples:
 
 Deletes the specified person from the Interest Group
 
-Format: `delete INDEX`
+Format: `delete [-e] INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the person or event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* -e specifies that the delete command targeting the event list.
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd person in the displayed person list.
 * `find Jason` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `delete -e 1` deletes the 1st event in the displayed event list.
 
 ### View a person's details : `details`
 
-Shows the details of a particular member in the IG.
+Shows the detailed view of a particular member in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
 
 Format: `details NAME` or `details INDEX`
 
@@ -157,21 +159,58 @@ Format: `details NAME` or `details INDEX`
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
-* `details Xiao Ming` will output:
-  ```
-  Xiao Ming details
-  61234567
-  @xiao_ming
-  xiaoming@gmail.com
-  ```
+* `details Xiao Ming`
+* `details John Doe`
 
-* `details John Doe` will output:
-  ```
-  John Doe details
-  NIL
-  NIL
-  NIL
-  ```
+### Creating an event : `event`
+
+Creates an event in the address book.
+
+Format: `event EVENT_NAME`
+
+* Putting any valid event name will create an event with no attendee. To add attendees, see `addPersonToEvent` command.
+
+Examples:
+* `event Dinner Event`
+* `event Skating Event`
+
+### Adding person to an event: `addPersonToEvent`
+
+Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
+
+Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
+
+* Both the `Person` and `Event` must exist in the address book.
+
+Examples:
+* `addPersonToEvent n/John Doe ev/Dinner Event`
+* `addPersonToEvent n/Jane Doe ev/Skating Event`
+
+### Removing person from an event: `removePersonFromEvent`
+
+Removes a person from an event in the address book.
+
+Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
+
+* `Event` must exist in the address book.
+* `Person` must exist in the specified event.
+
+Examples:
+* `removePersonFromEvent n/John Doe ev/Dinner Event`
+* `removePersonFromEvent n/Jane Doe ev/Skating Event`
+
+### Renaming an event: `renameEvent`
+
+Changes the name of an event in the address book.
+
+Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
+
+* `INDEX` refers to the index of the event in the events list.
+* `INDEX` must be a valid index for an existing event.
+
+Examples:
+* `renameEvent 1 ev/Dinner Event`
+* `renameEvent 2 ev/Skating Event`
 
 ### Clearing all entries : `clear`
 
@@ -190,6 +229,32 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Chaining commands : `&&`
+
+Chains multiple commands together.
+
+Format: `COMMAND && COMMAND`
+
+Examples:
+* `find Jon && delete 1` will:
+
+Execute `find Jon` and then execute `delete 1`
+
+### Setting alias : `alias`
+
+Temporarily sets a command to a specified alias as a shortcut
+
+Format: `alias a/ALIAS c/COMMAND`
+
+* Alias will be set until the program is restarted.
+* Setting an alias to an existing command word will not override existing commands.
+* Chaining multiple commands using `&&` is not supported by alias.
+
+Examples:
+ `alias a/d1 c/details 1` will set `d1` to `details 1`
+
+Executing `d1` will be equivalent to executing `details 1`.
 
 ### Saving the data
 
@@ -220,10 +285,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear ALL ENTRIES`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
+**Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
+**Clear** | `clear ALL ENTRIES`
+**Exit** | `exit`
+**&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
+**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
