@@ -97,7 +97,7 @@ public class ModelStub implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
-    
+
     @Override
     public boolean hasEvent(Event event) {
         throw new AssertionError("This method should not be called.");
