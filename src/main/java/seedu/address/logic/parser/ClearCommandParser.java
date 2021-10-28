@@ -51,12 +51,10 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         if (clearRange.equals("all")) {
             return new ClearCommand(flag, 0, null, null);
         } else {
-            Index begin;
-            Index end;
             String[] range = clearRange.split("-");
             assert(range.length == 2);
-            begin = ParserUtil.parseIndex(range[0]);
-            end = ParserUtil.parseIndex(range[1]);
+            Index begin = ParserUtil.parseIndex(range[0]);
+            Index end = ParserUtil.parseIndex(range[1]);
             return new ClearCommand(flag, 1, begin, end);
         }
     }

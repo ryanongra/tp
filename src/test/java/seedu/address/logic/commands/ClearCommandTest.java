@@ -20,7 +20,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand(0, 0, null, null),
-                model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+                model, ClearCommand.MESSAGE_CLEAR_PERSON_SUCCESS, expectedModel);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ClearCommandTest {
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(0, 0, null, null),
-                model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+                model, ClearCommand.MESSAGE_CLEAR_PERSON_SUCCESS, expectedModel);
     }
 
     @Test
