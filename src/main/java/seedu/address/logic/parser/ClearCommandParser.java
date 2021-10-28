@@ -1,21 +1,25 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_FLAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_FLAG;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ClearCommandParser implements Parser<ClearCommand> {
     private static final int PERSON_FLAG = 0;
     private static final int EVENT_FLAG = 1;
     private static final String VALIDATION_REGEX = "^all$|^[0-9]*-[0-9]*$";
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ClearCommand
+     * and returns an ClearCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ClearCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_FLAG, PREFIX_EVENT_FLAG);

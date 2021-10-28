@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -10,7 +12,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
-
 
 /**
  * Clears the address book with the given range.
@@ -36,10 +37,10 @@ public class ClearCommand extends Command {
     public static final int MODE_ALL = 0;
     public static final int MODE_RANGE = 1;
 
-    public int flag;
-    public int mode;
-    public Index begin;
-    public Index end;
+    private final int flag;
+    private final int mode;
+    private final Index begin;
+    private final Index end;
 
     /**
      * Constructor for delete command for person.
@@ -55,7 +56,7 @@ public class ClearCommand extends Command {
         this.end = end;
     }
 
-    public CommandResult executePersonClear(Model model) throws CommandException {
+    private CommandResult executePersonClear(Model model) throws CommandException {
         if (mode == MODE_ALL) {
             model.setAddressBook(new AddressBook());
         } else {
@@ -75,8 +76,9 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_CLEAR_PERSON_SUCCESS);
     }
 
-    public CommandResult executeEventClear(Model model) throws CommandException {
-        int beginIndex, endIndex;
+    private CommandResult executeEventClear(Model model) throws CommandException {
+        int beginIndex;
+        int endIndex;
         List<Event> lastShownList = model.getFilteredEventList();
         if (mode == MODE_ALL) {
             beginIndex = 0;
@@ -99,6 +101,42 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_CLEAR_EVENT_SUCCESS);
     }
 
+    /**
+     * Get the beginning index of the specified range.
+     *
+     * @return The beginning index
+     */
+    public Index getBegin() {
+        return begin;
+    }
+
+    /**
+     * Get the ending index of the specified range.
+     *
+     * @return The ending index
+     */
+    public Index getEnd() {
+        return end;
+    }
+
+    /**
+     * Get the command's flag.
+     *
+     * @return The command's flag
+     */
+    public int getFlag() {
+        return flag;
+    }
+
+    /**
+     * Get the command's operation mode.
+     *
+     * @return The command's operation mode
+     */
+    public int getMode() {
+        return mode;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -115,20 +153,11 @@ public class ClearCommand extends Command {
             return true;
         } else if (other instanceof ClearCommand) {
             ClearCommand c = (ClearCommand) other;
-            boolean result = true;
-            boolean isFlagEqual = (flag == c.flag);
-            boolean isModeEqual = (mode == c.mode);
-            result = result && isFlagEqual && isModeEqual;
-            if (begin == null && end == null) {
-                result = result && c.begin == null && c.end == null;
-            } else {
-                if (c.begin == null || c.end == null) {
-                    result = false;
-                } else {
-                    result = result && begin.equals(c.begin) && end.equals(c.end);
-                }
-            }
-            return result;
+            boolean isFlagEqual = (flag == c.getFlag());
+            boolean isModeEqual = (mode == c.getMode());
+            return isFlagEqual && isModeEqual
+                    && Objects.equals(begin, c.getBegin())
+                    && Objects.equals(end, c.getEnd());
         } else {
             return false;
         }
