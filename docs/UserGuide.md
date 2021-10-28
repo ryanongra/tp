@@ -26,7 +26,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 
    * **`list`** : View all members.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the address book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
