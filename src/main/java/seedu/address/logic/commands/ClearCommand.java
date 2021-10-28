@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
@@ -22,7 +23,7 @@ public class ClearCommand extends Command {
     public String mode;
 
     //constructor
-    public ClearCommand(int flag, String mode) {
+    public ClearCommand(int flag, String mode, Index begin, Index end) {
         this.flag = flag;
         this.mode = mode;
     }

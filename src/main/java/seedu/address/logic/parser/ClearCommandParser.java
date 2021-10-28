@@ -3,8 +3,9 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.ClearCommand;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON;
-import static seedu.address.logic.parser.CliSyntax.FLAG_EVENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_FLAG;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.stream.Stream;
@@ -15,10 +16,12 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
     public ClearCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, FLAG_PERSON, FLAG_EVENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_FLAG, PREFIX_EVENT_FLAG);
 
-        boolean isClearingPerson = arePrefixesPresent(argMultimap, FLAG_PERSON);
-        boolean isClearingEvent = arePrefixesPresent(argMultimap, FLAG_EVENT);
+        boolean isClearingPerson = arePrefixesPresent(argMultimap, PREFIX_PERSON_FLAG);
+        boolean isClearingEvent = arePrefixesPresent(argMultimap, PREFIX_EVENT_FLAG);
+
+        assert(!(isClearingEvent && isClearingPerson));
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
@@ -27,11 +30,12 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         } else if (!isClearingPerson && !isClearingEvent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         }
+
         if (isClearingPerson) {
-            String mode = argMultimap.getValue(FLAG_PERSON).get();
+            String mode = argMultimap.getValue(PREFIX_PERSON_FLAG).get();
             return new ClearCommand(PERSON_MODE, mode);
         } else {
-            String mode = argMultimap.getValue(FLAG_EVENT).get();
+            String mode = argMultimap.getValue(PREFIX_EVENT_FLAG).get();
             return new ClearCommand(EVENT_MODE, mode);
         }
     }
