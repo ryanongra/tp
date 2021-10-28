@@ -15,21 +15,27 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
     public static final String MESSAGE_SUCCESS2 = "Event book has been cleared!";
     public static final String MESSAGE_USAGE = "Clear command usage - later fill";
+
     public static final int PERSON_FLAG = 0;
     public static final int EVENT_FLAG = 1;
-    public static final String MODE_ALL = "all";
+
+    public static final int MODE_ALL = 0;
+    public static final int MODE_RANGE = 1;
 
     public int flag;
-    public String mode;
+    public int mode;
+    public Index begin;
+    public Index end;
 
-    //constructor
-    public ClearCommand(int flag, String mode, Index begin, Index end) {
+    public ClearCommand(int flag, int mode, Index begin, Index end) {
         this.flag = flag;
         this.mode = mode;
+        this.begin = begin;
+        this.end = end;
     }
 
     public CommandResult executeInPersonMode(Model model) {
-        if (mode.equals(MODE_ALL)) {
+        if (mode == MODE_ALL) {
             model.setAddressBook(new AddressBook());
         } else {
             // to be implemented for other features later
