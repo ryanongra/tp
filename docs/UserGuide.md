@@ -79,6 +79,7 @@ Adds a member to the Interest Group.
 Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [t/TAG]`
 
 * Only member's name must be entered to add the member. All other details are optional.
+* `Peron` added should not have the same name (case-sensitive) as `Person` that is already in the application.
 
 Examples:
 * `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
@@ -170,6 +171,7 @@ Creates an event in the address book.
 Format: `event EVENT_NAME`
 
 * Putting any valid event name will create an event with no attendee. To add attendees, see `addPersonToEvent` command.
+* `Event` added should not have the same event name (case-sensitive) as `Event` that is already in the application.
 
 Examples:
 * `event Dinner Event`
