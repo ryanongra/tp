@@ -278,7 +278,7 @@ _Details coming soon ..._
 
 ### Tabbing command `[coming in v2.0]`
 
-Users can use `ctrl + tab` to switch between tabs for now and `tab` to reach the input box.
+Users can use `ctrl + tab` to switch between tabs for now and `tab` to reach the input box. Note that the user may have to tab a few times to tab out of the input box first.
 
 --------------------------------------------------------------------------------------------------------------------
 
