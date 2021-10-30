@@ -262,11 +262,11 @@ Executing `d1` will be equivalent to executing `details 1`.
 
 ### Saving the data
 
-Data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ForYourInterest data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ForYourInterest data are saved as a JSON file `[JAR file location]/data/foryourinterest.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ForYourInterest will discard all data and start with an empty data file at the next run.

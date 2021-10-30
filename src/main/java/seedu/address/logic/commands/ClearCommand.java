@@ -8,7 +8,6 @@ import java.util.Objects;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
@@ -24,7 +23,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_CLEAR_EVENT_SUCCESS =
             "The event list has been cleared with the given range!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears the person or event list with the given index range used in the displayed list"
+            + ": Clears the person or event list with the given index range used in the displayed list \n"
             + "Parameters: " + "[flag] (can be [-p] for person list and [-e] for event)"
             + "RANGE (must either be all or a valid range like 1-10) \n"
             + "Example - clearing all entries in person list: " + COMMAND_WORD + "-p all \n"
@@ -57,21 +56,26 @@ public class ClearCommand extends Command {
     }
 
     private CommandResult executePersonClear(Model model) throws CommandException {
+        int beginIndex;
+        int endIndex;
+        List<Person> lastShownList = model.getFilteredPersonList();
         if (mode == MODE_ALL) {
-            model.setAddressBook(new AddressBook());
+            beginIndex = 0;
+            endIndex = lastShownList.size() - 1;
         } else {
-            List<Person> lastShownList = model.getFilteredPersonList();
-
             if (end.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             if (begin.getZeroBased() > end.getZeroBased()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_RANGE);
             }
-            for (int i = end.getZeroBased(); i >= begin.getZeroBased(); i--) {
-                Person personToDelete = lastShownList.get(i);
-                model.deletePerson(personToDelete);
-            }
+            beginIndex = begin.getZeroBased();
+            endIndex = end.getZeroBased();
+        }
+
+        for (int i = endIndex; i >= beginIndex; i--) {
+            Person personToDelete = lastShownList.get(i);
+            model.deletePerson(personToDelete);
         }
         return new CommandResult(MESSAGE_CLEAR_PERSON_SUCCESS);
     }
@@ -85,7 +89,7 @@ public class ClearCommand extends Command {
             endIndex = lastShownList.size() - 1;
         } else {
             if (end.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
             }
             if (begin.getZeroBased() > end.getZeroBased()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_RANGE);
