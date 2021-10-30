@@ -72,7 +72,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a member to the Interest Group.
 
@@ -113,7 +113,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Finding a member: `find`
+### Finding a member : `find`
 
 Finds the members whose details contain any of the given keywords and shows the filtered list of members in the IG. These include their name, mobile number, telegram handle and email.
 
@@ -174,7 +174,7 @@ Examples:
 * `event Dinner Event`
 * `event Skating Event`
 
-### Adding person to an event: `addPersonToEvent`
+### Adding person to an event : `addPersonToEvent`
 
 Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
 
@@ -186,7 +186,7 @@ Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
 * `addPersonToEvent n/Jane Doe ev/Skating Event`
 
-### Removing person from an event: `removePersonFromEvent`
+### Removing person from an event : `removePersonFromEvent`
 
 Removes a person from an event in the address book.
 
@@ -199,7 +199,7 @@ Examples:
 * `removePersonFromEvent n/John Doe ev/Dinner Event`
 * `removePersonFromEvent n/Jane Doe ev/Skating Event`
 
-### Renaming an event: `renameEvent`
+### Renaming an event : `renameEvent`
 
 Changes the name of an event in the address book.
 
