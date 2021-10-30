@@ -24,7 +24,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : View all members.
+   * **`list`** : View all persons.
 
    * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the application.
 
@@ -74,11 +74,11 @@ Format: `help`
 
 ### Adding a person : `add`
 
-Adds a member to the Interest Group.
+Adds a person to the Interest Group.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [t/TAG]`
 
-* Only member's name must be entered to add the member. All other details are optional.
+* Only person's name must be entered to add the person. All other details are optional.
 * `Peron` added should not have the same name (case-sensitive) as `Person` that is already in the application.
 
 Examples:
@@ -91,11 +91,11 @@ Shows the list of all persons in the IG.
 
 Format: `list`
 
-* The list will display the names of all the members in the IG
-* The IG leader can use the `details` command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+* The list will display the names of all the persons in the IG
+* The IG leader can use the `details` command with the name to show further details of the person (name, phone number, Telegram handle, Email)
 
 Examples:
-* `list` in an IG of 5 members will display all the member’s names.
+* `list` in an IG of 5 persons will display all the person’s names.
 
 ### Editing a person : `edit`
 
@@ -114,9 +114,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Finding a member : `find`
+### Finding a person : `find`
 
-Finds the members whose details contain any of the given keywords and shows the filtered list of members in the IG. These include their name, mobile number, telegram handle and email.
+Finds the persons whose details contain any of the given keywords and shows the filtered list of persons in the IG. These include their name, mobile number, telegram handle and email.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -149,7 +149,7 @@ Examples:
 
 ### View a person's details : `details`
 
-Shows the detailed view of a particular member in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
+Shows the detailed view of a particular person in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
 
 Format: `details NAME` or `details INDEX`
 
@@ -157,7 +157,7 @@ Format: `details NAME` or `details INDEX`
 * Displays the details of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The NAME entered must match the member’s name exactly (case-sensitive).
+* The NAME entered must match the person’s name exactly (case-sensitive).
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
