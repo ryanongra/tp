@@ -149,7 +149,7 @@ The `Model` component,
 </div>
 
 #### Person
-<img src="images/PersonClassDiagram.png" width="300" />
+<img src="images/PersonClassDiagram.png" width="400" />
 
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
@@ -237,7 +237,7 @@ Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
 * **Alternative 2**: Reuse `Name` class.
   * Pros: Nothing to implement, lesser things to test.
   * Cons: Unable to have different type of valid name checking.
-  
+
 * **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
   * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
   * Cons: Hard to implement. Over engineering.
@@ -438,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User searches for a member using <ins>UC04 - Find a member<ins/>.
 2. User types in command to delete the member.
-3. System confirms that the member is deleted. 
+3. System confirms that the member is deleted.
 
     Use case ends.
 
@@ -514,9 +514,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
-
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -562,6 +559,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a new person to the address book.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: First person is added to the list. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add n/John Smith p/98765432 e/johnd@example.com t/@johndoedoe tag/friends tag/owesMoney`<br>
+       Expected: Second person is added to the list. Tags are displayed under the person's name. Details of the added person shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: omit optional details (phone number, email, telegram, tags) <br>
+       Assumption: Name is provided and person is not a duplicate.
+       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified". 
+
+    1. Test case: `add n/John Smith`<br>
+       Expected: No person is added. Duplicate person error details shown in status bar.
+
+    1. Test case: `add p/98765432`<br>
+       Expected: No person is added. Invalid command format error shown in status bar.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -578,6 +597,41 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Renaming an event
+
+1. Rename an existing event in the address book.
+
+    1. Test case: `renameEvent 1 ev/NewName`<br>
+       Expected: Name of the first event in the event list changes to "NewName". List of attendees remains the same.
+
+    1. Test case: `renameEvent ev/NewName`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+    1. Test case: `renameEvent 1`<br>
+       Expected: No event name is changed. Invalid command format shown in status bar.
+
+### Removing a person from an event
+
+1. Removes a specified person from a specified event in the address book.
+
+    1. Prerequisites: The event "Party" exists. The "Party" contains an attendee with the name "John Doe". An event with the name "Dinner" does not exist.
+
+    1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+       Expected: John Doe is removed from the "Party" event's list. Details of the removal show in status bar.
+
+    1. Test case: `removePersonFromEvent n/John Doe`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+    1. Test case: `removePersonFromEvent ev/Party`<br>
+       Expected: No change. Invalid command format shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
+      Expected: No change. Event not found error message shown in status bar.
+
+   1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+      Note: John Doe no longer exists in this event's list due to test case ii.
+      Expected: No change. Person not found error message shown in status bar.
 
 ### Saving data
 

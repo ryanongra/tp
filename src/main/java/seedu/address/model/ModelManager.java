@@ -13,7 +13,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameEqualKeywordPredicate;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.NameEqualKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -104,11 +109,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearAllPerson() {
-        addressBook.clearAllPerson();
-    }
-
-    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -192,6 +192,38 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    //=========== Event and Person methods ====================================================================
+
+    @Override
+    public void addPersonToEvent(NameEqualKeywordPredicate personPredicate,
+                                 EventNameEqualKeywordPredicate eventPredicate) {
+
+        List<Person> personsMatched = getPersons(personPredicate);
+        List<Event> eventsMatched = getEvents(eventPredicate);
+
+        assert personsMatched.size() < 2;
+        assert eventsMatched.size() < 2;
+
+        if (personsMatched.isEmpty()) {
+            throw new PersonNotFoundException();
+        }
+
+        if (eventsMatched.isEmpty()) {
+            throw new EventNotFoundException();
+        }
+
+        Person toAdd = personsMatched.get(0);
+        Event target = eventsMatched.get(0);
+
+        if (target.hasPerson(toAdd)) {
+            throw new DuplicatePersonException();
+        }
+
+        target.addPerson(toAdd);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override

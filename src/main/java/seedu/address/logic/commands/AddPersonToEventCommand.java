@@ -6,17 +6,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSON_DETAILS_NOT_FOU
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameEqualKeywordPredicate;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.NameEqualKeywordPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Adds a person to the address book.
@@ -41,8 +38,8 @@ public class AddPersonToEventCommand extends Command {
     private final EventNameEqualKeywordPredicate eventPredicate;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person} matched by the name predicate to the event
-     * matched by the event name predicate.
+     * Creates an AddPersonToEventCommand to add the specified {@code Person} matched by the name predicate
+     * to the event matched by the event name predicate.
      */
     public AddPersonToEventCommand(NameEqualKeywordPredicate personPredicate,
                                    EventNameEqualKeywordPredicate eventPredicate) {
@@ -55,31 +52,17 @@ public class AddPersonToEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> personsMatched = model.getPersons(personPredicate);
-        List<Event> eventsMatched = model.getEvents(eventPredicate);
-
-        assert personsMatched.size() < 2;
-        assert eventsMatched.size() < 2;
-
-        if (personsMatched.isEmpty()) {
+        try {
+            model.addPersonToEvent(personPredicate, eventPredicate);
+        } catch (PersonNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_PERSON_DETAILS_NOT_FOUND, personPredicate));
-        }
-
-        if (eventsMatched.isEmpty()) {
+        } catch (EventNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_EVENT_DETAILS_NOT_FOUND, eventPredicate));
-        }
-
-        Person toAdd = personsMatched.get(0);
-        Event target = eventsMatched.get(0);
-
-        if (target.hasPerson(toAdd)) {
+        } catch (DuplicatePersonException e) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        target.addPerson(toAdd);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), target.getEventName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personPredicate, eventPredicate));
     }
 
     @Override

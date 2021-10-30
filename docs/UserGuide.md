@@ -26,11 +26,11 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 
    * **`list`** : View all members.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the address book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`**`ALL ENTRIES` : Deletes all contacts.
+   * **`clear`**`-p 1-10` : Deletes all entries in person list from index 1 to 10 inclusive.
 
    * **`exit`** : Exits the app.
 
@@ -133,15 +133,17 @@ Examples:
 
 Deletes the specified person from the Interest Group
 
-Format: `delete INDEX`
+Format: `delete [-e] INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the person or event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* -e specifies that the delete command targeting the event list.
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd person in the displayed person list.
 * `find Jason` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+*  `delete -e 1` deletes the 1st event in the displayed event list.
 
 ### View a person's details : `details`
 
@@ -157,7 +159,7 @@ Format: `details NAME` or `details INDEX`
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
-* `details Xiao Ming` 
+* `details Xiao Ming`
 * `details John Doe`
 
 ### Creating an event : `event`
@@ -172,9 +174,9 @@ Examples:
 * `event Dinner Event`
 * `event Skating Event`
 
-### Adding person to event: `addPersonToEvent`
+### Adding person to an event: `addPersonToEvent`
 
-Adds a person in the address book to an event in the address book.
+Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
 
 Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 
@@ -184,17 +186,44 @@ Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
 * `addPersonToEvent n/Jane Doe ev/Skating Event`
 
-### Clearing all entries : `clear`
+### Removing person from an event: `removePersonFromEvent`
 
-Clears all entries from the address book.
+Removes a person from an event in the address book.
 
-Format: `clear ALL ENTRIES`
+Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
+
+* `Event` must exist in the address book.
+* `Person` must exist in the specified event.
 
 Examples:
-* `clear ALL ENTRIES` will output:
-  ```
-  All entries in the address book are deleted.
-  ```
+* `removePersonFromEvent n/John Doe ev/Dinner Event`
+* `removePersonFromEvent n/Jane Doe ev/Skating Event`
+
+### Renaming an event: `renameEvent`
+
+Changes the name of an event in the address book.
+
+Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
+
+* `INDEX` refers to the index of the event in the events list.
+* `INDEX` must be a valid index for an existing event.
+
+Examples:
+* `renameEvent 1 ev/Dinner Event`
+* `renameEvent 2 ev/Skating Event`
+
+### Clearing all entries : `clear`
+
+Clears entries from either the person list or the event list of the Interest Group.
+
+Format: `clear FLAG RANGE`
+* `FLAG` can either be `-p` for clearing the person list or `-e` for clearing the event list.
+* `RANGE` can either be `all` to clear out every entry in the list or a range in the format of `int-int`
+* `RANGE` must be a valid range for an existing list
+
+Examples:
+* `clear -p all`
+* `clear -e 1-10`
 
 ### Exiting the program : `exit`
 
@@ -257,11 +286,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
-**Clear** | `clear ALL ENTRIES`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
+**Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
+**Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p 1-10`
+**Exit** | `exit`
+**&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
+**Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`

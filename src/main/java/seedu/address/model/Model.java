@@ -7,7 +7,12 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameEqualKeywordPredicate;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.NameEqualKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * The API of the Model component.
@@ -65,11 +70,6 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
-
-    /**
-     * Clears all entries from the address book.
-     */
-    void clearAllPerson();
 
     /**
      * Adds the given person.
@@ -140,4 +140,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Adds a person to a specified event. Since event name and name are unique, there should only be 1 event and
+     * name matched.
+     * @throws PersonNotFoundException if {@code Person} does not exist in address book.
+     * @throws EventNotFoundException if {@code Event} does not exist in address book.
+     * @throws DuplicatePersonException if {@code Person} already exists in event.
+     */
+    void addPersonToEvent(NameEqualKeywordPredicate personPredicate, EventNameEqualKeywordPredicate eventPredicate);
 }
