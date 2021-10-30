@@ -26,7 +26,7 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 
    * **`list`** : View all members.
 
-   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the address book.
+   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the application.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -99,7 +99,7 @@ Examples:
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the application.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -166,7 +166,7 @@ Examples:
 
 ### Creating an event : `event`
 
-Creates an event in the address book.
+Creates an event in the application.
 
 Format: `event EVENT_NAME`
 
@@ -179,11 +179,11 @@ Examples:
 
 ### Adding person to an event : `addPersonToEvent`
 
-Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
+Adds a person in the application to an event in the application. Upon execution of this command, all `Person` and `Event` will be displayed.
 
 Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 
-* Both the `Person` and `Event` must exist in the address book.
+* Both the `Person` and `Event` must exist in the application.
 
 Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
@@ -191,11 +191,11 @@ Examples:
 
 ### Removing person from an event : `removePersonFromEvent`
 
-Removes a person from an event in the address book.
+Removes a person from an event in the application.
 
 Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
 
-* `Event` must exist in the address book.
+* `Event` must exist in the application.
 * `Person` must exist in the specified event.
 
 Examples:
@@ -204,7 +204,7 @@ Examples:
 
 ### Renaming an event : `renameEvent`
 
-Changes the name of an event in the address book.
+Changes the name of an event in the application.
 
 Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
 
@@ -262,14 +262,14 @@ Executing `d1` will be equivalent to executing `details 1`.
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ForYourInterest will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -285,7 +285,7 @@ Users can use `ctrl + tab` to switch between tabs for now and `tab` to reach the
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ForYourInterest home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
