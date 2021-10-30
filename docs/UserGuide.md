@@ -128,6 +128,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find xuan` returns `Xuan Ming` and `Xuan Xuan`
 * `find xiaowen@gmail.com` returns `Xiao Wen`
+* `find Alex Yeoh`
 
 ### Deleting a person : `delete`
 
@@ -160,7 +161,7 @@ Format: `details NAME` or `details INDEX`
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
 * `details Xiao Ming`
-* `details John Doe`
+* `details Alex Yeoh`
 
 ### Creating an event : `event`
 
@@ -290,9 +291,9 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex Yeoh`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
 **Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p 1-10`
