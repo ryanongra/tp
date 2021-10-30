@@ -14,7 +14,7 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
-    public static final String UNSPECIFIED_INPUT = "NIL: No phone number specified";
+    public static final String UNSPECIFIED_INPUT = "No phone number specified";
 
     public final String value;
 

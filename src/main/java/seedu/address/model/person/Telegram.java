@@ -17,7 +17,7 @@ public class Telegram {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String UNSPECIFIED_INPUT = "NIL: No telegram handle specified";
+    public static final String UNSPECIFIED_INPUT = "No telegram handle specified";
 
     public final String value;
 
