@@ -10,6 +10,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
@@ -63,9 +64,15 @@ public class RemovePersonFromEventCommand extends Command {
         if (personsMatched.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_PERSON_DETAILS_NOT_FOUND, personPredicate));
         }
-        Person toRemove = personsMatched.asUnmodifiableObservableList().get(0);
 
+        FilteredList<Person> toRemoveAsList = personsMatched.asUnmodifiableObservableList().filtered(personPredicate);
+        if (toRemoveAsList.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_PERSON_DETAILS_NOT_FOUND, personPredicate));
+        }
+
+        Person toRemove = toRemoveAsList.get(0);
         target.removePerson(toRemove);
+
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toRemove.getName(), target.getEventName()));
