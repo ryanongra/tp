@@ -182,6 +182,8 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
+     *
+     * @return The filtered list of events.
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {

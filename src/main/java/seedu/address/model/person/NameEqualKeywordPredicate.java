@@ -8,6 +8,11 @@ import java.util.function.Predicate;
 public class NameEqualKeywordPredicate implements Predicate<Person> {
     private final Name keyword;
 
+    /**
+     * Creates a NameEqualsKeywordPredicate object with the keyword.
+     *
+     * @param keyword The keyword to be used in the predicate.
+     */
     public NameEqualKeywordPredicate(Name keyword) {
         this.keyword = keyword;
     }

@@ -23,6 +23,8 @@ public class EventCommand extends Command {
 
     /**
      * Creates an EventCommand to add the specified {@code Event}.
+     *
+     * @param event The event to create.
      */
     public EventCommand(Event event) {
         requireNonNull(event);

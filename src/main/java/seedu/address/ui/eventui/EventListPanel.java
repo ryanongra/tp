@@ -23,6 +23,8 @@ public class EventListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
+     *
+     * @param eventList The list of events used to create the list panel.
      */
     public EventListPanel(ObservableList<Event> eventList) {
         super(FXML);

@@ -8,6 +8,11 @@ import java.util.function.Predicate;
 public class EventNameEqualKeywordPredicate implements Predicate<Event> {
     private final EventName keyword;
 
+    /**
+     * Creates a EventNameEqualKeywordPredicate object with the keyword.
+     *
+     * @param keyword The keyword to be used in the predicate.
+     */
     public EventNameEqualKeywordPredicate(EventName keyword) {
         this.keyword = keyword;
     }
