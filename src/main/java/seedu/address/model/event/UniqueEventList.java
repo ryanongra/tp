@@ -31,6 +31,9 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
+     *
+     * @param toCheck The event to check.
+     * @return true is list contains equivalent event.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +41,9 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Adds an event to the list.
-     * The event must not already exist in the list.
+     * Adds an event to the list. The event must not already exist in the list.
+     *
+     * @param toAdd The event to add.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
@@ -53,6 +57,9 @@ public class UniqueEventList implements Iterable<Event> {
      * Replaces the event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the list.
      * The event identity of {@code editedEvent} must not be the same as another existing event in the list.
+     *
+     * @param target The target event.
+     * @param editedEvent The edited event.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
@@ -72,6 +79,8 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Removes the equivalent event from the list.
      * The event must exist in the list.
+     *
+     * @param toRemove The event to be removed from the list.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
@@ -87,14 +96,20 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.clear();
     }
 
+    /**
+     * Sets the events in the list.
+     *
+     * @param replacement The list of events to replace the current list.
+     */
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the content of the list with {@code events}.
-     * {@code events} must not contain duplicate events.
+     * Replaces the content of the list with {@code events}. {@code events} must not contain duplicate events.
+     *
+     * @param events The list of events to replace the current list.
      */
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
@@ -107,11 +122,19 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return Unmodifiable observable list.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns a list of events matching the predicate.
+     *
+     * @param eventPredicate The predicate to match.
+     * @return The list of events matching the predicate.
+     */
     public List<Event> getEvents(Predicate<Event> eventPredicate) {
         return internalUnmodifiableList.filtered(eventPredicate);
     }
@@ -135,6 +158,9 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Returns true if {@code events} contains only unique events.
+     *
+     * @param events List of events to check.
+     * @return true if list contains unique events.
      */
     private boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {

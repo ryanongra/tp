@@ -33,6 +33,8 @@ public class EventName {
 
     /**
      * Returns a copy of the {@code EventName}.
+     *
+     * @return A copy of the event name.
      */
     public EventName copy() {
         return new EventName(eventName);
@@ -40,6 +42,9 @@ public class EventName {
 
     /**
      * Returns true if a given string is a valid event name.
+     *
+     * @param test The event name to test.
+     * @return true if string is valid name.
      */
     public static boolean isValidEventName(String test) {
         return test.matches(VALIDATION_REGEX);

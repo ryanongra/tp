@@ -135,9 +135,10 @@ public class ParserUtil {
      * Parses a {@code String eventName} into a {@code name}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param eventName The event name to be parsed.
+     * @return EventName object.
      * @throws ParseException if the given {@code eventName} is invalid.
      */
-
     public static EventName parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
         String trimmedEventName = eventName.trim();
