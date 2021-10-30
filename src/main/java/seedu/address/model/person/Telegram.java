@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handles can take any values, and it should not be " +
-            "blank or contain any whitespace.";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handles can take any values, and it should not be "
+            + "blank or contain any whitespace.";
 
     /*
      * The first character of the address must not be a whitespace,
