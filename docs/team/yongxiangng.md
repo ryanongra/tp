@@ -3,44 +3,45 @@ layout: page
 title: Ng Yong Xiang's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: ForYourInterest
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ForYourInterest - ForYourInterest is a desktop app for managing members in university clubs/societies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the details command.
+  * What it does: Allows the user to view the details of a member.
+  * Justification: This feature improves the product significantly the user is able to view the details of a member when needed. This declutters the other views which improves the product.
+  * Highlights: This feature required a UI modification. I was able to implement the feature while adhering to most of the components used in the original code by creating a detailed version of the person card component in the UI.
+  
+* **New Feature**: Added event tracking features (`event` command and `addPersonToEvent` command).
+  * What it does: Allows the user to create an event and add members into the attendee list.
+  * Justification: This is a key feature of our application. This allows for member management when the members attend an event.
+  * Highlights: This feature touched many components of the code base (`model`, `ui`, `logic` involved). It required the application to store a list of events, and a new view for the list of events.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=yongxiangng&tabRepo=AY2122S1-CS2103-T16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.1` - `v1.3` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Added a tabbing feature (Pull request [\#50](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/50))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `details`, `event` and `addPersonToEvent` [\#79](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/79/files)
+    * Did cosmetic tweaks to existing documentation of command summary [\#85](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/85/files)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `event` feature [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64/files)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#45](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/45, [\#46](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/46), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#84](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/84/files)
+  * Provided technical help in [forum discussions](https://github.com/nus-cs2103-AY2122S1/forum/issues/134#issuecomment-908405186)
+  * Notified Team F10-3 and Team T16-2 that they have set up their organisation repo under the wrong name.
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  * Set up organisation repo
+  * Set up issues tracker
+  * Set up GitHub pages
+  * Set up GitHub actions with codecov
 
-* _{you can add/remove categories in the list above}_
