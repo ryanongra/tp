@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handles can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handles can take any values, and it should not be "
+            + "blank or contain any whitespace.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -17,7 +18,7 @@ public class Telegram {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String UNSPECIFIED_INPUT = "NIL: No telegram handle specified";
+    public static final String UNSPECIFIED_INPUT = "No telegram handle specified";
 
     public final String value;
 
@@ -40,7 +41,7 @@ public class Telegram {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidTelegram(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !test.contains(" ");
     }
 
     @Override
