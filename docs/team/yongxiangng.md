@@ -23,9 +23,10 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.3` (4 releases) on GitHub
+  * Managed opening and closing of milestones `v1.1` - `v1.3` (3 milestones) on GitHub
 
 * **Enhancements to existing features**:
-  * Added a tabbing feature (Pull request [\#50](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/50))
+  * Added a tabbing feature [\#50](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/50)
 
 * **Documentation**:
   * User Guide:
@@ -35,13 +36,16 @@ Given below are my contributions to the project.
     * Added implementation details of the `event` feature [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64/files)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#45](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/45, [\#46](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/46), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#84](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/84/files)
+  * PRs reviewed with non-trivial review comments [\#45](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/45), [\#46](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/46), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#84](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/84/files)
+  * Proactively help teammate to find cause of their own bugs [\#30](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/30/files)
   * Provided technical help in [forum discussions](https://github.com/nus-cs2103-AY2122S1/forum/issues/134#issuecomment-908405186)
   * Notified Team F10-3 and Team T16-2 that they have set up their organisation repo under the wrong name.
 
 * **Tools**:
-  * Set up organisation repo
-  * Set up issues tracker
   * Set up GitHub pages
   * Set up GitHub actions with codecov
 
+* **Team tasks**:
+  * Set up organisation repo
+  * Set up issues tracker
+  * Added screenshots for v1.3
