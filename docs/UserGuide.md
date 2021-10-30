@@ -24,9 +24,9 @@ ForYourInterest is a **desktop app for managing members in university clubs/soci
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : View all members.
+   * **`list`** : View all persons.
 
-   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the address book.
+   * **`add`**`add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com` : Adds a contact named `Xiao Ming` to the application.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -72,13 +72,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
-Adds a member to the Interest Group.
+Adds a person to the Interest Group.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [t/TAG]`
 
-* Only member's name must be entered to add the member. All other details are optional.
+* Only person's name must be entered to add the person. All other details are optional.
+* `Peron` added should not have the same name (case-sensitive) as `Person` that is already in the application.
 
 Examples:
 * `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
@@ -90,15 +91,15 @@ Shows the list of all persons in the IG.
 
 Format: `list`
 
-* The list will display the names of all the members in the IG
-* The IG leader can use the `details` command with the name to show further details of the member (name, phone number, Telegram handle, Email)
+* The list will display the names of all the persons in the IG
+* The IG leader can use the `details` command with the name to show further details of the person (name, phone number, Telegram handle, Email)
 
 Examples:
-* `list` in an IG of 5 members will display all the member’s names.
+* `list` in an IG of 5 persons will display all the person’s names.
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the application.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -113,9 +114,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Finding a member: `find`
+### Finding a person : `find`
 
-Finds the members whose details contain any of the given keywords and shows the filtered list of members in the IG. These include their name, mobile number, telegram handle and email.
+Finds the persons whose details contain any of the given keywords and shows the filtered list of persons in the IG. These include their name, mobile number, telegram handle and email.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -128,6 +129,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find xuan` returns `Xuan Ming` and `Xuan Xuan`
 * `find xiaowen@gmail.com` returns `Xiao Wen`
+* `find Alex Yeoh`
 
 ### Deleting a person : `delete`
 
@@ -147,7 +149,7 @@ Examples:
 
 ### View a person's details : `details`
 
-Shows the detailed view of a particular member in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
+Shows the detailed view of a particular person in the IG. Typing any command other than the `details` command subsequently will cause the view to show the summarized view of the same person.
 
 Format: `details NAME` or `details INDEX`
 
@@ -155,53 +157,54 @@ Format: `details NAME` or `details INDEX`
 * Displays the details of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The NAME entered must match the member’s name exactly (case-sensitive).
+* The NAME entered must match the person’s name exactly (case-sensitive).
 
 Examples:
 * `list` followed by `details 3` displays details of the 3rd person in the displayed person list.
 * `details Xiao Ming`
-* `details John Doe`
+* `details Alex Yeoh`
 
 ### Creating an event : `event`
 
-Creates an event in the address book.
+Creates an event in the application.
 
 Format: `event EVENT_NAME`
 
 * Putting any valid event name will create an event with no attendee. To add attendees, see `addPersonToEvent` command.
+* `Event` added should not have the same event name (case-sensitive) as `Event` that is already in the application.
 
 Examples:
 * `event Dinner Event`
 * `event Skating Event`
 
-### Adding person to an event: `addPersonToEvent`
+### Adding person to an event : `addPersonToEvent`
 
-Adds a person in the address book to an event in the address book. Upon execution of this command, all `Person` and `Event` will be displayed.
+Adds a person in the application to an event in the application. Upon execution of this command, all `Person` and `Event` will be displayed.
 
 Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 
-* Both the `Person` and `Event` must exist in the address book.
+* Both the `Person` and `Event` must exist in the application.
 
 Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
 * `addPersonToEvent n/Jane Doe ev/Skating Event`
 
-### Removing person from an event: `removePersonFromEvent`
+### Removing person from an event : `removePersonFromEvent`
 
-Removes a person from an event in the address book.
+Removes a person from an event in the application.
 
 Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
 
-* `Event` must exist in the address book.
+* `Event` must exist in the application.
 * `Person` must exist in the specified event.
 
 Examples:
 * `removePersonFromEvent n/John Doe ev/Dinner Event`
 * `removePersonFromEvent n/Jane Doe ev/Skating Event`
 
-### Renaming an event: `renameEvent`
+### Renaming an event : `renameEvent`
 
-Changes the name of an event in the address book.
+Changes the name of an event in the application.
 
 Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
 
@@ -266,12 +269,16 @@ ForYourInterest data are saved in the hard disk automatically after any command 
 ForYourInterest data are saved as a JSON file `[JAR file location]/data/foryourinterest.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ForYourInterest will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+### Tabbing command `[coming in v2.0]`
+
+Users can use `ctrl + tab` to switch between tabs for now and `tab` to reach the input box. Note that the user may have to tab a few times to tab out of the input box first.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -290,9 +297,9 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex Yeoh`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Details** | `details NAME` or `details INDEX` <br> e.g., `details John Doe`
+**Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
 **Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p 1-10`
