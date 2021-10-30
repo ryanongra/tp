@@ -30,14 +30,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `details`, `event` and `addPersonToEvent` [\#79](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/79/files)
-    * Did cosmetic tweaks to existing documentation of command summary [\#85](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/85/files)
+    * Added documentation for the features `details`, `event` and `addPersonToEvent` [\#79](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/79)
+    * Did cosmetic tweaks to existing documentation of command summary [\#85](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/85)
   * Developer Guide:
-    * Added implementation details of the `event` feature [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64/files)
+    * Added implementation details of the `event` feature [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64)
 
 * **Community**:
-  * PRs reviewed with non-trivial review comments [\#45](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/45), [\#46](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/46), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#84](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/84/files)
-  * Proactively help teammate to find cause of their own bugs [\#30](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/30/files)
+  * PRs reviewed with non-trivial review comments [\#45](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/45), [\#46](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/46), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#84](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/84)
+  * Proactively help teammate to find cause of their own bugs [\#30](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/30)
   * Provided technical help in [forum discussions](https://github.com/nus-cs2103-AY2122S1/forum/issues/134#issuecomment-908405186)
   * Notified Team F10-3 and Team T16-2 that they have set up their organisation repo under the wrong name.
 
