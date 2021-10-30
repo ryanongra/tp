@@ -276,6 +276,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+### Tabbing command `[coming in v2.0]`
+
+Users can use `ctrl + tab` to switch between tabs for now and `tab` to reach the input box.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
