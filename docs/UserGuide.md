@@ -225,7 +225,7 @@ Format: `clear FLAG RANGE`
 * `FLAG` can either be `-p` for clearing the member list or `-e` for clearing the event list.
 * `RANGE` the range for clearing either the member or event list (specified by the flag used).
 * There are 2 modes to clear entries: `all` - clear every entry or `begin-end` (one-based index) to clear entry in the specified range (inclusive)
-* For the range specified as `begin-end`, both `begin` and `end` must be integers. The range must be valid - there should exist entries from `begin` to `end` inclusively. 
+* For the range specified as `begin-end`, both `begin` and `end` must be integers. The range must be valid - there should exist entries from `begin` to `end` inclusively.
 
 Examples:
 * `clear -p all`
