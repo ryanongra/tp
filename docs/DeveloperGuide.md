@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -165,8 +165,8 @@ The `Model` component,
 
 * The `Event` package contains classes related to the `Event` class.
 * The `Event` class contains:
-  * `EventName`
-  * `UniquePersonList` as the list of attendees
+    * `EventName`
+    * `UniquePersonList` as the list of attendees
 * The `UniqueEventList` contains a unique list of `Event` objects.
 
 
@@ -220,27 +220,27 @@ The way `Event` behaves is very similar to `Person` and thus will be omitted to 
 #### Design considerations
 Aspect: Whether to generify `UniqueEventList`:
 * **Alternative 1 (current choice)**: Create a `UniqueEventList` class similar to `UniquePersonList`.
-  * Pros: Easy to implement since there is already a reference. Can get code out fast.
-  * Cons: Lots of boilerplate code
+    * Pros: Easy to implement since there is already a reference. Can get code out fast.
+    * Cons: Lots of boilerplate code
 
 * **Alternative 2**: Generify `UniqueEventList` and `UniquePersonList`.
-  * Pros: Much more elegant, extensible.
-  * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
+    * Pros: Much more elegant, extensible.
+    * Cons: Needs major changes to existing code, risks regressions. Need to change multiple methods name like `setPerson` to `setItem`.
 
 We have decided to go ahead with **Alternative 1** as it is easier to implement due to time constraints. Alternative 1 is likely to be more reliable as we do not risk running into regressions as much. While **Alternative 1** is less extensible, since we are only creating 1 more class of this type, the pros seems to outweigh the cons.
 
 Aspect: Whether to generify `Name`, reuse `Name` or create `EventName`:
 * **Alternative 1 (current choice)**: Create `EventName` class similar to `Name`.
-  * Pros: Easy to implement, since we already have similar code. Less likely to introduce regressions.
-  * Cons: More boilerplate code.
+    * Pros: Easy to implement, since we already have similar code. Less likely to introduce regressions.
+    * Cons: More boilerplate code.
 
 * **Alternative 2**: Reuse `Name` class.
-  * Pros: Nothing to implement, lesser things to test.
-  * Cons: Unable to have different type of valid name checking.
+    * Pros: Nothing to implement, lesser things to test.
+    * Cons: Unable to have different type of valid name checking.
 
 * **Alternative 3**: Make `Name` class generic, depending on the type of predicate used to test if name is valid.
-  * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
-  * Cons: Hard to implement. Over engineering.
+    * Pros: Much more general. Lesser things to test, lesser bugs when done correctly.
+    * Cons: Hard to implement. Over engineering.
 
 We have decided to go ahead with **Alternative 1** as it allows for greater flexibility for future changes. The validity of an `EventName` does not have to follow that of `Name` and thus **Alternative 1** would be ideal for such a case. Moreover, using a different class allows for type checking, which ensures we do not accidentally pass a `Name` belonging to a `Person` to a method expecting `EventName` belonging to an `Event`.
 
@@ -264,10 +264,10 @@ Aspect: How to parse inputs given to `ChainCommand`:
     * Pros: Easy to implement with no new classes created.
     * Cons: Creates an additional condition before basic commands are parsed. Making it difficult to trace the regular functioning of basic commands.
 
-* **Alternative 2**: Use a `ChainCommandParser` and Command Words 
+* **Alternative 2**: Use a `ChainCommandParser` and Command Words
     * Pros: The structure of how commands are usually executed is preserved, making code tracing easier to do.
     * Cons: Unable to parse the inputs of the ChainCommand without passing the current `AddressBookParser` object into the parser. Which will change the inputs of the `Parser`.
-  
+
 We have decided to go ahead with **Alternative 1** as it preserves the current implementation of the `Parser` and avoid having to pass around `AddressBookParser` objects during run time. While the code is modified instead of extended, we  believe that the alternative will cause even more modifications in the future resulting in futher problems.
 
 ### \[Proposed\] Undo/redo feature
@@ -340,13 +340,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -411,26 +411,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to add a new member.
 2. User enters the details of the new member, which are name, phone number, telegram handle and email.
-3. System confirms that the member is added. 
+3. System confirms that the member is added.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. System detects that the name is not entered.
-  * 2a1. System requests for the name to be entered.
-  * 2a2. User enters the name of the new member.
-  * Step 2a1-2a2 are repeated until the name is entered.
-  
+    * 2a1. System requests for the name to be entered.
+    * 2a2. User enters the name of the new member.
+    * Step 2a1-2a2 are repeated until the name is entered.
+
 * 2b. System detects that the phone number is not entered.
-  * 2b1. System accepts that the phone number is not entered as it is optional.
-  * Use case resumes at 2c.
+    * 2b1. System accepts that the phone number is not entered as it is optional.
+    * Use case resumes at 2c.
 * 2c. System detects that the telegram handle is not entered.
-  * 2c1. System accepts that the telegram handle is not entered as it is optional.
-  * Use case resumes at 2d.
+    * 2c1. System accepts that the telegram handle is not entered as it is optional.
+    * Use case resumes at 2d.
 * 2d. System detects that the email is not entered.
-  * 2d1. System accepts that the email is not entered as it is optional.
-  * Use case resumes at 3.
+    * 2d1. System accepts that the email is not entered as it is optional.
+    * Use case resumes at 3.
 
 **Use case: UC02 - Delete a member from the system**
 
@@ -440,13 +440,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User types in command to delete the member.
 3. System confirms that the member is deleted.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. User attempts to delete a member that is not in the list.
-  * 2a1. System notifies the user that the member is not in the list.
-    
+    * 2a1. System notifies the user that the member is not in the list.
+
   Use case ends.
 
 **Use case: UC03 - View all members managed by the system**
@@ -469,9 +469,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. User enters empty keyword
-  * 1a1. System informs user that keyword cannot be empty
-  
-    Use case ends.
+    * 1a1. System informs user that keyword cannot be empty
+
+      Use case ends.
 
 **Use case: UC05 - View the details of members**
 
@@ -484,9 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. User enters the name of a member who does not exist in the current list of members
-  * 1a1. Application is unable to find the user specified.
-  * 1a2. Application displays message to inform user than member specified does not exist.
-   
+    * 1a1. Application is unable to find the user specified.
+    * 1a2. Application displays message to inform user than member specified does not exist.
+
   Use case ends.
 
 **Use case: UC06 - Clear past data**
@@ -499,11 +499,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. All member data is deleted.
 3. System confirms that past data has been deleted.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 * 2a. System is unable to delete data.
-  * 2a1. System notifies the user of the reason why it is not able to delete the data.
+    * 2a1. System notifies the user of the reason why it is not able to delete the data.
 
 **Use case: UC07 - Exit the application**
 
@@ -547,15 +547,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -572,7 +572,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: omit optional details (phone number, email, telegram, tags) <br>
        Assumption: Name is provided and person is not a duplicate.
-       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified". 
+       Expected: Person is added to the list. Details of the added person shown in the status message. Omitted details are replaced by the placeholder message: "NIL: No [omitted detail] specified".
 
     1. Test case: `add n/John Smith`<br>
        Expected: No person is added. Duplicate person error details shown in status bar.
@@ -586,16 +586,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -627,17 +627,17 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `removePersonFromEvent ev/Party`<br>
        Expected: No change. Invalid command format shown in status bar.
 
-   1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
-      Expected: No change. Event not found error message shown in status bar.
+    1. Test case: `removePersonFromEvent n/John Doe ev/Dinner`<br>
+       Expected: No change. Event not found error message shown in status bar.
 
-   1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
-      Note: John Doe no longer exists in this event's list due to test case ii.
-      Expected: No change. Person not found error message shown in status bar.
+    1. Test case: `removePersonFromEvent n/John Doe ev/Party`<br>
+       Note: John Doe no longer exists in this event's list due to test case ii.
+       Expected: No change. Person not found error message shown in status bar.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
