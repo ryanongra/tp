@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 #### MemberUI
 
-<img src="images/MemberUiClassDiagram.png" width="220" />
+<img src="images/MemberUiClassDiagram.png" width="235" />
 
 * Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
 * The `PersonCard` and `PersonDetailsCard` depends on `Model`.
@@ -144,12 +144,12 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="300" />
+<img src="images/BetterModelClassDiagram.png" width="320" />
 
 </div>
 
 #### Person
-<img src="images/PersonClassDiagram.png" width="400" />
+<img src="images/PersonClassDiagram.png" width="415" />
 
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
@@ -161,7 +161,7 @@ The `Model` component,
 * The `UniquePersonList` contains a unique list of `Person` objects.
 
 #### Event
-<img src="images/EventClassDiagram.png" width="200" />
+<img src="images/EventClassDiagram.png" width="210" />
 
 * The `Event` package contains classes related to the `Event` class.
 * The `Event` class contains:
