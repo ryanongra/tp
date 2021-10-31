@@ -29,6 +29,8 @@ public class DetailsCommand extends Command {
 
     /**
      * Creates a DetailsCommand to display details.
+     *
+     * @param predicate The predicate matching name of Person to find.
      */
     public DetailsCommand(NameEqualKeywordPredicate predicate) {
         requireNonNull(predicate);
@@ -37,6 +39,8 @@ public class DetailsCommand extends Command {
 
     /**
      * Creates a DetailsCommand to display details.
+     *
+     * @param targetIndex The index of the Person in the list.
      */
     public DetailsCommand(Index targetIndex) {
         requireNonNull(targetIndex);

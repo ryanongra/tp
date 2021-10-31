@@ -18,16 +18,16 @@ public class CommandResult {
     private final boolean exit;
 
     /** The application should show the details component in the ui. */
-    private final boolean showDetails;
+    private final boolean isShowDetails;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showDetails) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isShowDetails) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showDetails = showDetails;
+        this.isShowDetails = isShowDetails;
     }
 
     /**
@@ -50,8 +50,13 @@ public class CommandResult {
         return exit;
     }
 
+    /**
+     * Returns true if the command result is a show details result.
+     *
+     * @return true if the command result is a show details result.
+     */
     public boolean isShowDetails() {
-        return showDetails;
+        return isShowDetails;
     }
 
     @Override

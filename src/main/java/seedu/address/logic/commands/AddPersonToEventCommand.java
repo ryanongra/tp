@@ -40,6 +40,9 @@ public class AddPersonToEventCommand extends Command {
     /**
      * Creates an AddPersonToEventCommand to add the specified {@code Person} matched by the name predicate
      * to the event matched by the event name predicate.
+     *
+     * @param personPredicate The predicate matching the person name.
+     * @param eventPredicate The predicate matching the event name.
      */
     public AddPersonToEventCommand(NameEqualKeywordPredicate personPredicate,
                                    EventNameEqualKeywordPredicate eventPredicate) {

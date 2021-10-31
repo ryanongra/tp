@@ -17,7 +17,7 @@ import seedu.address.ui.UiPart;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-    private boolean showDetails = false;
+    private boolean isShowDetails = false;
 
     @FXML
     private ListView<Person> personListView;
@@ -34,10 +34,10 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Sets the details field to parameter passed.
      *
-     * @param showDetails boolean value to show details.
+     * @param isShowDetails boolean value to show details.
      */
-    public void setShowDetails(boolean showDetails) {
-        this.showDetails = showDetails;
+    public void setShowDetails(boolean isShowDetails) {
+        this.isShowDetails = isShowDetails;
         refresh();
     }
 
@@ -62,7 +62,7 @@ public class PersonListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
-            } else if (showDetails) {
+            } else if (isShowDetails) {
                 setGraphic(new PersonDetailsCard(person).getRoot());
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());

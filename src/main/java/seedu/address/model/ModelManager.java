@@ -109,11 +109,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearAllPerson() {
-        addressBook.clearAllPerson();
-    }
-
-    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -187,6 +182,8 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
+     *
+     * @return The filtered list of events.
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {

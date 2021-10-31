@@ -522,9 +522,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Address Book**: An address book is a database used for storing contacts
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Interest Group**: A student run organisation which focuses on a common interest (such as sports, games, etc). Similar to co-curricular activities (CCAs) in Secondary School or Junior College.
+* **Interest Group (IG)**: A student run organisation which focuses on a common interest (such as sports, games, etc). Similar to co-curricular activities (CCAs) in Secondary School or Junior College.
 * **IG**: Interest Group
 * **RC**: Residential College
 * **Halls**: Halls of Residence
