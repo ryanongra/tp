@@ -130,10 +130,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_chainCommand() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + "&&"
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " && "
                 + HelpCommand.COMMAND_WORD) instanceof ChainCommand);
         ChainCommand command = (ChainCommand) parser.parseCommand(
-                ListCommand.COMMAND_WORD + "&&" + HelpCommand.COMMAND_WORD);
+                ListCommand.COMMAND_WORD + " && " + HelpCommand.COMMAND_WORD);
         assertEquals(new ChainCommand(new ListCommand(), new HelpCommand()), command);
     }
 
