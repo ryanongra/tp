@@ -301,7 +301,7 @@ Action | Format, Examples
 **List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TELEGRAM_HANDLE] [tag/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex Yeoh`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete [-e] INDEX`<br> e.g., `delete 3`
 **Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
