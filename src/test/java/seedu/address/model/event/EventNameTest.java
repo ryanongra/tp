@@ -15,7 +15,7 @@ class EventNameTest {
 
     @Test
     public void constructor_invalidEventName_throwsIllegalArgumentException() {
-        String invalidName = "";
+        String invalidName = ""; // empty string, boundary value
         assertThrows(IllegalArgumentException.class, () -> new EventName(invalidName));
     }
 
@@ -25,8 +25,8 @@ class EventNameTest {
         assertThrows(NullPointerException.class, () -> EventName.isValidEventName(null));
 
         // invalid name
-        assertFalse(EventName.isValidEventName("")); // empty string
-        assertFalse(EventName.isValidEventName(" ")); // spaces only
+        assertFalse(EventName.isValidEventName("")); // empty string, boundary value
+        assertFalse(EventName.isValidEventName(" ")); // spaces only, boundary value
         assertFalse(EventName.isValidEventName("^")); // only non-alphanumeric characters
         assertFalse(EventName.isValidEventName("peter*")); // contains non-alphanumeric characters
 

@@ -45,6 +45,7 @@ class DetailsCommandTest {
         DetailsCommand detailsThirdCommand = new DetailsCommand(Index.fromOneBased(1));
         DetailsCommand detailsFourthCommand = new DetailsCommand(Index.fromOneBased(2));
 
+        // equivalence partitions testing
         // same object -> returns true
         assertTrue(detailsFirstCommand.equals(detailsFirstCommand));
 
