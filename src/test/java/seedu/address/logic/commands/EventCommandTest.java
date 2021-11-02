@@ -53,6 +53,7 @@ class EventCommandTest {
         EventCommand addPartyEvent = new EventCommand(partyEvent);
         EventCommand addDinnerEvent = new EventCommand(dinnerEvent);
 
+        // equivalence partitions testing
         // same object -> returns true
         assertTrue(addPartyEvent.equals(addPartyEvent));
 

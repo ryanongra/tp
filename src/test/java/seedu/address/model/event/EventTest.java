@@ -15,6 +15,7 @@ import seedu.address.testutil.EventBuilder;
 class EventTest {
     @Test
     public void isSameEvent() {
+        // equivalence partitions testing
         // same object -> returns true
         assertTrue(PARTY_EVENT.isSameEvent(PARTY_EVENT));
 
@@ -42,6 +43,7 @@ class EventTest {
 
     @Test
     public void equals() {
+        // equivalence partitions testing
         // same values -> returns true
         Event partyEventCopy = new EventBuilder(PARTY_EVENT).build();
         assertTrue(PARTY_EVENT.equals(partyEventCopy));

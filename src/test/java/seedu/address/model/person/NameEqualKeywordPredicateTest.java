@@ -18,6 +18,7 @@ class NameEqualKeywordPredicateTest {
         NameEqualKeywordPredicate secondPredicate = new NameEqualKeywordPredicate(new Name(secondKeyword));
         NameEqualKeywordPredicate thirdPredicate = new NameEqualKeywordPredicate(new Name(thirdKeyword));
 
+        // equivalence partitions testing
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
