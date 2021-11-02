@@ -35,7 +35,7 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern ADVANCED_COMMAND_FORMAT = Pattern.compile("(?<leftCommandString>.*)"
-            + "&&(?<rightCommandString>.*)");
+            + " +&& +(?<rightCommandString>.*)");
     private final HashMap<String, String> aliasMap = new HashMap<>();
     /**
      * Parses user input into command for execution.
