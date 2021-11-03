@@ -15,8 +15,22 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-package Event {}
-package Person {}
+package Person {
+Class UniquePersonList
+Class Person
+Class Email
+Class Name
+Class Phone
+Class Tag
+Class Telegram
+}
+
+package Event {
+Class UniqueEventList
+Class Event
+Class EventName
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -31,10 +45,20 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook -->"~* all" Event
-AddressBook -->"~* all" Person
+AddressBook *--> "1" UniquePersonList
+AddressBook *-down--> "1" UniqueEventList
+UniquePersonList --> "~* all" Person
+UniqueEventList -down-> "~* all" Event
+Person *--> "1" Name
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Telegram
+Person *--> "*" Tag
+Event *-down-> EventName
+Event -right-> "attendees" UniquePersonList
 
-ModelManager --->"~* filtered" Event
+Name -[hidden]right-> Phone
+
 ModelManager -->"~* filtered" Person
-
+ModelManager --> Event
 @enduml

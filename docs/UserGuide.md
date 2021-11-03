@@ -299,13 +299,13 @@ Action | Format, Examples
 **Help** | `help`
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TELEGTAM_HANDLE] [tag/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/jameshoho tag/friend tag/colleague`
 **List** | `list`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TELEGRAM_HANDLE] [tag/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TELEGRAM_HANDLE] [tag/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex Yeoh`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
-**Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p all` <br>e.g.,`clear -e 1-3`
+**Clear** | `clear FLAG RANGE` <br>e.g., `clear -p all` <br>e.g., `clear -e 1-3`
 **Exit** | `exit`
 **&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
 **Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
