@@ -83,18 +83,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object and `Event` object residing in the `Model`.
-
-#### MemberUI
-
-<img src="images/MemberUiClassDiagram.png" width="235" />
-
-* Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
+* Within the `PersonListPanel`, either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
 * The `PersonCard` and `PersonDetailsCard` depends on `Model`.
-
-#### EventUI
-
-<img src="images/EventUiClassDiagram.png" width="200" />
-
 * Within the `EventListPanel`, `EventCard` is displayed.
 * The `EventCard` depends on `Model`.
 * The `EventCard` also reuses `PersonListPanel` from the UI components related to the member tab, hence the association.
@@ -141,16 +131,6 @@ The `Model` component,
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="320" />
-
-</div>
-
-#### Person
-<img src="images/PersonClassDiagram.png" width="415" />
-
 * The `Person` package contains classes related to the `Person` class.
 * The `Person` class contains:
     * `Name`
@@ -159,16 +139,17 @@ The `Model` component,
     * `Email`
     * `Tag`
 * The `UniquePersonList` contains a unique list of `Person` objects.
-
-#### Event
-<img src="images/EventClassDiagram.png" width="210" />
-
 * The `Event` package contains classes related to the `Event` class.
 * The `Event` class contains:
     * `EventName`
     * `UniquePersonList` as the list of attendees
 * The `UniqueEventList` contains a unique list of `Event` objects.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="320" />
+
+</div>
 
 ### Storage component
 
