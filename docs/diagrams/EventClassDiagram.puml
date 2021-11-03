@@ -10,9 +10,7 @@ class Event
 class EventName
 }
 
-package Person <<Rectangle>>{
-
-}
+package Person {}
 
 UniqueEventList --> "*" Event
 Event *--> "1" EventName

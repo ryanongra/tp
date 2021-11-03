@@ -217,18 +217,19 @@ Examples:
 * `renameEvent 1 ev/Dinner Event`
 * `renameEvent 2 ev/Skating Event`
 
-### Clearing all entries : `clear`
+### Clearing entries : `clear`
 
-Clears entries from either the person list or the event list of the Interest Group.
+Clears entries from either the member list or the event list of the Interest Group.
 
 Format: `clear FLAG RANGE`
-* `FLAG` can either be `-p` for clearing the person list or `-e` for clearing the event list.
-* `RANGE` can either be `all` to clear out every entry in the list or a range in the format of `int-int`
-* `RANGE` must be a valid range for an existing list
+* `FLAG` can either be `-p` for clearing the member list or `-e` for clearing the event list.
+* `RANGE` the range for clearing either the member or event list (specified by the flag used).
+* There are 2 modes to clear entries: `all` - clear every entry or `begin-end` (one-based index) to clear entry in the specified range (inclusive)
+* For the range specified as `begin-end`, both `begin` and `end` must be integers. The range must be valid - there should exist entries from `begin` to `end` inclusively.
 
 Examples:
 * `clear -p all`
-* `clear -e 1-10`
+* `clear -e 1-3`
 
 ### Exiting the program : `exit`
 
@@ -300,11 +301,11 @@ Action | Format, Examples
 **List** | `list`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TELEGRAM_HANDLE] [tag/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex Yeoh`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete [-e] INDEX`<br> e.g., `delete 3`
 **Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
-**Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p 1-10`
+**Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p all` <br>e.g.,`clear -e 1-3`
 **Exit** | `exit`
 **&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
 **Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`

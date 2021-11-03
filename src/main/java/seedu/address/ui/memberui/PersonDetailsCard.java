@@ -42,6 +42,8 @@ public class PersonDetailsCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonDetailsCard} with the given {@code Person}.
+     *
+     * @param person The person we are displaying.
      */
     public PersonDetailsCard(Person person) {
         super(FXML);

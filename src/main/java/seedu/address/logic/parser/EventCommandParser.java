@@ -15,6 +15,9 @@ public class EventCommandParser implements Parser<EventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EventCommand
      * and returns an EventCommand object for execution.
+     *
+     * @param args The arguments parsed.
+     * @return Command created from the arguments parsed.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EventCommand parse(String args) throws ParseException {

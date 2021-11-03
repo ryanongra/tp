@@ -21,7 +21,9 @@ public class Event {
     private final UniquePersonList attendees;
 
     /**
-     * Event name must not be null.
+     * Creates an event.
+     *
+     * @param eventName the event name to be used.
      */
     public Event(EventName eventName) {
         requireAllNonNull(eventName);
@@ -30,7 +32,10 @@ public class Event {
     }
 
     /**
-     * Event name and attendees must not be null.
+     * Creates an event.
+     *
+     * @param eventName the event name to be used.
+     * @param attendees the attendees to be used.
      */
     public Event(EventName eventName, UniquePersonList attendees) {
         requireAllNonNull(eventName, attendees);
@@ -38,11 +43,21 @@ public class Event {
         this.attendees = attendees;
     }
 
+    /**
+     * Returns the event name.
+     *
+     * @return The event name.
+     */
     public EventName getEventName() {
         requireAllNonNull(eventName);
         return eventName.copy();
     }
 
+    /**
+     * Returns the attendee list as an unmodifiable observer list.
+     *
+     * @return Unmodifiable observable list.
+     */
     public ObservableList<Person> getAttendeesAsUnmodifiableObservableList() {
         requireAllNonNull(attendees);
         return attendees.asUnmodifiableObservableList();
@@ -50,6 +65,8 @@ public class Event {
 
     /**
      * Returns a copy of attendee list.
+     *
+     * @return A copy of the attendee list.
      */
     public UniquePersonList getAttendees() {
         requireAllNonNull(attendees);
@@ -60,6 +77,9 @@ public class Event {
 
     /**
      * Returns true if event contains and equivalent person as the given argument.
+     *
+     * @param person The person to check.
+     * @return true if event contains and equivalent person as the given argument.
      */
     public boolean hasPerson(Person person) {
         requireAllNonNull(person);
@@ -68,6 +88,8 @@ public class Event {
 
     /**
      * Adds a {@code Person} as an attendee to the event.
+     *
+     * @param person The person to be added.
      */
     public void addPerson(Person person) {
         requireAllNonNull(person);
@@ -76,6 +98,8 @@ public class Event {
 
     /**
      * Removes a {@code Person} as an attendee to the event.
+     *
+     * @param person The person to be removed.
      */
     public void removePerson(Person person) {
         requireAllNonNull(person);
@@ -85,6 +109,9 @@ public class Event {
     /**
      * Returns true if both events have the same event name.
      * This defines a weaker notion of equality between two events.
+     *
+     * @param otherEvent The other event to compare with.
+     * @return true if both events have same event name.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
@@ -97,6 +124,9 @@ public class Event {
 
     /**
      * Returns true if both events have the same identity and data fields.
+     *
+     * @param other The other object to compare with.
+     * @return true if both events have the same identity and data fields.
      */
     @Override
     public boolean equals(Object other) {

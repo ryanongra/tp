@@ -19,16 +19,16 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_CLEAR_PERSON_SUCCESS =
-            "The person list has been cleared with the given range!";
+            "The member list has been cleared with the given range!";
     public static final String MESSAGE_CLEAR_EVENT_SUCCESS =
             "The event list has been cleared with the given range!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears the person or event list with the given index range used in the displayed list \n"
-            + "Parameters: " + "[flag] (can be [-p] for person list and [-e] for event)"
-            + "RANGE (must either be all or a valid range like 1-10) \n"
-            + "Example - clearing all entries in person list: " + COMMAND_WORD + "-p all \n"
-            + "Example - clearing entries from index 1 to 10 (inclusive) in event list: "
-            + COMMAND_WORD + "-e 1-10 \n";
+            + "Parameters: " + "[flag] (can be [-p] for member list and [-e] for event)"
+            + "RANGE (must either be all or a valid range like 1-3) \n"
+            + "Example - clearing all entries in member list: " + COMMAND_WORD + "-p all \n"
+            + "Example - clearing entries from index 1 to 3 (inclusive) in event list: "
+            + COMMAND_WORD + "-e 1-3 \n";
 
     public static final int PERSON_FLAG = 0;
     public static final int EVENT_FLAG = 1;

@@ -16,6 +16,9 @@ public class DetailsCommandParser implements Parser<DetailsCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DetailsCommand
      * and returns a DetailsCommand object for execution.
+     *
+     * @param args The arguments parsed.
+     * @return Command created from the arguments parsed.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DetailsCommand parse(String args) throws ParseException {

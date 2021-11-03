@@ -39,6 +39,9 @@ public class EventCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     *
+     * @param event The event we are showing.
+     * @param displayedIndex The index of the event in the list.
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);

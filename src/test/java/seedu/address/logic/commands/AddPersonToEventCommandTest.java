@@ -120,6 +120,7 @@ class AddPersonToEventCommandTest {
         AddPersonToEventCommand aliceDinner = new AddPersonToEventCommand(alice, dinner);
         AddPersonToEventCommand bobDinner = new AddPersonToEventCommand(bob, dinner);
 
+        // equivalence partitions testing
         // same object -> returns true
         assertTrue(aliceLunch.equals(aliceLunch));
 

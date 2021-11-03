@@ -119,10 +119,21 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns a list of persons matching the predicate passed.
+     *
+     * @param personPredicate The predicate to be used to get the list of persons.
+     * @return The list of persons retrieved.
+     */
     public List<Person> getPersons(Predicate<Person> personPredicate) {
         return internalUnmodifiableList.filtered(personPredicate);
     }
 
+    /**
+     * Returns true if the list is empty.
+     *
+     * @return true if list is empty.
+     */
     public boolean isEmpty() {
         return internalUnmodifiableList.size() == 0;
     }
