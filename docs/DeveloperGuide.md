@@ -83,18 +83,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object and `Event` object residing in the `Model`.
-
-#### MemberUI
-
-<img src="images/MemberUiClassDiagram.png" width="235" />
-
-* Within the `PersonListPanel` either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
+* Within the `PersonListPanel`, either `PersonCard` is displayed or `PersonDetailsCard` exclusively.
 * The `PersonCard` and `PersonDetailsCard` depends on `Model`.
-
-#### EventUI
-
-<img src="images/EventUiClassDiagram.png" width="200" />
-
 * Within the `EventListPanel`, `EventCard` is displayed.
 * The `EventCard` depends on `Model`.
 * The `EventCard` also reuses `PersonListPanel` from the UI components related to the member tab, hence the association.
