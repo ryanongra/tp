@@ -57,14 +57,14 @@ public class MatchesKeywordsPredicateTest {
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords (name, phone, email, telegram)
-        predicate = new MatchesKeywordsPredicate(Arrays.asList("Alice", "54321", "carol@email.com", "@david"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        predicate = new MatchesKeywordsPredicate(Arrays.asList("Alice", "98765432", "carol@email.com", "@alice"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("98765432")
                 .withEmail("alice@email.com").withTelegram("@alice").build()));
-        assertTrue(predicate.test(new PersonBuilder().withName("Bob").withPhone("54321")
+        assertTrue(predicate.test(new PersonBuilder().withName("Bob").withPhone("98765432")
                 .withEmail("bob@email.com").withTelegram("@bob").build()));
-        assertTrue(predicate.test(new PersonBuilder().withName("Carol").withPhone("67890")
+        assertTrue(predicate.test(new PersonBuilder().withName("Carol").withPhone("98765432")
                 .withEmail("carol@email.com").withTelegram("@carol").build()));
-        assertTrue(predicate.test(new PersonBuilder().withName("David").withPhone("09876")
+        assertTrue(predicate.test(new PersonBuilder().withName("David").withPhone("98765432")
                 .withEmail("david@email.com").withTelegram("@david").build()));
     }
 
