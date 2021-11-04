@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the details command.
   * What it does: Allows the user to view the details of a member.
-  * Justification: This feature improves the product significantly the user is able to view the details of a member when needed. This declutters the other views which improves the product.
+  * Justification: This feature improves the product significantly as the user is able to view the details of a member when needed. This declutters the other views which improves the product.
   * Highlights: This feature required a UI modification. I was able to implement the feature while adhering to most of the components used in the original code by creating a detailed version of the person card component in the UI.
 
 * **New Feature**: Added event tracking features (`event` command and `addPersonToEvent` command).
