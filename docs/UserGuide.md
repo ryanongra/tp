@@ -198,7 +198,7 @@ Adds a person in the application to an event in the application. Upon execution 
 Format: `addPersonToEvent n/NAME ev/EVENT_NAME`
 
 * Both the `Person` and `Event` must exist in the application.
-* Removing the `Person` associated to the event in the application does not remove the `Person` name from the `Event`. The `Person` may have left the interest group, but it remains a fact that they have attended the `Event`.
+* Removing a `Person` associated to an event from the application does not remove the `Person` from the `Event`. The `Person` may have left the interest group, but it remains a fact that they have attended the `Event`.
 
 Examples:
 * `addPersonToEvent n/John Doe ev/Dinner Event`
