@@ -24,14 +24,14 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_EVENT_NAME = "$@$%";
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "11111111";
     private static final String INVALID_TELEGRAM = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_EVENT_NAME = "Cool Event";
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "66666666";
     private static final String VALID_TELEGRAM = "@validTelegram123";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
