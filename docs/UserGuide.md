@@ -178,6 +178,19 @@ Examples:
 * `event Dinner Event`
 * `event Skating Event`
 
+### Renaming an event : `renameEvent`
+
+Changes the name of an event in the application.
+
+Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
+
+* `INDEX` refers to the index of the event in the events list.
+* `INDEX` must be a valid index for an existing event.
+
+Examples:
+* `renameEvent 1 ev/Dinner Event`
+* `renameEvent 2 ev/Skating Event`
+
 ### Adding person to an event : `addPersonToEvent`
 
 Adds a person in the application to an event in the application. Upon execution of this command, all `Person` and `Event` will be displayed.
@@ -203,19 +216,6 @@ Format: `removePersonFromEvent n/NAME ev/EVENT_NAME`
 Examples:
 * `removePersonFromEvent n/John Doe ev/Dinner Event`
 * `removePersonFromEvent n/Jane Doe ev/Skating Event`
-
-### Renaming an event : `renameEvent`
-
-Changes the name of an event in the application.
-
-Format: `renameEvent INDEX ev/NEW_EVENT_NAME`
-
-* `INDEX` refers to the index of the event in the events list.
-* `INDEX` must be a valid index for an existing event.
-
-Examples:
-* `renameEvent 1 ev/Dinner Event`
-* `renameEvent 2 ev/Skating Event`
 
 ### Clearing entries : `clear`
 
@@ -304,8 +304,10 @@ Action | Format, Examples
 **Delete** | `delete [-e] INDEX`<br> e.g., `delete 3`
 **Details** | `details NAME` or `details INDEX` <br> e.g., `details Alex Yeoh` or `details 1`
 **Event** | `event EVENT_NAME` <br> e.g., `event Dinner Event`
+**Rename Event** | `renameEvent INDEX ev/NEW_EVENT_NAME` <br> e.g., `renameEvent 1 ev/Lunch Event`
 **Add Person To Event** | `addPersonToEvent n/NAME ev/EVENT_NAME` <br> e.g., `addPersonToEvent n/John Doe ev/Dinner Event`
-**Clear** | `clear FLAG RANGE` <br>e.g., `clear -p all` <br>e.g., `clear -e 1-3`
+**Remove Person From Event** | `removePersonFromEvent n/NAME ev/EVENT_NAME` <br> e.g., `removePersonFromEvent n/John Doe ev/Dinner Event`
+**Clear** | `clear FLAG RANGE` <br>e.g.,`clear -p all` <br>e.g.,`clear -e 1-3`
 **Exit** | `exit`
 **&&** | `COMMAND && COMMAND` <br> e.g., `find Jon && delete 1`
 **Alias** | `alias a/ALIAS c/COMMAND` <br> e.g., `alias a/d1 c/details 1`
