@@ -44,9 +44,9 @@ public class Event {
     }
 
     /**
-     * Returns the event name.
+     * Returns a copy of the event name.
      *
-     * @return The event name.
+     * @return A copy of the event name.
      */
     public EventName getEventName() {
         requireAllNonNull(eventName);

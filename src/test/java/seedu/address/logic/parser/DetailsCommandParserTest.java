@@ -28,19 +28,19 @@ class DetailsCommandParserTest {
         DetailsCommand secondExpectedDetailsCommand =
                 new DetailsCommand(Index.fromOneBased(3));
 
-        // No trailing and leading whitespace
+        // no trailing and leading whitespace
         assertParseSuccess(parser, "Alice Bob", firstExpectedDetailsCommand);
         assertParseSuccess(parser, "3", secondExpectedDetailsCommand);
 
-        // Leading whitespace
+        // leading whitespace
         assertParseSuccess(parser, "      Alice Bob", firstExpectedDetailsCommand);
         assertParseSuccess(parser, "     3", secondExpectedDetailsCommand);
 
-        // Trailing whitespace
+        // trailing whitespace
         assertParseSuccess(parser, "Alice Bob    ", firstExpectedDetailsCommand);
         assertParseSuccess(parser, "3     ", secondExpectedDetailsCommand);
 
-        // Leading and trailing whitespace
+        // leading and trailing whitespace
         assertParseSuccess(parser, "     Alice Bob    ", firstExpectedDetailsCommand);
         assertParseSuccess(parser, "     3     ", secondExpectedDetailsCommand);
     }
