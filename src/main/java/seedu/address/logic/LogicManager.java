@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,7 +44,8 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = generateCommand(commandText);
+
         commandResult = command.execute(model);
 
         try {
@@ -53,6 +55,14 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private Command generateCommand(String commandText) throws ParseException {
+        if (commandText.trim().equals(HelpCommand.COMMAND_WORD)) {
+            return addressBookParser.parseCommand(commandText + " && list");
+        } else {
+            return addressBookParser.parseCommand(commandText);
+        }
     }
 
     @Override
