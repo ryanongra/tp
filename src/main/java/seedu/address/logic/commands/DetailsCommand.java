@@ -50,13 +50,14 @@ public class DetailsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        convertIndexToPredicate(model);
+        createPredicateFromIndex(model);
         return executePredicate(model);
     }
 
-    private void convertIndexToPredicate(Model model) throws CommandException {
+    private void createPredicateFromIndex(Model model) throws CommandException {
         requireNonNull(model);
         if (targetIndex != null) {
+            // slight violations of law of demeter, this is consistent with DeleteCommand
             List<Person> lastShownList = model.getFilteredPersonList();
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

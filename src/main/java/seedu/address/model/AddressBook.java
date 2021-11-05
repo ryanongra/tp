@@ -141,7 +141,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
-
         events.setEvent(target, editedEvent);
     }
 
