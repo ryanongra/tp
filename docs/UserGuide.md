@@ -79,10 +79,10 @@ Adds a person to the Interest Group.
 Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [tag/TAG]`
 
 * Only person's name must be entered to add the person. All other details are optional.
-* `Peron` added should not have the same name (case-sensitive) as `Person` that is already in the application.
+* `Person` added should not have the same name (case-sensitive) as `Person` that is already in the application.
 
 Examples:
-* `add n/Smith p/91234567 t/smith18 tag/Team Captain tag/Team A`
+* `add n/Smith p/91234567 t/smith18 tag/TeamCaptain tag/TeamA`
 * `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
 * `add n/John Doe`
 
