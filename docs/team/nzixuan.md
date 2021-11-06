@@ -1,46 +1,39 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Ng Zi Xuan's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: ForYourInterest
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ForYourInterest - ForYourInterest is a desktop app for managing members in university clubs/societies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added ability to chain commands with `&&`
+  * What it does: allows users to chain multiple commands together into one long command chain. Each command will execute sequentially.
+  * Justification: This feature improves the product significantly for advanced level users because a user can chain command they want to execute to be written in a row instead of having to enter each command individually.
+  * Highlights: This feature has a clever use of recursion to be able to accept multiple chaining attempts. It extends from the basic command regex checker in `AddressBookParser` and adds an advanced command regex checker.
+  
+ **New Feature**: Added ability to set and use an alias
+  * What it does: allows the user to save a command as an alias and subsequently be able to use that alias to execute the command.
+  * Justification: This feature improves the product significantly for advanced level users because a user can set commonly used commands to a shorter alias for speedier usage of the app. 
+  * Highlights: This feature made use of many of the previously added utilities and support for command parsing while requiring a deep analysis in to the design to be able to implement the different stages needed for setting an alias and then executing the alias.
+ 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=nzixuan&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=nzixuan&tabRepo=AY2122S1-CS2103-T16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Lead the discussion for some of the team's weekly meetings.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated `help` to link to ForYourInterest page [\#42](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/42)
+  * Added ability for `delete` to delete events using flag `-e` [\#83](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/83)
+  * Wrote equals method and testing for `clear`, `exit`, `help` and `list` commands [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65)
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `delete`, Chain Command and `alias` [\#19](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/19), [\#83](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/83), [\#65](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/65), [\#71](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/71)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the Chain Command feature. [\#82](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/82)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PR reviewed (with non-trivial review comments): [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64)od and testing to `clear`, `exit`, `help` and `list` commands 
