@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/icewizard4902.png" width="200px">
 
 [[github](https://github.com/IceWizard4902)]
-[[portfolio](team/nguyenquangvinh.md)]
+[[portfolio](team/icewizard4902.md)]
 
 - Role: Developer
 - Responsibilities: Testing
