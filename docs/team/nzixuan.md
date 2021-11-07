@@ -36,4 +36,4 @@ Given below are my contributions to the project.
     * Added implementation details of the Chain Command feature. [\#82](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/82)
 
 * **Community**:
-  * PR reviewed (with non-trivial review comments): [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64)od and testing to `clear`, `exit`, `help` and `list` commands 
+  * PR reviewed (with non-trivial review comments): [\#64](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/64)
