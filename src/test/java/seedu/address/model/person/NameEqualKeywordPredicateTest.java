@@ -41,30 +41,30 @@ class NameEqualKeywordPredicateTest {
 
     @Test
     public void test_nameMatchKeyword_returnsTrue() {
-        // Exact 1 word match
+        // exact 1 word match
         NameEqualKeywordPredicate predicate = new NameEqualKeywordPredicate(new Name("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Exact 2 word match
+        // exact 2 word match
         predicate = new NameEqualKeywordPredicate(new Name("Alice Bob"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotMatchKeyword_returnsFalse() {
-        // Non-matching keyword
+        // non-matching keyword
         NameEqualKeywordPredicate predicate = new NameEqualKeywordPredicate(new Name("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Partial match
+        // partial match
         predicate = new NameEqualKeywordPredicate(new Name("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Caroline").build()));
 
-        // Partial match 2 words
+        // partial match 2 words
         predicate = new NameEqualKeywordPredicate(new Name("Bob"));
         assertFalse(predicate.test(new PersonBuilder().withName("Bob boy").build()));
 
-        // Predicate with more words than person
+        // predicate with more words than person
         predicate = new NameEqualKeywordPredicate(new Name("Bob the builder"));
         assertFalse(predicate.test(new PersonBuilder().withName("Bob").build()));
     }

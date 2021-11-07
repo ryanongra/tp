@@ -418,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User searches for a member using <ins>UC04 - Find a member<ins/>.
-2. User types in command to delete the member.
+2. User requests to delete the member.
 3. System confirms that the member is deleted.
 
    Use case ends.
@@ -434,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to view all members managed by the system by using the command `list`.
+1. User requests to view all members managed by the system.
 2. System shows a list of all members managed by the system.
 
    Use case ends.
