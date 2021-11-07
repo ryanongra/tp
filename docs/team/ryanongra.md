@@ -31,8 +31,44 @@ Given below are my contributions to the project.
         * Added documentation for the features `add`, `details`, `renameEvent`, and `removePersonFromEvent` [\#20](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/20) [\#87](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/87/commits/e98a927bf98fb4889ce9d100376c812d6c282235) [\#138](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/138) 
         * Added screenshots and videos for app demos: [Project Management Document](https://docs.google.com/document/d/1-H421cvAuV-pI8mNIWEZZ4qh4tuU-aGIbmptDFOgGuk/edit)
     * Developer Guide:
-        * Added implementation details of the `add`, `renameEvent`, and `removePersonFromEvent` features and the `Person` class [\#78](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/78)
-        * Modified the class diagram for the `Person` class [PersonClassDiagram](https://github.com/AY2122S1-CS2103-T16-4/tp/blob/master/docs/images/PersonClassDiagram.png)
+        * Added implementation details of the `add` [DeveloperGuide](https://ay2122s1-cs2103-t16-4.github.io/tp/DeveloperGuide.html#implementation)
+        * Modified the class diagram for the `Person` class [ModelClassDiagram](https://ay2122s1-cs2103-t16-4.github.io/tp/DeveloperGuide.html#model-component)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#57](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/57), [\#75](https://github.com/AY2122S1-CS2103-T16-4/tp/pull/75)
+
+* **Extract from UG**:
+    * `Add` command in UG: 
+
+>### Adding a person : `add`
+>
+>Adds a person to the Interest Group.
+>
+>Format: `add n/NAME [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [tag/TAG]`
+>
+>* Only person's name must be entered to add the person. All other details are optional.
+>* `Person` added should not have the same name (case-sensitive) as `Person` that is already in the application.
+>
+>Examples:
+>* `add n/Smith p/91234567 t/smith18 tag/TeamCaptain tag/TeamA`
+>* `add n/Xiao Ming p/61234567 t/@xiao_ming e/xiaoming@gmail.com`
+>* `add n/John Doe`
+
+* **Extract from DG**:
+    * `Add` implemetation in DG:
+    
+>### Add feature (modification of existing feature)
+>
+>#### Implementation Details
+>
+>The `add` feature is implemented as a command such that it follows the flow of the `Logic` component as outlined above. The feature was modified to allow the user to omit non-essential details when adding a person (Phone, Telegram, Email, Tag(s)). These changes are reflected in the updated [Model Class Diagram](https://ay2122s1-cs2103-t16-4.github.io/tp/DeveloperGuide.html#model-component). This was done by taking the approach of using a unique unspecified input for omitted details. Through such an approach, the modification to existing code was minimised.
+>
+>#### Design Considerations
+>Aspect: Ensuring that validation regex still valid.
+>* **Alternative 1 (current choice)**: Bypass the validation regex check since unspecified input does not require to be checked.
+    * Pros: Does not require unnecessary modification of the validation regex.
+    * Cons: Requires an additional check for whether it is an unspecified input. This con was mitigated by extracting out the check to ensure code is SLAP and in a single level of abstraction.
+>
+>* **Alternative 2**: Modify validation regex to match unspecified input string.
+    * Pros: Does not require the additional lines of code, may be seen as a "cleaner" implementation.
+    * Cons: Validation regex would become much more complex and unreadable. Also makes the code less extensible for other developers who may want to change the unspecified input string.

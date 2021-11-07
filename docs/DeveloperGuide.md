@@ -172,6 +172,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature (modification of existing feature)
+
+#### Implementation Details
+
+The `add` feature is implemented as a command such that it follows the flow of the `Logic` component as outlined above. The feature was modified to allow the user to omit non-essential details when adding a person (Phone, Telegram, Email, Tag(s)). These changes are reflected in the updated [Model Class Diagram](https://ay2122s1-cs2103-t16-4.github.io/tp/DeveloperGuide.html#model-component). This was done by taking the approach of using a unique unspecified input for omitted details. Through such an approach, the modification to existing code was minimised.
+
+#### Design Considerations
+Aspect: Ensuring that validation regex still valid.
+* **Alternative 1 (current choice)**: Bypass the validation regex check since unspecified input does not require to be checked.
+    * Pros: Does not require unnecessary modification of the validation regex. 
+    * Cons: Requires an additional check for whether it is an unspecified input. This con was mitigated by extracting out the check to ensure code is SLAP and in a single level of abstraction.
+    
+* **Alternative 2**: Modify validation regex to match unspecified input string.
+    * Pros: Does not require the additional lines of code, may be seen as a "cleaner" implementation.
+    * Cons: Validation regex would become much more complex and unreadable. Also makes the code less extensible for other developers who may want to change the unspecified input string.
+
 ### Event feature
 
 #### Implementation Details
