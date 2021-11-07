@@ -267,6 +267,42 @@ Aspect: How to parse inputs given to `ChainCommand`:
 
 We have decided to go ahead with **Alternative 1** as it preserves the current implementation of the `Parser` and avoid having to pass around `AddressBookParser` objects during run time. While the code is modified instead of extended, we  believe that the alternative will cause even more modifications in the future resulting in futher problems.
 
+### Clear feature improvements
+
+#### Implementation details
+As there are two separate lists (member and event list), we need a way to properly separate operations on either of the two list.
+
+Hence, this calls for flags in the command. There are two flags in the `CliSyntax`: `-p` for person (member) and `-e` for event.
+Also, there is a new Parser implemented for the `clear` command to check for the validity of the command as well as deciding which list the `clear` command should operate on.
+
+The following sequence diagram shows how the `clear` command parsing and execution works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+#### Design considerations:
+Aspect: How to clear entries in the given range
+* **Alternative 1 (current choice)**: Reuse the `deletePerson` and `deleteEvent`. A loop is used in the `ClearCommand` from the ending index to the beginning index.
+    * Pros: Easier to implement with no new methods introduced to the Model component. Furthermore, the two methods used are properly tested.
+    * Cons: lengthy implementation (using loops)
+* **Alternative 2**: Create two new methods `deleteAllPerson` and `deleteAllEvent` in Model to facilitate this enhancement.
+    * Pros: A simpler, more direct way of implementing this enhancement. `ClearCommand` will simply call the appropriate command depending on the flag given.
+    * Cons: Requires additional testing to ensure that the two new methods function correctly. There is also a possibility of the methods clashing with the implementation of the UI component.
+
+### Save events to Json format
+
+#### Implementation details
+A new class `JsonAdaptedEvent` is implemented. The `JsonSerializableAddressBook` now stores both `JsonAdaptedPerson` and `JsonAdaptedEvent`
+A `JsonAdaptedEvent` instance may contain multiple instances of `JsonAdaptedPerson`, which are the details of the members participating in that event.
+
+#### Design considerations
+Aspect: How to store the list of persons participating in a particular event
+* **Alternative 1 (current choice)**: `JsonAdaptedEvent` will store a list of `JsonAdaptedPerson`
+    * Pros: Easy to implement. This implementation is similar to how the `JsonSerializableAddressBook` stores `JsonAdaptedPerson` in AB3.
+    * Cons: Overhead in data stored. Data of the same person may be repeated in the save file.
+* **Alternative 2**: `JsonAdaptedEvent` will store the every index in the members' list of the members participating in the event
+    * Pros: Less overhead in data stored
+    * Cons: Updating the person list will require updates to every single entry in the event list since the index of every entry is changed. Furthermore, this implementation is very hard to test.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
