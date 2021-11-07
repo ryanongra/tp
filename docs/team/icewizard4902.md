@@ -32,4 +32,4 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `clear`, `list`
     * Developer Guide:
-        * Added updated view of the `Storage` component.
+        * Added updated view of the `Storage` component and `clear` command enhancement.
