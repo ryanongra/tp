@@ -93,10 +93,7 @@ Shows the list of all persons in the IG.
 Format: `list`
 
 * The list will display the names of all the persons in the IG
-* The IG leader can use the `details` command with the name to show further details of the person (name, phone number, Telegram handle, Email)
-
-Examples:
-* `list` in an IG of 5 persons will display all the person’s names.
+* The user can use the `details` command with the name to show further details of the person (name, phone number, Telegram handle, Email)
 
 ### Editing a person : `edit`
 
